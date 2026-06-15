@@ -120,14 +120,6 @@ a {
   text-transform: uppercase;
 }
 
-.page-kicker {
-  color: var(--gold-light);
-  font-size: 0.9rem;
-  font-weight: 750;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 h1,
 h2,
 h3 {
@@ -140,11 +132,6 @@ h1 {
   max-width: 780px;
   margin-top: 16px;
   font-size: clamp(3rem, 7vw, 5.7rem);
-}
-
-.hero-narrow h1 {
-  margin-top: 10px;
-  font-size: clamp(3.4rem, 8vw, 6.4rem);
 }
 
 h2 {

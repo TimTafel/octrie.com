@@ -38,12 +38,12 @@
   --oc-font-mono:           'DM Mono', monospace;
 
   --oc-text-10:             11px;
-  --oc-text-13:             15px;
-  --oc-text-18:             20px;
-  --oc-text-24:             26px;
-  --oc-text-32:             34px;
-  --oc-text-42:             46px;
-  --oc-text-56:             60px;
+  --oc-text-13:             16px;
+  --oc-text-18:             22px;
+  --oc-text-24:             30px;
+  --oc-text-32:             40px;
+  --oc-text-42:             54px;
+  --oc-text-56:             64px;
 
   --oc-sp-1:                6px;
   --oc-sp-2:                8px;
@@ -172,7 +172,8 @@ a {
 .oc-hero {
   padding: var(--oc-sp-9) var(--oc-page-padding-x) var(--oc-sp-8);
   border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
-  max-width: 720px;
+  max-width: 100%;
+  background: var(--oc-surface-elevated);
 }
 
 .oc-hero-eyebrow {
@@ -186,12 +187,12 @@ a {
 }
 
 .oc-hero-headline {
-  font-family: var(--oc-font-wordmark);
+  font-family: var(--oc-font-heading);
   font-size: var(--oc-text-42);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.1;
   color: var(--oc-text-primary);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   margin-bottom: var(--oc-sp-4);
 }
 
@@ -225,10 +226,10 @@ a {
 .oc-heading-lg {
   font-family: var(--oc-font-heading);
   font-size: var(--oc-text-32);
-  font-weight: 800;
-  line-height: 1.15;
+  font-weight: 700;
+  line-height: 1.2;
   color: var(--oc-text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .oc-heading-md {
@@ -237,6 +238,7 @@ a {
   font-weight: 700;
   line-height: 1.2;
   color: var(--oc-text-primary);
+  letter-spacing: 0;
 }
 
 .oc-body {
@@ -350,9 +352,9 @@ a {
 .oc-vertical-title {
   font-family: var(--oc-font-heading);
   font-size: var(--oc-text-24);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--oc-text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   margin-bottom: var(--oc-sp-1);
 }
 
@@ -558,7 +560,8 @@ a {
   font-weight: 700;
   color: var(--oc-text-primary);
   margin-bottom: var(--oc-sp-2);
-  line-height: 1.2;
+  line-height: 1.25;
+  letter-spacing: 0;
 }
 
 .oc-card-body {

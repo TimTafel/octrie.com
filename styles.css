@@ -4,7 +4,7 @@
    Version: 1.0
 ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500;600&display=swap');
 
 /* ================================================================
    TOKENS
@@ -33,17 +33,17 @@
   --oc-text-disabled-inv:   #3A3A3A;
 
   --oc-font-wordmark:       'Syne', sans-serif;
-  --oc-font-heading:        'Syne', sans-serif;
+  --oc-font-heading:        'DM Sans', sans-serif;
   --oc-font-body:           'DM Sans', sans-serif;
   --oc-font-mono:           'DM Mono', monospace;
 
-  --oc-text-10:             10px;
-  --oc-text-13:             13px;
-  --oc-text-18:             18px;
-  --oc-text-24:             24px;
-  --oc-text-32:             32px;
-  --oc-text-42:             42px;
-  --oc-text-56:             56px;
+  --oc-text-10:             11px;
+  --oc-text-13:             15px;
+  --oc-text-18:             20px;
+  --oc-text-24:             26px;
+  --oc-text-32:             34px;
+  --oc-text-42:             46px;
+  --oc-text-56:             60px;
 
   --oc-sp-1:                6px;
   --oc-sp-2:                8px;
@@ -136,7 +136,7 @@ a {
 
 .oc-nav-link {
   font-family: var(--oc-font-body);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   color: var(--oc-text-secondary);
   letter-spacing: 0.04em;
@@ -186,7 +186,7 @@ a {
 }
 
 .oc-hero-headline {
-  font-family: var(--oc-font-heading);
+  font-family: var(--oc-font-wordmark);
   font-size: var(--oc-text-42);
   font-weight: 800;
   line-height: 1.1;
@@ -358,7 +358,7 @@ a {
 
 .oc-vertical-desc {
   font-family: var(--oc-font-body);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--oc-text-secondary);
   line-height: 1.5;
   max-width: 480px;
@@ -433,7 +433,7 @@ a {
 
 .oc-tool-listing-tag {
   font-family: var(--oc-font-mono);
-  font-size: 7px;
+  font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -444,7 +444,7 @@ a {
 
 .oc-tool-listing-name {
   font-family: var(--oc-font-heading);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--oc-text-primary);
   margin-bottom: var(--oc-sp-1);
@@ -452,7 +452,7 @@ a {
 
 .oc-tool-listing-desc {
   font-family: var(--oc-font-body);
-  font-size: var(--oc-text-10);
+  font-size: 13px;
   color: var(--oc-text-secondary);
   line-height: 1.4;
 }
@@ -489,7 +489,7 @@ a {
 
 .oc-tool-coming-soon-name {
   font-family: var(--oc-font-heading);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--oc-text-disabled);
   text-align: center;
@@ -689,7 +689,7 @@ a {
 
 .oc-footer-link {
   font-family: var(--oc-font-body);
-  font-size: 11px;
+  font-size: 13px;
   color: var(--oc-text-tertiary);
   text-decoration: none;
   transition: color var(--oc-transition-fast);

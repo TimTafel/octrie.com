@@ -8,82 +8,80 @@
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Primary navigation">
-      <a class="logo" href="../">Oct<span>rie</span></a>
-      <div class="nav-links">
-        <a href="../tools/" aria-current="page">Tools</a>
-        <a href="../library/">Library</a>
-        <a href="../solutions/">Solutions</a>
-        <a href="../about/">About</a>
-      </div>
-    </nav>
-  </header>
+  <nav class="oc-nav">
+    <a class="oc-wordmark" href="../">Octrie</a>
+    <div class="oc-nav-links">
+      <a class="oc-nav-link" href="../tools/" aria-current="page">Tools</a>
+      <a class="oc-nav-link" href="../library/">Library</a>
+      <a class="oc-nav-link" href="../solutions/">Solutions</a>
+      <a class="oc-nav-link" href="../about/">About</a>
+    </div>
+  </nav>
 
-  <main>
-    <section class="hero hero-narrow">
-      <div class="container">
-        <p class="eyebrow">Tools</p>
-        <h1>Calculators, scripts, checklists, and products.</h1>
-        <p class="lead">
-          Live tools are hosted on Octrie. Downloadable versions, templates, and updates are delivered through Gumroad.
-        </p>
-      </div>
+  <main class="oc-page">
+
+    <section class="oc-hero">
+      <p class="oc-hero-eyebrow">Tools</p>
+      <h1 class="oc-hero-headline">Calculators, scripts, checklists, and products.</h1>
+      <p class="oc-hero-sub">Live tools are hosted on Octrie. Downloadable versions, templates, and updates are delivered through Gumroad.</p>
     </section>
 
-    <section class="section alt">
-      <div class="container">
-        <div class="grid">
-          <div class="card">
-            <span class="tag">Live tool</span>
-            <h3>Pre-Offer Rehab Cost Estimator</h3>
-            <p>Estimate rehab scope with NAHB construction cost data adjusted by BLS local labor multipliers.</p>
-            <div class="card-actions">
-              <a class="button small primary" href="../rehab-calculator/">Open Calculator</a>
-              <a class="button small" href="https://timvestor.gumroad.com" target="_blank" rel="noopener">Get Download</a>
-            </div>
+    <section class="oc-vertical-section" style="--oc-vertical-accent: #B8922A;">
+      <div class="oc-vertical-header">
+        <div class="oc-vertical-meta">
+          <div class="oc-vertical-indicator">
+            <div class="oc-vertical-dot"></div>
+            <span class="oc-vertical-dot-label">Real Estate</span>
           </div>
-
-          <div class="card">
-            <span class="tag">Live tool</span>
-            <h3>Wholesale Deal Calculator</h3>
-            <p>Calculate MAO, flipper gross profit, and gross margin using the 70% rule. Built for wholesalers pricing deals for their buyers list.</p>
-            <div class="card-actions">
-              <a class="button small primary" href="../wholesale-calculator/">Open Calculator</a>
-              <a class="button small" href="https://timvestor.gumroad.com" target="_blank" rel="noopener">Get Download</a>
-            </div>
+          <div class="oc-vertical-eyebrow">Real Estate</div>
+          <div class="oc-vertical-title">Deal analysis and acquisition tools.</div>
+          <div class="oc-vertical-desc">For wholesalers and flippers evaluating deals before the offer.</div>
+        </div>
+      </div>
+      <div class="oc-tool-grid">
+        <div class="oc-tool-listing">
+          <div class="oc-tool-listing-header">
+            <span class="oc-tool-listing-tag">Live tool</span>
+            <div class="oc-tool-listing-name">Pre-Offer Rehab Cost Estimator</div>
+            <div class="oc-tool-listing-desc">Estimate rehab scope with NAHB construction cost data adjusted by BLS local labor multipliers.</div>
           </div>
-
-          <div class="card">
-            <span class="tag">Product idea</span>
-            <h3>Seller Call Scripts</h3>
-            <p>Structured scripts and response patterns for acquisition calls, follow-up, and offer conversations.</p>
-            <div class="card-actions">
-              <span class="button small">Coming Soon</span>
-            </div>
+          <div class="oc-tool-listing-actions">
+            <a class="oc-btn oc-btn--filled oc-btn--sm" href="../rehab-calculator/">Open Calculator</a>
+            <a class="oc-btn oc-btn--sm" href="https://timvestor.gumroad.com" target="_blank" rel="noopener">Get Download</a>
           </div>
-
-          <div class="card">
-            <span class="tag">Product idea</span>
-            <h3>Offer Checklist</h3>
-            <p>A pre-offer checklist for assumptions, scope risk, financing constraints, and negotiation notes.</p>
-            <div class="card-actions">
-              <span class="button small">Coming Soon</span>
-            </div>
+        </div>
+        <div class="oc-tool-listing">
+          <div class="oc-tool-listing-header">
+            <span class="oc-tool-listing-tag">Live tool</span>
+            <div class="oc-tool-listing-name">Wholesale Deal Calculator</div>
+            <div class="oc-tool-listing-desc">Calculate MAO, flipper gross profit, and gross margin using the 70% rule. Built for wholesalers pricing deals for their buyers list.</div>
           </div>
+          <div class="oc-tool-listing-actions">
+            <a class="oc-btn oc-btn--filled oc-btn--sm" href="../wholesale-calculator/">Open Calculator</a>
+            <a class="oc-btn oc-btn--sm" href="https://timvestor.gumroad.com" target="_blank" rel="noopener">Get Download</a>
+          </div>
+        </div>
+        <div class="oc-tool-coming-soon">
+          <span class="oc-tool-coming-soon-label">Coming soon</span>
+          <span class="oc-tool-coming-soon-name">Seller Call Scripts</span>
+        </div>
+        <div class="oc-tool-coming-soon">
+          <span class="oc-tool-coming-soon-label">Coming soon</span>
+          <span class="oc-tool-coming-soon-name">Offer Checklist</span>
         </div>
       </div>
     </section>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <a class="logo" href="../">Oct<span>rie</span></a>
-      <div class="footer-links">
-        <a href="../library/">Library</a>
-        <a href="../solutions/">Solutions</a>
-        <a href="mailto:info@octrie.com">Contact</a>
-      </div>
+  <footer class="oc-footer">
+    <a class="oc-footer-wordmark" href="../">Octrie</a>
+    <div class="oc-footer-links">
+      <a class="oc-footer-link" href="../tools/">Tools</a>
+      <a class="oc-footer-link" href="../library/">Library</a>
+      <a class="oc-footer-link" href="../solutions/">Solutions</a>
+      <a class="oc-footer-link" href="../about/">About</a>
+      <a class="oc-footer-link" href="mailto:info@octrie.com">Contact</a>
     </div>
   </footer>
 </body>

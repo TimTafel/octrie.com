@@ -8,160 +8,134 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Primary navigation">
-      <a class="logo" href="./">Oct<span>rie</span></a>
-      <div class="nav-links">
-        <a href="./tools/">Tools</a>
-        <a href="./library/">Library</a>
-        <a href="./solutions/">Solutions</a>
-        <a href="./about/">About</a>
-      </div>
-    </nav>
-  </header>
+  <nav class="oc-nav">
+    <a class="oc-wordmark" href="./">Octrie</a>
+    <div class="oc-nav-links">
+      <a class="oc-nav-link" href="./tools/">Tools</a>
+      <a class="oc-nav-link" href="./library/">Library</a>
+      <a class="oc-nav-link" href="./solutions/">Solutions</a>
+      <a class="oc-nav-link" href="./about/">About</a>
+    </div>
+  </nav>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <p class="eyebrow">Built for operators</p>
-        <h1>Tools for sharper real estate decisions.</h1>
-        <p class="lead">
-          Octrie publishes calculators, scripts, checklists, and practical notes for investors evaluating deals before the offer.
-        </p>
-        <div class="actions">
-          <a class="button primary" href="./rehab-calculator/">Open Rehab Calculator</a>
-          <a class="button" href="./tools/">Browse Tools</a>
+  <main class="oc-page">
+
+    <section class="oc-hero">
+      <p class="oc-hero-eyebrow">Built for operators</p>
+      <h1 class="oc-hero-headline">Tools for sharper real estate decisions.</h1>
+      <p class="oc-hero-sub">Octrie publishes calculators, scripts, checklists, and practical notes for investors evaluating deals before the offer.</p>
+      <div class="oc-hero-actions">
+        <a class="oc-btn oc-btn--filled" href="./rehab-calculator/">Open Rehab Calculator</a>
+        <a class="oc-btn" href="./tools/">Browse Tools</a>
+      </div>
+    </section>
+
+    <section class="oc-vertical-section" style="--oc-vertical-accent: #B8922A;">
+      <div class="oc-vertical-header">
+        <div class="oc-vertical-meta">
+          <div class="oc-vertical-indicator">
+            <div class="oc-vertical-dot"></div>
+            <span class="oc-vertical-dot-label">Real Estate</span>
+          </div>
+          <div class="oc-vertical-eyebrow">Tools and products</div>
+          <div class="oc-vertical-title">Use the tools. Download the products.</div>
+          <div class="oc-vertical-desc">Interactive tools live on Octrie. Downloadable resources and product updates are delivered through Gumroad.</div>
+        </div>
+        <a class="oc-vertical-cta" href="./tools/" style="color: #181614;">Browse All Tools</a>
+      </div>
+      <div class="oc-tool-grid">
+        <div class="oc-tool-listing">
+          <div class="oc-tool-listing-header">
+            <span class="oc-tool-listing-tag">Live tool</span>
+            <div class="oc-tool-listing-name">Rehab Cost Estimator</div>
+            <div class="oc-tool-listing-desc">Source-backed pre-offer rehab estimating with county-level local labor adjustment.</div>
+          </div>
+          <div class="oc-tool-listing-actions">
+            <a class="oc-btn oc-btn--filled oc-btn--sm" href="./rehab-calculator/">Open Calculator</a>
+            <a class="oc-btn oc-btn--sm" href="https://timvestor.gumroad.com" target="_blank" rel="noopener">Get Download</a>
+          </div>
+        </div>
+        <div class="oc-tool-listing">
+          <div class="oc-tool-listing-header">
+            <span class="oc-tool-listing-tag">Live tool</span>
+            <div class="oc-tool-listing-name">Wholesale Deal Calculator</div>
+            <div class="oc-tool-listing-desc">Calculate MAO, flipper gross profit, and gross margin using the 70% rule. Built for wholesalers pricing deals for their buyers list.</div>
+          </div>
+          <div class="oc-tool-listing-actions">
+            <a class="oc-btn oc-btn--filled oc-btn--sm" href="./wholesale-calculator/">Open Calculator</a>
+            <a class="oc-btn oc-btn--sm" href="https://timvestor.gumroad.com" target="_blank" rel="noopener">Get Download</a>
+          </div>
+        </div>
+        <div class="oc-tool-listing">
+          <div class="oc-tool-listing-header">
+            <span class="oc-tool-listing-tag">Custom work</span>
+            <div class="oc-tool-listing-name">Solutions</div>
+            <div class="oc-tool-listing-desc">Custom calculators, acquisition workflows, scripts, and internal decision tools for real estate teams.</div>
+          </div>
+          <div class="oc-tool-listing-actions">
+            <a class="oc-btn oc-btn--sm" href="./solutions/">Explore Solutions</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section alt">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Featured tool</p>
-            <h2>Pre-Offer Rehab Cost Estimator</h2>
-          </div>
-          <p>
-            Estimate rehab scope using NAHB 2024 construction cost data adjusted by BLS local labor market multipliers.
-          </p>
+    <section class="oc-section oc-section--alt">
+      <div class="oc-section-head">
+        <div>
+          <p class="oc-label">Library</p>
+          <h2 class="oc-heading-lg">Notes, guides, and breakdowns.</h2>
         </div>
-        <div class="callout">
-          <h3>Use the live calculator on Octrie.</h3>
-          <p>
-            Select a state and county, choose a condition tier, adjust scope items, and add a contingency buffer before you write the offer.
-          </p>
-          <div class="actions">
-            <a class="button primary" href="./rehab-calculator/">Open Calculator</a>
-            <a class="button" href="https://timvestor.gumroad.com" target="_blank" rel="noopener">Get Download</a>
+        <p class="oc-body">The Library is the content side of Octrie: methodology, field notes, videos, and practical explanations behind the tools.</p>
+      </div>
+      <div class="oc-content-grid">
+        <div class="oc-card">
+          <span class="oc-card-tag">Coming soon</span>
+          <h3 class="oc-card-heading">How to think about pre-offer rehab estimates</h3>
+          <p class="oc-card-body">A practical explanation of why a screening estimate is different from a contractor bid.</p>
+        </div>
+        <div class="oc-card">
+          <span class="oc-card-tag">Coming soon</span>
+          <h3 class="oc-card-heading">Why contingency matters</h3>
+          <p class="oc-card-body">How offer-stage uncertainty, access limits, and hidden conditions affect rehab planning.</p>
+        </div>
+        <div class="oc-card">
+          <span class="oc-card-tag">Coming soon</span>
+          <h3 class="oc-card-heading">Using local labor multipliers</h3>
+          <p class="oc-card-body">Why national cost data needs a local labor adjustment before it becomes useful.</p>
+        </div>
+      </div>
+      <div class="oc-actions">
+        <a class="oc-btn" href="./library/">Visit Library</a>
+      </div>
+    </section>
+
+    <section class="oc-section">
+      <div class="oc-split">
+        <div>
+          <p class="oc-label">Custom builds</p>
+          <h2 class="oc-heading-lg">Need a private version for your business?</h2>
+        </div>
+        <div class="oc-card">
+          <h3 class="oc-card-heading">Custom tools and workflows for real estate operators.</h3>
+          <p class="oc-card-body">Octrie can adapt its calculators, scripts, and decision workflows for investors, acquisition teams, and small real estate businesses.</p>
+          <div class="oc-actions">
+            <a class="oc-btn oc-btn--filled" href="mailto:info@octrie.com?subject=Custom%20Octrie%20Build">Request a Custom Build</a>
+            <a class="oc-btn" href="./solutions/">View Solutions</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Tools and products</p>
-            <h2>Use the tools. Download the products.</h2>
-          </div>
-          <p>
-            Interactive tools live on Octrie. Downloadable resources and product updates are delivered through Gumroad.
-          </p>
-        </div>
-        <div class="grid">
-          <a class="card" href="./rehab-calculator/">
-            <span class="tag">Live tool</span>
-            <h3>Rehab Cost Estimator</h3>
-            <p>Source-backed pre-offer rehab estimating with county-level local labor adjustment.</p>
-            <div class="card-actions"><span class="button small">Open Tool</span></div>
-          </a>
-          <a class="card" href="./wholesale-calculator/">
-            <span class="tag">Live tool</span>
-            <h3>Wholesale Deal Calculator</h3>
-            <p>Calculate MAO, flipper gross profit, and gross margin using the 70% rule. Built for wholesalers pricing deals for their buyers list.</p>
-            <div class="card-actions"><span class="button small">Open Calculator</span></div>
-          </a>
-          <a class="card" href="./solutions/">
-            <span class="tag">Custom work</span>
-            <h3>Solutions</h3>
-            <p>Custom calculators, acquisition workflows, scripts, and internal decision tools for real estate teams.</p>
-            <div class="card-actions"><span class="button small">Explore</span></div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Library</p>
-            <h2>Notes, guides, and breakdowns.</h2>
-          </div>
-          <p>
-            The Library is the content side of Octrie: methodology, field notes, videos, and practical explanations behind the tools.
-          </p>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <span class="tag">Coming soon</span>
-            <h3>How to think about pre-offer rehab estimates</h3>
-            <p>A practical explanation of why a screening estimate is different from a contractor bid.</p>
-          </div>
-          <div class="card">
-            <span class="tag">Coming soon</span>
-            <h3>Why contingency matters</h3>
-            <p>How offer-stage uncertainty, access limits, and hidden conditions affect rehab planning.</p>
-          </div>
-          <div class="card">
-            <span class="tag">Coming soon</span>
-            <h3>Using local labor multipliers</h3>
-            <p>Why national cost data needs a local labor adjustment before it becomes useful.</p>
-          </div>
-        </div>
-        <div class="actions">
-          <a class="button" href="./library/">Visit Library</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="split">
-          <div>
-            <p class="eyebrow">Custom builds</p>
-            <h2>Need a private version for your business?</h2>
-          </div>
-          <div class="callout">
-            <h3>Custom tools and workflows for real estate operators.</h3>
-            <p>
-              Octrie can adapt its calculators, scripts, and decision workflows for investors, acquisition teams, and small real estate businesses.
-            </p>
-            <div class="actions">
-              <a class="button primary" href="mailto:info@octrie.com?subject=Custom%20Octrie%20Build">Request a Custom Build</a>
-              <a class="button" href="./solutions/">View Solutions</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>
-        <a class="logo" href="./">Oct<span>rie</span></a>
-        <p class="fine">Tools, resources, and workflows for operators.</p>
-      </div>
-      <div class="footer-links">
-        <a href="./tools/">Tools</a>
-        <a href="./library/">Library</a>
-        <a href="./solutions/">Solutions</a>
-        <a href="./about/">About</a>
-        <a href="mailto:info@octrie.com">Contact</a>
-      </div>
+  <footer class="oc-footer">
+    <a class="oc-footer-wordmark" href="./">Octrie</a>
+    <div class="oc-footer-links">
+      <a class="oc-footer-link" href="./tools/">Tools</a>
+      <a class="oc-footer-link" href="./library/">Library</a>
+      <a class="oc-footer-link" href="./solutions/">Solutions</a>
+      <a class="oc-footer-link" href="./about/">About</a>
+      <a class="oc-footer-link" href="mailto:info@octrie.com">Contact</a>
     </div>
   </footer>
 </body>

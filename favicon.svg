@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 46">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
   <defs>
     <filter id="blur" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="3"/>
+      <feGaussianBlur stdDeviation="4.5"/>
     </filter>
   </defs>
   <style>
@@ -12,6 +12,6 @@
       .letter { fill: #F5F5F5; }
     }
   </style>
-  <text class="halo" x="23" y="23" font-family="sans-serif" font-size="42" font-weight="900" text-anchor="middle" dominant-baseline="central" filter="url(#blur)">O</text>
-  <text class="letter" x="23" y="23" font-family="sans-serif" font-size="42" font-weight="900" text-anchor="middle" dominant-baseline="central">O</text>
+  <text class="halo" x="28" y="28" font-family="sans-serif" font-size="50" font-weight="900" text-anchor="middle" dominant-baseline="central" filter="url(#blur)">O</text>
+  <text class="letter" x="28" y="28" font-family="sans-serif" font-size="50" font-weight="900" text-anchor="middle" dominant-baseline="central">O</text>
 </svg>

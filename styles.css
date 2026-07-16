@@ -69,7 +69,8 @@
   --oc-transition-base:     0.2s ease;
   --oc-transition-slow:     0.35s ease;
 
-  --oc-vertical-accent:     #767676;
+  --oc-vertical-accent:      #B8922A;
+  --oc-vertical-accent-deep: #8A681A;
 }
 
 /* ================================================================
@@ -798,3 +799,24 @@ a {
     align-items: flex-start;
   }
 }
+
+/* ================================================================
+   HOMEPAGE ACCENT
+   Amber brand accent, scoped to #home so other pages keep their
+   own accent handling. Deep variant is for small text on light
+   surfaces (contrast); full amber is for button/CTA backgrounds.
+================================================================ */
+
+#home .oc-hero-eyebrow { color: var(--oc-vertical-accent-deep); }
+#home .oc-card-tag { color: var(--oc-vertical-accent-deep); }
+#home .oc-tool-listing-tag { color: var(--oc-vertical-accent-deep); }
+#home .oc-vertical-dot-label,
+#home .oc-vertical-eyebrow { color: var(--oc-vertical-accent-deep); }
+
+#home .oc-btn--filled {
+  background: var(--oc-vertical-accent);
+  border-color: var(--oc-vertical-accent);
+  color: var(--oc-text-primary);
+}
+
+#home .oc-vertical-cta { color: var(--oc-text-primary); }

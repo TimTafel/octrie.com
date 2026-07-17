@@ -4,7 +4,8 @@
    Version: 1.0
 ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500;600&display=swap');
+/* Fonts are loaded via <link> tags in each page's <head> (faster than
+   @import: no render-blocking chain through this stylesheet). */
 
 /* ================================================================
    TOKENS
@@ -217,10 +218,15 @@ a {
     flex-wrap: wrap;
     position: sticky;
     top: 0;
+    /* Fixed height clips the opened menu; let it grow with the links */
+    height: auto;
+    min-height: var(--oc-nav-height);
   }
 
   .oc-nav-menu-btn {
+    height: var(--oc-nav-height);
     display: flex;
+    justify-content: center;
   }
 
   .oc-nav-links {
@@ -248,6 +254,11 @@ a {
 .oc-page {
   max-width: var(--oc-page-max-width);
   margin: 0 auto;
+}
+
+/* Anchored sections (#services, #how-it-works) land below the sticky nav */
+section[id] {
+  scroll-margin-top: calc(var(--oc-nav-height) + 8px);
 }
 
 /* ================================================================

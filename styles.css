@@ -845,6 +845,21 @@ section[id] {
   grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
   gap: var(--oc-sp-8);
   align-items: center;
+  /* Light field with warm amber light washing in behind the phone mockup —
+     sunlight on the white livery. White stays dominant; gold is the light. */
+  background:
+    radial-gradient(ellipse 55% 75% at 80% 35%, rgba(184, 146, 42, 0.16) 0%, transparent 68%),
+    radial-gradient(ellipse 75% 65% at 8% 0%, rgba(255, 255, 255, 0.72) 0%, transparent 65%),
+    radial-gradient(circle, rgba(0, 0, 0, 0.09) 1px, transparent 1px),
+    var(--oc-surface-elevated);
+  background-size: auto, auto, 24px 24px, auto;
+}
+
+/* Phone sits in the warm light: soft gold halo plus a gentle drop */
+#home .oc-hero .oc-phone {
+  box-shadow:
+    0 0 60px rgba(184, 146, 42, 0.30),
+    10px 10px 0 rgba(26, 26, 26, 0.10);
 }
 
 #home .oc-hero-copy { max-width: 560px; }

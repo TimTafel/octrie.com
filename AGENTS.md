@@ -48,6 +48,12 @@ orphaned from navigation — leave their content alone unless asked.
 - No frameworks, no npm, no bundler — pure HTML/CSS/JS only
 - Keep pages self-contained; share only nav.js and styles.css globally
 - Nav on every page: Services / How it works / About (anchors resolve to homepage sections)
-- Footer on every page includes Contact (mailto:info@octrie.com) and phone (tel:+13077610727)
+- Footer on every page includes Contact (mailto:info@octrie.com) and a phone link
+- **Phone number is obfuscated against scraping**: never write the raw number (307-761-0727 in
+  any format) directly into HTML. Use `<a data-tel="7270167703" href="mailto:info@octrie.com">`
+  (digits reversed) — `nav.js` reverses them back and assembles the real `tel:` link + formatted
+  display text at runtime. Optional `data-tel-label="Call "` attribute prepends static text (e.g.
+  the About page CTA reads "Call (307) 761-0727"). This keeps the number out of raw HTML that
+  scrapers harvest, while degrading gracefully to a working mailto link if JS fails to run.
 - Never touch `CNAME`
 - Safety ritual before risky changes: `git tag <name> && git push origin <name>` (existing rollback tags: `before-general-homepage`, `before-accent-color`, `before-site-consistency`)

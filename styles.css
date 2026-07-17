@@ -831,3 +831,254 @@ section[id] {
 }
 
 #home .oc-vertical-cta { color: var(--oc-text-primary); }
+
+/* ================================================================
+   HOMEPAGE VISUALS
+   Product demos built in-system (no photos): split hero with a
+   text-thread mockup, per-service demo panels, concrete statement
+   band, and reveal/hover motion. Scoped to #home.
+================================================================ */
+
+/* ── Split hero ── */
+#home .oc-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+  gap: var(--oc-sp-8);
+  align-items: center;
+}
+
+#home .oc-hero-copy { max-width: 560px; }
+
+@media (max-width: 1023px) {
+  #home .oc-hero {
+    grid-template-columns: 1fr;
+    gap: var(--oc-sp-6);
+  }
+  #home .oc-hero-visual { max-width: 400px; }
+}
+
+/* ── Phone / text-thread mockup ── */
+#home .oc-phone {
+  border: var(--oc-border-dominant) solid var(--oc-text-primary);
+  background: var(--oc-surface-page);
+  box-shadow: 10px 10px 0 rgba(26, 26, 26, 0.10);
+}
+
+#home .oc-phone-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--oc-sp-2) var(--oc-sp-4);
+  border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  font-family: var(--oc-font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--oc-text-secondary);
+}
+
+#home .oc-thread {
+  padding: var(--oc-sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--oc-sp-3);
+}
+
+#home .oc-thread-event {
+  font-family: var(--oc-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--oc-text-tertiary);
+  text-align: center;
+}
+
+#home .oc-thread-event--result {
+  color: var(--oc-vertical-accent-deep);
+  font-weight: 500;
+}
+
+#home .oc-msg {
+  font-size: 14px;
+  line-height: 1.45;
+  padding: var(--oc-sp-2) var(--oc-sp-3);
+  max-width: 88%;
+}
+
+#home .oc-msg--out {
+  background: var(--oc-vertical-accent);
+  color: var(--oc-text-primary);
+  align-self: flex-end;
+}
+
+#home .oc-msg--in {
+  background: var(--oc-surface-sunken);
+  border: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  color: var(--oc-text-primary);
+  align-self: flex-start;
+}
+
+#home .oc-phone-note {
+  padding: var(--oc-sp-2) var(--oc-sp-4) var(--oc-sp-3);
+  border-top: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  font-family: var(--oc-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--oc-vertical-accent-deep);
+}
+
+/* Thread messages arrive one by one on load */
+@keyframes oc-arrive {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+#home .oc-thread > * {
+  opacity: 0;
+  animation: oc-arrive 0.45s ease forwards;
+  animation-delay: var(--d, 0s);
+}
+
+/* ── Per-service demo panels ── */
+#home .oc-demo {
+  margin-top: var(--oc-sp-3);
+  border: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  background: var(--oc-surface-elevated);
+  padding: var(--oc-sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--oc-sp-2);
+}
+
+#home .oc-demo-line {
+  font-family: var(--oc-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--oc-text-tertiary);
+}
+
+#home .oc-demo-line--result {
+  color: var(--oc-vertical-accent-deep);
+  font-weight: 500;
+}
+
+#home .oc-demo-bubble {
+  font-size: 13px;
+  line-height: 1.4;
+  background: var(--oc-vertical-accent);
+  color: var(--oc-text-primary);
+  padding: 6px 9px;
+}
+
+#home .oc-demo-stars {
+  color: var(--oc-vertical-accent-deep);
+  font-size: 15px;
+  letter-spacing: 0.3em;
+  line-height: 1;
+}
+
+#home .oc-demo-status {
+  display: flex;
+  align-items: center;
+  gap: var(--oc-sp-2);
+  font-family: var(--oc-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--oc-text-secondary);
+}
+
+#home .oc-demo-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--oc-vertical-accent);
+  flex-shrink: 0;
+}
+
+/* ── Concrete statement band ── */
+#home .oc-band {
+  padding: var(--oc-sp-9) var(--oc-page-padding-x);
+  background:
+    linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)),
+    url('./bg-concrete.jpg') center / cover;
+  border-bottom: var(--oc-border-subordinate) solid var(--oc-border-dark);
+}
+
+#home .oc-band-label {
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-10);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--oc-vertical-accent);
+  margin-bottom: var(--oc-sp-3);
+}
+
+#home .oc-band-line {
+  font-family: var(--oc-font-heading);
+  font-size: var(--oc-text-32);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--oc-text-primary-inv);
+  max-width: 760px;
+}
+
+#home .oc-band-line em {
+  font-style: normal;
+  color: var(--oc-vertical-accent);
+}
+
+@media (max-width: 767px) {
+  #home .oc-band { padding: var(--oc-sp-8) var(--oc-page-padding-x-mob); }
+  #home .oc-band-line { font-size: var(--oc-text-24); }
+}
+
+/* ── Process step numerals ── */
+#home .oc-step-num {
+  display: block;
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-24);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--oc-vertical-accent-deep);
+  margin-bottom: var(--oc-sp-3);
+}
+
+/* ── Motion: reveal on scroll + card hover lift ── */
+/* Hidden state only applies when JS has run (html.oc-js), so content
+   is never lost if scripts fail. */
+html.oc-js #home .oc-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: var(--rd, 0s);
+}
+
+html.oc-js #home .oc-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+#home .oc-tool-listing,
+#home .oc-card {
+  transition: transform var(--oc-transition-base), box-shadow var(--oc-transition-base), border-color var(--oc-transition-base);
+}
+
+#home .oc-tool-listing:hover,
+#home .oc-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--oc-border-medium);
+  box-shadow: 6px 6px 0 rgba(26, 26, 26, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #home .oc-thread > * { animation: none; opacity: 1; }
+  html.oc-js #home .oc-reveal { opacity: 1; transform: none; transition: none; }
+  #home .oc-tool-listing,
+  #home .oc-card { transition: none; }
+  #home .oc-tool-listing:hover,
+  #home .oc-card:hover { transform: none; box-shadow: none; }
+}

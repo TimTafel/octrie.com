@@ -49,12 +49,29 @@
   <main class="oc-page">
 
     <section class="oc-hero">
-      <p class="oc-hero-eyebrow">Customer follow-up &amp; automation</p>
-      <h1 class="oc-hero-headline">Never miss another customer call.</h1>
-      <p class="oc-hero-sub">If your business runs on picking up the phone — calls, bookings, follow-ups — we set up the automation that makes sure none of it falls through the cracks.</p>
-      <div class="oc-hero-actions">
-        <a class="oc-btn oc-btn--filled" href="mailto:info@octrie.com?subject=Getting%20Started">Get Started</a>
-        <a class="oc-btn" href="#how-it-works">See How It Works</a>
+      <div class="oc-hero-copy">
+        <p class="oc-hero-eyebrow">Customer follow-up &amp; automation</p>
+        <h1 class="oc-hero-headline">Never miss another customer call.</h1>
+        <p class="oc-hero-sub">If your business runs on picking up the phone — calls, bookings, follow-ups — we set up the automation that makes sure none of it falls through the cracks.</p>
+        <div class="oc-hero-actions">
+          <a class="oc-btn oc-btn--filled" href="mailto:info@octrie.com?subject=Getting%20Started">Get Started</a>
+          <a class="oc-btn" href="#how-it-works">See How It Works</a>
+        </div>
+      </div>
+      <div class="oc-hero-visual" aria-hidden="true">
+        <div class="oc-phone">
+          <div class="oc-phone-top">
+            <span>Your Business</span>
+            <span>2:47 PM</span>
+          </div>
+          <div class="oc-thread">
+            <div class="oc-thread-event" style="--d: 0.2s">Missed call · (214) 555-0182 · 2:47 PM</div>
+            <div class="oc-msg oc-msg--out" style="--d: 0.9s">Sorry we missed your call! What do you need done? Reply here and we'll get you scheduled.</div>
+            <div class="oc-msg oc-msg--in" style="--d: 1.8s">Do you have anything open tomorrow morning?</div>
+            <div class="oc-thread-event oc-thread-event--result" style="--d: 2.6s">Lead captured · replied in 8 seconds</div>
+          </div>
+          <div class="oc-phone-note">Sent automatically — before you've even seen the missed call.</div>
+        </div>
       </div>
     </section>
 
@@ -72,33 +89,48 @@
         <a class="oc-vertical-cta" href="mailto:info@octrie.com?subject=Services%20Inquiry">Get Started</a>
       </div>
       <div class="oc-tool-grid">
-        <div class="oc-tool-listing">
+        <div class="oc-tool-listing oc-reveal">
           <div class="oc-tool-listing-header">
             <span class="oc-tool-listing-tag">Live setup</span>
             <h3 class="oc-tool-listing-name">Missed Call Capture</h3>
             <div class="oc-tool-listing-desc">Automatic text-back and follow-up the moment a call goes unanswered, so no inquiry sits idle.</div>
+            <div class="oc-demo" aria-hidden="true">
+              <div class="oc-demo-line">Missed call · 8:03 AM</div>
+              <div class="oc-demo-bubble">Sorry we missed you — what do you need done?</div>
+              <div class="oc-demo-line oc-demo-line--result">Reply received · lead saved</div>
+            </div>
           </div>
           <div class="oc-tool-listing-actions">
             <a class="oc-btn oc-btn--filled oc-btn--sm" href="mailto:info@octrie.com?subject=Getting%20Started">Get Started</a>
             <a class="oc-btn oc-btn--sm" href="mailto:info@octrie.com?subject=Missed%20Call%20Capture">Learn More</a>
           </div>
         </div>
-        <div class="oc-tool-listing">
+        <div class="oc-tool-listing oc-reveal" style="--rd: 0.1s">
           <div class="oc-tool-listing-header">
             <span class="oc-tool-listing-tag">Live setup</span>
             <h3 class="oc-tool-listing-name">Review &amp; Follow-up Automation</h3>
             <div class="oc-tool-listing-desc">Automatic review requests and reminders sent once a job is done, no manual chasing required.</div>
+            <div class="oc-demo" aria-hidden="true">
+              <div class="oc-demo-bubble">Thanks for choosing us! Mind leaving a quick review?</div>
+              <div class="oc-demo-stars">★★★★★</div>
+              <div class="oc-demo-line oc-demo-line--result">New Google review · 5 stars</div>
+            </div>
           </div>
           <div class="oc-tool-listing-actions">
             <a class="oc-btn oc-btn--filled oc-btn--sm" href="mailto:info@octrie.com?subject=Getting%20Started">Get Started</a>
             <a class="oc-btn oc-btn--sm" href="mailto:info@octrie.com?subject=Review%20%26%20Follow-up%20Automation">Learn More</a>
           </div>
         </div>
-        <div class="oc-tool-listing">
+        <div class="oc-tool-listing oc-reveal" style="--rd: 0.2s">
           <div class="oc-tool-listing-header">
             <span class="oc-tool-listing-tag">Custom work</span>
             <h3 class="oc-tool-listing-name">Ongoing Management</h3>
             <div class="oc-tool-listing-desc">Once things are set up, we keep everything running, tuned, and maintained on a simple monthly basis.</div>
+            <div class="oc-demo" aria-hidden="true">
+              <div class="oc-demo-status"><span class="oc-demo-dot"></span>Missed-call capture · running</div>
+              <div class="oc-demo-status"><span class="oc-demo-dot"></span>Review requests · running</div>
+              <div class="oc-demo-status"><span class="oc-demo-dot"></span>Last tuned · this week</div>
+            </div>
           </div>
           <div class="oc-tool-listing-actions">
             <a class="oc-btn oc-btn--sm" href="mailto:info@octrie.com?subject=Ongoing%20Management">Learn More</a>
@@ -116,22 +148,27 @@
         <p class="oc-body">No new habits to learn, no software to log into all day — it runs quietly in the background of however you already operate.</p>
       </div>
       <div class="oc-content-grid">
-        <div class="oc-card">
-          <span class="oc-card-tag">Step 01</span>
+        <div class="oc-card oc-reveal">
+          <span class="oc-step-num" aria-hidden="true">01</span>
           <h3 class="oc-card-heading">We look at what's happening now</h3>
           <p class="oc-card-body">A quick look at how calls and inquiries are currently handled, and where they're falling through.</p>
         </div>
-        <div class="oc-card">
-          <span class="oc-card-tag">Step 02</span>
+        <div class="oc-card oc-reveal" style="--rd: 0.1s">
+          <span class="oc-step-num" aria-hidden="true">02</span>
           <h3 class="oc-card-heading">We set it up for you</h3>
           <p class="oc-card-body">Automated capture and follow-up, built around your business, at no cost to start.</p>
         </div>
-        <div class="oc-card">
-          <span class="oc-card-tag">Step 03</span>
+        <div class="oc-card oc-reveal" style="--rd: 0.2s">
+          <span class="oc-step-num" aria-hidden="true">03</span>
           <h3 class="oc-card-heading">You stop losing customers</h3>
           <p class="oc-card-body">Every call gets a response, even when no one's free to pick up the phone.</p>
         </div>
       </div>
+    </section>
+
+    <section class="oc-band">
+      <p class="oc-band-label">Why it matters</p>
+      <p class="oc-band-line">A missed call isn't a voicemail. It's a customer dialing <em>the next number on the list.</em></p>
     </section>
 
     <section class="oc-section">
@@ -140,7 +177,7 @@
           <p class="oc-label">Custom builds</p>
           <h2 class="oc-heading-lg">Need something set up for your business?</h2>
         </div>
-        <div class="oc-card">
+        <div class="oc-card oc-reveal">
           <h3 class="oc-card-heading">Worth a 10 minute conversation?</h3>
           <p class="oc-card-body">We work with local service businesses to find where calls and follow-up are falling through, then build the setup that fixes it.</p>
           <p class="oc-card-body">Call or text <a href="tel:+13077610727">(307) 761-0727</a>, or email <a href="mailto:info@octrie.com">info@octrie.com</a>.</p>
@@ -153,6 +190,26 @@
     </section>
 
   </main>
+
+  <script>
+    (function () {
+      document.documentElement.classList.add('oc-js');
+      var els = document.querySelectorAll('.oc-reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 
   <footer class="oc-footer">
     <a class="oc-footer-wordmark" href="./">Octrie</a>

@@ -269,12 +269,14 @@ section[id] {
   padding: var(--oc-sp-9) var(--oc-page-padding-x) var(--oc-sp-8);
   border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
   max-width: 100%;
-  /* Option G: dot grid + top-left light bloom */
+  /* Dot grid + top-left light bloom + faint amber sun from the upper right.
+     One implied light source, site-wide. */
   background:
+    radial-gradient(ellipse 55% 70% at 88% 15%, rgba(184, 146, 42, 0.07) 0%, transparent 60%),
     radial-gradient(ellipse 75% 65% at 8% 0%, rgba(255,255,255,0.72) 0%, transparent 65%),
     radial-gradient(circle, rgba(0,0,0,0.09) 1px, transparent 1px),
     var(--oc-surface-elevated);
-  background-size: auto, 24px 24px, auto;
+  background-size: auto, auto, 24px 24px, auto;
 }
 
 .oc-hero-eyebrow {
@@ -370,7 +372,10 @@ section[id] {
 }
 
 .oc-section--alt {
-  background: var(--oc-surface-elevated);
+  /* Same faint amber sun as the hero, drifting in from the upper right */
+  background:
+    radial-gradient(ellipse 60% 90% at 90% 0%, rgba(184, 146, 42, 0.06) 0%, transparent 60%),
+    var(--oc-surface-elevated);
 }
 
 @media (max-width: 767px) {
@@ -521,11 +526,13 @@ section[id] {
 ================================================================ */
 
 .oc-tool-listing {
-  border: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  border: var(--oc-border-dominant) solid var(--oc-border-medium);
   background: var(--oc-surface-page);
+  box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.07);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform var(--oc-transition-base), box-shadow var(--oc-transition-base);
 }
 
 .oc-tool-listing-header {
@@ -639,9 +646,11 @@ section[id] {
 ================================================================ */
 
 .oc-card {
-  border: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  border: var(--oc-border-dominant) solid var(--oc-border-medium);
   padding: var(--oc-sp-5);
   background: var(--oc-surface-page);
+  box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.07);
+  transition: transform var(--oc-transition-base), box-shadow var(--oc-transition-base);
 }
 
 .oc-card-tag {
@@ -846,13 +855,17 @@ section[id] {
   gap: var(--oc-sp-8);
   align-items: center;
   /* Light field with warm amber light washing in behind the phone mockup —
-     sunlight on the white livery. White stays dominant; gold is the light. */
+     sunlight on the white livery. White stays dominant; gold is the light.
+     Two diagonal specular streaks on top read as light glinting off the
+     curve of a body panel. */
   background:
+    linear-gradient(112deg, transparent 40%, rgba(255, 251, 240, 0) 45%, rgba(255, 251, 240, 0.85) 49.5%, rgba(255, 251, 240, 0.95) 50.5%, rgba(255, 251, 240, 0.35) 53%, transparent 58%),
+    linear-gradient(112deg, transparent 59%, rgba(255, 251, 240, 0.5) 62%, transparent 65%),
     radial-gradient(ellipse 55% 75% at 80% 35%, rgba(184, 146, 42, 0.16) 0%, transparent 68%),
     radial-gradient(ellipse 75% 65% at 8% 0%, rgba(255, 255, 255, 0.72) 0%, transparent 65%),
     radial-gradient(circle, rgba(0, 0, 0, 0.09) 1px, transparent 1px),
     var(--oc-surface-elevated);
-  background-size: auto, auto, 24px 24px, auto;
+  background-size: auto, auto, auto, auto, 24px 24px, auto;
 }
 
 /* Phone sits in the warm light: soft gold halo plus a gentle drop */
@@ -960,8 +973,8 @@ section[id] {
 /* ── Per-service demo panels ── */
 #home .oc-demo {
   margin-top: var(--oc-sp-3);
-  border: var(--oc-border-subordinate) solid var(--oc-border-subtle);
-  background: var(--oc-surface-elevated);
+  border: var(--oc-border-subordinate) solid var(--oc-border-medium);
+  background: var(--oc-surface-sunken);
   padding: var(--oc-sp-3);
   display: flex;
   flex-direction: column;
@@ -1062,6 +1075,12 @@ section[id] {
   margin-bottom: var(--oc-sp-3);
 }
 
+/* ── Closing section: soft echo of the hero's warm light ── */
+#home .oc-section:last-of-type {
+  background:
+    radial-gradient(ellipse 50% 75% at 85% 15%, rgba(184, 146, 42, 0.08) 0%, transparent 62%);
+}
+
 /* ── Motion: reveal on scroll + card hover lift ── */
 /* Hidden state only applies when JS has run (html.oc-js), so content
    is never lost if scripts fail. */
@@ -1085,8 +1104,7 @@ html.oc-js #home .oc-reveal.is-visible {
 #home .oc-tool-listing:hover,
 #home .oc-card:hover {
   transform: translateY(-3px);
-  border-color: var(--oc-border-medium);
-  box-shadow: 6px 6px 0 rgba(26, 26, 26, 0.08);
+  box-shadow: 8px 8px 0 rgba(26, 26, 26, 0.10);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1095,5 +1113,5 @@ html.oc-js #home .oc-reveal.is-visible {
   #home .oc-tool-listing,
   #home .oc-card { transition: none; }
   #home .oc-tool-listing:hover,
-  #home .oc-card:hover { transform: none; box-shadow: none; }
+  #home .oc-card:hover { transform: none; box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.07); }
 }

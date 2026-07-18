@@ -352,6 +352,38 @@ section[id] {
   .oc-hero-scroll { display: none; }
 }
 
+.oc-trust-strip {
+  padding: var(--oc-sp-6) var(--oc-page-padding-x);
+  background:
+    linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)),
+    url('./bg-concrete.jpg') center / cover;
+  border-bottom: var(--oc-border-subordinate) solid var(--oc-border-dark);
+  text-align: center;
+}
+
+.oc-trust-strip-label {
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-10);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--oc-vertical-accent);
+  margin-bottom: var(--oc-sp-2);
+}
+
+.oc-trust-strip-line {
+  font-family: var(--oc-font-body);
+  font-size: var(--oc-text-18);
+  color: var(--oc-text-primary-inv);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .oc-trust-strip { padding: var(--oc-sp-5) var(--oc-page-padding-x-mob); }
+  .oc-trust-strip-line { font-size: var(--oc-text-13); }
+}
+
 /* ================================================================
    TYPOGRAPHY UTILITIES
 ================================================================ */

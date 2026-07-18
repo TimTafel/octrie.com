@@ -221,6 +221,38 @@
       }, { threshold: 0.15 });
       els.forEach(function (el) { io.observe(el); });
     })();
+
+    /* Hero phone: real clock + looping conversation */
+    (function () {
+      var clock = document.querySelector('.oc-phone-top span:last-child');
+      var firstEvent = document.querySelector('.oc-thread-event');
+      function fmt() {
+        var d = new Date(), h = d.getHours(), m = d.getMinutes();
+        var ap = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+        return h + ':' + (m < 10 ? '0' + m : m) + ' ' + ap;
+      }
+      function setTimes() {
+        var t = fmt();
+        if (clock) clock.textContent = t;
+        if (firstEvent) firstEvent.textContent = 'Missed call · (214) 555-0182 · ' + t;
+      }
+      setTimes();
+      setInterval(setTimes, 60000);
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var thread = document.querySelector('.oc-thread');
+      if (!thread) return;
+      setInterval(function () {
+        if (document.hidden) return;
+        setTimes();
+        Array.prototype.forEach.call(thread.children, function (el) {
+          el.style.animation = 'none';
+          void el.offsetWidth;
+          el.style.animation = '';
+        });
+      }, 14000);
+    })();
   </script>
 
   <footer class="oc-footer">

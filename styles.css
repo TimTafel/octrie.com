@@ -1025,6 +1025,15 @@ section[id] {
   height: 6px;
   background: var(--oc-vertical-accent);
   flex-shrink: 0;
+  animation: oc-pulse 2.4s ease-in-out infinite;
+}
+
+#home .oc-demo-status:nth-child(2) .oc-demo-dot { animation-delay: 0.4s; }
+#home .oc-demo-status:nth-child(3) .oc-demo-dot { animation-delay: 0.8s; }
+
+@keyframes oc-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 /* ── Concrete statement band ── */
@@ -1154,6 +1163,7 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
 
 @media (prefers-reduced-motion: reduce) {
   #home .oc-thread > * { animation: none; opacity: 1; }
+  #home .oc-demo-dot { animation: none; }
   html.oc-js .oc-reveal { opacity: 1; transform: none; transition: none; }
   html.oc-js .oc-reveal .oc-demo > *,
   html.oc-js .oc-chip-strip .oc-chips span { opacity: 1; transform: none; transition: none; }

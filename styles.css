@@ -320,6 +320,14 @@ section[id] {
   margin-top: var(--oc-sp-6);
 }
 
+.oc-hero-guarantee {
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-10);
+  letter-spacing: 0.03em;
+  color: var(--oc-text-tertiary);
+  margin-top: var(--oc-sp-3);
+}
+
 .oc-hero-scroll {
   position: absolute;
   left: 50%;
@@ -860,6 +868,7 @@ section[id] {
 
 #home .oc-hero-eyebrow { color: var(--oc-vertical-accent-deep); }
 #home .oc-hero-emphasis { color: var(--oc-vertical-accent-deep); }
+#home .oc-hero-sub em { font-style: normal; color: var(--oc-vertical-accent-deep); }
 #home .oc-card-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-tool-listing-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-vertical-dot-label,

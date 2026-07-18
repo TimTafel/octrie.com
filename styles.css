@@ -291,12 +291,16 @@ section[id] {
 
 .oc-hero-headline {
   font-family: var(--oc-font-heading);
-  font-size: var(--oc-text-42);
+  font-size: var(--oc-text-56);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--oc-text-primary);
   letter-spacing: 0;
   margin-bottom: var(--oc-sp-4);
+}
+
+.oc-hero-emphasis {
+  display: block;
 }
 
 .oc-hero-sub {
@@ -828,6 +832,7 @@ section[id] {
 ================================================================ */
 
 #home .oc-hero-eyebrow { color: var(--oc-vertical-accent-deep); }
+#home .oc-hero-emphasis { color: var(--oc-vertical-accent-deep); }
 #home .oc-card-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-tool-listing-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-vertical-dot-label,

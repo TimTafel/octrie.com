@@ -1152,3 +1152,47 @@ html.oc-js #home .oc-reveal.is-visible {
   text-transform: uppercase;
   color: var(--oc-text-tertiary);
 }
+
+/* Statement band: money-math sub-line */
+#home .oc-band-sub {
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-13);
+  letter-spacing: 0.08em;
+  color: rgba(245, 245, 245, 0.75);
+  margin-top: var(--oc-sp-4);
+  max-width: 760px;
+}
+
+/* Services: breadth chip strip */
+#home .oc-chip-strip {
+  margin-top: var(--oc-sp-6);
+  padding-top: var(--oc-sp-5);
+  border-top: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+}
+
+#home .oc-chip-lead {
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-10);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oc-text-tertiary);
+  margin-bottom: var(--oc-sp-3);
+}
+
+#home .oc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--oc-sp-2);
+}
+
+#home .oc-chips span {
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-10);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--oc-text-secondary);
+  background: var(--oc-surface-sunken);
+  border: 1px solid var(--oc-border-medium);
+  padding: 5px 10px;
+  white-space: nowrap;
+}

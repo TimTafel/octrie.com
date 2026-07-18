@@ -57,7 +57,7 @@
   --oc-sp-9:                64px;
   --oc-sp-10:               86px;
 
-  --oc-page-max-width:      1200px;
+  --oc-page-max-width:      1320px;
   --oc-page-padding-x:      40px;
   --oc-page-padding-x-mob:  20px;
   --oc-nav-height:          52px;
@@ -266,6 +266,7 @@ section[id] {
 ================================================================ */
 
 .oc-hero {
+  position: relative;
   padding: var(--oc-sp-9) var(--oc-page-padding-x) var(--oc-sp-8);
   border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
   max-width: 100%;
@@ -318,12 +319,36 @@ section[id] {
   margin-top: var(--oc-sp-6);
 }
 
+.oc-hero-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: var(--oc-sp-5);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--oc-sp-2);
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-10);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--oc-text-tertiary);
+}
+
+.oc-hero-scroll-line {
+  width: 1px;
+  height: 28px;
+  background: var(--oc-text-tertiary);
+  animation: oc-pulse 2.4s ease-in-out infinite;
+}
+
 @media (max-width: 767px) {
   .oc-hero {
     padding: var(--oc-sp-7) var(--oc-page-padding-x-mob) var(--oc-sp-6);
   }
   .oc-hero-headline { font-size: var(--oc-text-32); }
   .oc-hero-sub { font-size: var(--oc-text-13); }
+  .oc-hero-scroll { display: none; }
 }
 
 /* ================================================================
@@ -1169,6 +1194,7 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
 @media (prefers-reduced-motion: reduce) {
   #home .oc-thread > * { animation: none; opacity: 1; }
   #home .oc-demo-dot { animation: none; }
+  .oc-hero-scroll-line { animation: none; }
   html.oc-js .oc-reveal { opacity: 1; transform: none; transition: none; }
   html.oc-js .oc-reveal .oc-demo > *,
   html.oc-js .oc-chip-strip .oc-chips span { opacity: 1; transform: none; transition: none; }

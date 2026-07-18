@@ -15,6 +15,7 @@
   --oc-surface-page:        #F5F5F5;
   --oc-surface-elevated:    #EEEEEE;
   --oc-surface-sunken:      #E8E8E8;
+  --oc-surface-section-alt: #DCDCDC;
   --oc-surface-dark:        #1A1A1A;
   --oc-surface-dark-raised: #242424;
 
@@ -396,15 +397,15 @@ section[id] {
 ================================================================ */
 
 .oc-section {
-  padding: var(--oc-sp-8) var(--oc-page-padding-x);
+  padding: var(--oc-sp-9) var(--oc-page-padding-x);
   border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
 }
 
 .oc-section--alt {
   /* Same faint amber sun as the hero, drifting in from the upper right */
   background:
-    radial-gradient(ellipse 60% 90% at 90% 0%, rgba(184, 146, 42, 0.06) 0%, transparent 60%),
-    var(--oc-surface-elevated);
+    radial-gradient(ellipse 60% 90% at 90% 0%, rgba(184, 146, 42, 0.08) 0%, transparent 60%),
+    var(--oc-surface-section-alt);
 }
 
 @media (max-width: 767px) {
@@ -436,7 +437,8 @@ section[id] {
 ================================================================ */
 
 .oc-vertical-section {
-  padding: var(--oc-sp-8) var(--oc-page-padding-x) var(--oc-sp-9);
+  background: var(--oc-surface-page);
+  padding: var(--oc-sp-9) var(--oc-page-padding-x);
   border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
 }
 

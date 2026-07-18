@@ -1084,36 +1084,85 @@ section[id] {
 /* ── Motion: reveal on scroll + card hover lift ── */
 /* Hidden state only applies when JS has run (html.oc-js), so content
    is never lost if scripts fail. */
-html.oc-js #home .oc-reveal {
+html.oc-js .oc-reveal {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.5s ease, transform 0.5s ease;
   transition-delay: var(--rd, 0s);
 }
 
-html.oc-js #home .oc-reveal.is-visible {
+html.oc-js .oc-reveal.is-visible {
   opacity: 1;
   transform: none;
 }
 
-#home .oc-tool-listing,
-#home .oc-card {
+.oc-tool-listing,
+.oc-card {
   transition: transform var(--oc-transition-base), box-shadow var(--oc-transition-base), border-color var(--oc-transition-base);
 }
 
-#home .oc-tool-listing:hover,
-#home .oc-card:hover {
+.oc-tool-listing:hover,
+.oc-card:hover {
   transform: translateY(-3px);
   box-shadow: 8px 8px 0 rgba(26, 26, 26, 0.10);
 }
 
+/* Service-card demo panels: lines land in sequence once the card is in view */
+html.oc-js .oc-reveal .oc-demo > * {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+html.oc-js .oc-reveal.is-visible .oc-demo > * {
+  opacity: 1;
+  transform: none;
+}
+
+html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(1) { transition-delay: calc(var(--rd, 0s) + 0.3s); }
+html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(2) { transition-delay: calc(var(--rd, 0s) + 0.55s); }
+html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: calc(var(--rd, 0s) + 0.8s); }
+
+/* Chip strip: chips stagger in */
+html.oc-js .oc-chip-strip .oc-chips span {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+html.oc-js .oc-chip-strip.is-visible .oc-chips span {
+  opacity: 1;
+  transform: none;
+}
+
+html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(1) { transition-delay: 0.15s; }
+html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(2) { transition-delay: 0.23s; }
+html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(3) { transition-delay: 0.31s; }
+html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(4) { transition-delay: 0.39s; }
+html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(5) { transition-delay: 0.47s; }
+html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(6) { transition-delay: 0.55s; }
+html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-delay: 0.63s; }
+
+/* Buttons: slight lift on hover */
+.oc-btn {
+  transition: transform 0.15s ease, background var(--oc-transition-base), color var(--oc-transition-base), border-color var(--oc-transition-base);
+}
+
+.oc-btn:hover {
+  transform: translateY(-1px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   #home .oc-thread > * { animation: none; opacity: 1; }
-  html.oc-js #home .oc-reveal { opacity: 1; transform: none; transition: none; }
-  #home .oc-tool-listing,
-  #home .oc-card { transition: none; }
-  #home .oc-tool-listing:hover,
-  #home .oc-card:hover { transform: none; box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.07); }
+  html.oc-js .oc-reveal { opacity: 1; transform: none; transition: none; }
+  html.oc-js .oc-reveal .oc-demo > *,
+  html.oc-js .oc-chip-strip .oc-chips span { opacity: 1; transform: none; transition: none; }
+  .oc-tool-listing,
+  .oc-card,
+  .oc-btn { transition: none; }
+  .oc-btn:hover { transform: none; }
+  .oc-tool-listing:hover,
+  .oc-card:hover { transform: none; box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.07); }
 }
 
 /* About: founder block */

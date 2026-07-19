@@ -65,7 +65,8 @@
             <span>2:47 PM</span>
           </div>
           <div class="oc-thread">
-            <div class="oc-thread-event" style="--d: 0.2s">Missed call · (214) 555-0182 · 2:47 PM</div>
+            <div class="oc-thread-event" style="--d: 0.2s"><span class="oc-missed-dot" aria-hidden="true"></span><span class="oc-missed-text">Missed call · (214) 555-0182 · 2:47 PM</span></div>
+            <div class="oc-typing" style="--d: 0.45s" aria-hidden="true"><span></span><span></span><span></span></div>
             <div class="oc-msg oc-msg--out" style="--d: 0.9s">Sorry we missed your call! What do you need done? Reply here and we'll get you scheduled.</div>
             <div class="oc-msg oc-msg--in" style="--d: 1.8s">Do you have anything open tomorrow morning?</div>
             <div class="oc-thread-event oc-thread-event--result" style="--d: 2.6s">Lead captured · replied in 8 seconds</div>
@@ -231,7 +232,7 @@
     /* Hero phone: real clock + looping conversation */
     (function () {
       var clock = document.querySelector('.oc-phone-top span:last-child');
-      var firstEvent = document.querySelector('.oc-thread-event');
+      var firstEvent = document.querySelector('.oc-missed-text');
       function fmt() {
         var d = new Date(), h = d.getHours(), m = d.getMinutes();
         var ap = h >= 12 ? 'PM' : 'AM';

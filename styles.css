@@ -892,7 +892,7 @@ section[id] {
 /* ── Split hero ── */
 #home .oc-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
   gap: var(--oc-sp-8);
   align-items: center;
   /* Light field with warm amber light washing in behind the phone mockup —
@@ -912,7 +912,7 @@ section[id] {
 /* Phone sits in the warm light: soft gold halo plus a gentle drop */
 #home .oc-hero .oc-phone {
   box-shadow:
-    0 0 60px rgba(184, 146, 42, 0.30),
+    0 0 80px rgba(184, 146, 42, 0.35),
     10px 10px 0 rgba(26, 26, 26, 0.10);
 }
 
@@ -968,6 +968,42 @@ section[id] {
   font-weight: 500;
 }
 
+#home .oc-missed-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: var(--oc-sp-2);
+  vertical-align: middle;
+  background: #B23B32;
+  animation: oc-pulse 1.8s ease-in-out infinite;
+}
+
+#home .oc-typing {
+  align-self: flex-end;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  width: fit-content;
+  padding: var(--oc-sp-2) var(--oc-sp-3);
+  background: var(--oc-surface-sunken);
+  border: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+}
+
+#home .oc-typing span {
+  width: 4px;
+  height: 4px;
+  background: var(--oc-text-tertiary);
+  animation: oc-typing-bounce 0.9s ease-in-out infinite;
+}
+
+#home .oc-typing span:nth-child(2) { animation-delay: 0.15s; }
+#home .oc-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes oc-typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+
 #home .oc-msg {
   font-size: 14px;
   line-height: 1.45;
@@ -1001,13 +1037,26 @@ section[id] {
 
 /* Thread messages arrive one by one on load */
 @keyframes oc-arrive {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
   to   { opacity: 1; transform: none; }
 }
 
 #home .oc-thread > * {
   opacity: 0;
   animation: oc-arrive 0.45s ease forwards;
+  animation-delay: var(--d, 0s);
+}
+
+/* Typing indicator: flash in, hold, vanish right as the reply lands */
+@keyframes oc-typing-flash {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+#home .oc-typing {
+  animation: oc-typing-flash 0.5s ease forwards;
   animation-delay: var(--d, 0s);
 }
 
@@ -1205,6 +1254,8 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
 @media (prefers-reduced-motion: reduce) {
   #home .oc-thread > * { animation: none; opacity: 1; }
   #home .oc-demo-dot { animation: none; }
+  #home .oc-missed-dot { animation: none; }
+  #home .oc-typing { display: none; }
   .oc-hero-scroll-line { animation: none; }
   html.oc-js .oc-reveal { opacity: 1; transform: none; transition: none; }
   html.oc-js .oc-reveal .oc-demo > *,

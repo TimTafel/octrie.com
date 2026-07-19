@@ -908,10 +908,13 @@ section[id] {
   align-items: center;
   min-height: calc(100vh - var(--oc-nav-height));
   min-height: calc(100svh - var(--oc-nav-height));
-  /* Light field with warm amber light washing in behind the phone mockup —
-     sunlight on the white livery. White stays dominant; gold is the light.
-     Two diagonal specular streaks on top read as light glinting off the
-     curve of a body panel. */
+  /* TEMPORARY TEST: stock background swapped in for visual comparison,
+     Tim's explicit call to replace with something better -- see hero-test.avif.
+     Original amber-wash/dot-grid background preserved below, commented out. */
+  background:
+    linear-gradient(rgba(238, 238, 238, 0.55), rgba(238, 238, 238, 0.55)),
+    url('./hero-test.avif') center / cover;
+  /*
   background:
     linear-gradient(112deg, transparent 40%, rgba(255, 251, 240, 0) 45%, rgba(255, 251, 240, 0.85) 49.5%, rgba(255, 251, 240, 0.95) 50.5%, rgba(255, 251, 240, 0.35) 53%, transparent 58%),
     linear-gradient(112deg, transparent 59%, rgba(255, 251, 240, 0.5) 62%, transparent 65%),
@@ -920,6 +923,7 @@ section[id] {
     radial-gradient(circle, rgba(0, 0, 0, 0.09) 1px, transparent 1px),
     var(--oc-surface-elevated);
   background-size: auto, auto, auto, auto, 24px 24px, auto;
+  */
 }
 
 /* Phone sits in the warm light: soft gold halo plus a gentle drop */

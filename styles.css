@@ -270,7 +270,7 @@ section[id] {
   position: relative;
   box-sizing: border-box;
   padding: var(--oc-sp-9) var(--oc-page-padding-x) var(--oc-sp-8);
-  border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  border-bottom: var(--oc-border-dominant) solid var(--oc-text-primary);
   max-width: 100%;
   /* Dot grid + top-left light bloom + faint amber sun from the upper right.
      One implied light source, site-wide. */
@@ -406,8 +406,9 @@ section[id] {
 ================================================================ */
 
 .oc-section {
+  background: var(--oc-surface-elevated);
   padding: var(--oc-sp-9) var(--oc-page-padding-x);
-  border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  border-bottom: var(--oc-border-dominant) solid var(--oc-text-primary);
 }
 
 .oc-section--alt {
@@ -448,7 +449,7 @@ section[id] {
 .oc-vertical-section {
   background: var(--oc-surface-page);
   padding: var(--oc-sp-9) var(--oc-page-padding-x);
-  border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  border-bottom: var(--oc-border-dominant) solid var(--oc-text-primary);
 }
 
 .oc-vertical-header {
@@ -1136,7 +1137,7 @@ section[id] {
   background:
     linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)),
     url('./bg-concrete.jpg') center / cover;
-  border-bottom: var(--oc-border-subordinate) solid var(--oc-border-dark);
+  border-bottom: var(--oc-border-dominant) solid var(--oc-border-dark);
 }
 
 #home .oc-band-label {
@@ -1181,7 +1182,8 @@ section[id] {
 /* ── Closing section: soft echo of the hero's warm light ── */
 #home .oc-section:last-of-type {
   background:
-    radial-gradient(ellipse 50% 75% at 85% 15%, rgba(184, 146, 42, 0.08) 0%, transparent 62%);
+    radial-gradient(ellipse 50% 75% at 85% 15%, rgba(184, 146, 42, 0.08) 0%, transparent 62%),
+    var(--oc-surface-elevated);
 }
 
 /* ── Motion: reveal on scroll + card hover lift ── */

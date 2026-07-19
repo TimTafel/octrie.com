@@ -313,25 +313,6 @@ section[id] {
   max-width: 540px;
 }
 
-.oc-hero-founder-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-}
-
-.oc-hero-founder-link:hover em {
-  text-decoration: underline;
-}
-
-.oc-hero-founder-thumb {
-  width: 22px;
-  height: 22px;
-  object-fit: cover;
-  border: 1px solid var(--oc-border-medium);
-  vertical-align: middle;
-}
-
 .oc-hero-actions {
   display: flex;
   gap: var(--oc-sp-3);
@@ -887,7 +868,6 @@ section[id] {
 
 #home .oc-hero-eyebrow { color: var(--oc-vertical-accent-deep); }
 #home .oc-hero-emphasis { color: var(--oc-vertical-accent-deep); }
-#home .oc-hero-sub em { font-style: normal; color: var(--oc-vertical-accent-deep); }
 #home .oc-card-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-tool-listing-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-vertical-dot-label,

@@ -1143,9 +1143,14 @@ section[id] {
 #home .oc-band {
   padding: var(--oc-sp-9) var(--oc-page-padding-x);
   background:
-    linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)),
+    linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)),
     url('./bg-concrete.jpg') center / cover;
   border-bottom: var(--oc-border-dominant) solid var(--oc-border-dark);
+}
+
+#home .oc-band-inner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 #home .oc-band-label {

@@ -913,7 +913,7 @@ section[id] {
      Original amber-wash/dot-grid background preserved below, commented out. */
   background:
     linear-gradient(rgba(238, 238, 238, 0.55), rgba(238, 238, 238, 0.55)),
-    url('./hero-test.jpg') center / cover;
+    url('./hero-test.png') center / cover;
   /*
   background:
     linear-gradient(112deg, transparent 40%, rgba(255, 251, 240, 0) 45%, rgba(255, 251, 240, 0.85) 49.5%, rgba(255, 251, 240, 0.95) 50.5%, rgba(255, 251, 240, 0.35) 53%, transparent 58%),

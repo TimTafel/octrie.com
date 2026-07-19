@@ -869,6 +869,8 @@ section[id] {
 
 #home .oc-hero-eyebrow { color: var(--oc-vertical-accent-deep); }
 #home .oc-hero-emphasis { color: var(--oc-vertical-accent-deep); }
+#home .oc-hero-scroll { color: var(--oc-vertical-accent-deep); }
+#home .oc-hero-scroll-line { background: var(--oc-vertical-accent-deep); }
 #home .oc-card-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-tool-listing-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-vertical-dot-label,

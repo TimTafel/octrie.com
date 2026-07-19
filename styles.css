@@ -426,11 +426,12 @@ section[id] {
 
 /* Section head: 2-col label+heading left, description right */
 .oc-section-head {
+  max-width: 1200px;
+  margin: 0 auto var(--oc-sp-7);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--oc-sp-8);
   align-items: start;
-  margin-bottom: var(--oc-sp-7);
   padding-bottom: var(--oc-sp-5);
   border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
 }
@@ -453,10 +454,11 @@ section[id] {
 }
 
 .oc-vertical-header {
+  max-width: 1200px;
+  margin: 0 auto var(--oc-sp-7);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: var(--oc-sp-7);
   padding-bottom: var(--oc-sp-5);
   border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
 }
@@ -549,6 +551,8 @@ section[id] {
 ================================================================ */
 
 .oc-tool-grid {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--oc-sp-5);
@@ -651,6 +655,8 @@ section[id] {
 ================================================================ */
 
 .oc-content-grid {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--oc-sp-5);
@@ -669,6 +675,8 @@ section[id] {
 ================================================================ */
 
 .oc-split {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--oc-sp-8);
@@ -1323,7 +1331,8 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
 
 /* Services: breadth chip strip */
 #home .oc-chip-strip {
-  margin-top: var(--oc-sp-6);
+  max-width: 1200px;
+  margin: var(--oc-sp-6) auto 0;
   padding-top: var(--oc-sp-5);
   border-top: var(--oc-border-subordinate) solid var(--oc-border-subtle);
 }

@@ -268,6 +268,7 @@ section[id] {
 
 .oc-hero {
   position: relative;
+  box-sizing: border-box;
   padding: var(--oc-sp-9) var(--oc-page-padding-x) var(--oc-sp-8);
   border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
   max-width: 100%;
@@ -894,6 +895,8 @@ section[id] {
   grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
   gap: var(--oc-sp-8);
   align-items: center;
+  min-height: calc(100vh - var(--oc-nav-height));
+  min-height: calc(100svh - var(--oc-nav-height));
   /* Light field with warm amber light washing in behind the phone mockup —
      sunlight on the white livery. White stays dominant; gold is the light.
      Two diagonal specular streaks on top read as light glinting off the

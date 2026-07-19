@@ -1139,13 +1139,13 @@ section[id] {
   50% { opacity: 0.3; }
 }
 
-/* ── Concrete statement band ── */
+/* ── Statement band ── */
 #home .oc-band {
   padding: var(--oc-sp-9) var(--oc-page-padding-x);
   background:
-    linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)),
-    url('./bg-concrete.jpg') center / cover;
-  border-bottom: var(--oc-border-dominant) solid var(--oc-border-dark);
+    radial-gradient(ellipse 60% 90% at 90% 0%, rgba(184, 146, 42, 0.08) 0%, transparent 60%),
+    var(--oc-surface-page);
+  border-bottom: var(--oc-border-dominant) solid var(--oc-text-primary);
 }
 
 #home .oc-band-inner {
@@ -1158,7 +1158,7 @@ section[id] {
   font-size: var(--oc-text-10);
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--oc-vertical-accent);
+  color: var(--oc-vertical-accent-deep);
   margin-bottom: var(--oc-sp-3);
 }
 
@@ -1167,13 +1167,13 @@ section[id] {
   font-size: var(--oc-text-32);
   font-weight: 700;
   line-height: 1.25;
-  color: var(--oc-text-primary-inv);
+  color: var(--oc-text-primary);
   max-width: 760px;
 }
 
 #home .oc-band-line em {
   font-style: normal;
-  color: var(--oc-vertical-accent);
+  color: var(--oc-vertical-accent-deep);
 }
 
 @media (max-width: 767px) {
@@ -1329,7 +1329,7 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
   font-family: var(--oc-font-mono);
   font-size: var(--oc-text-13);
   letter-spacing: 0.08em;
-  color: rgba(245, 245, 245, 0.75);
+  color: var(--oc-text-secondary);
   margin-top: var(--oc-sp-4);
   max-width: 760px;
 }

@@ -912,7 +912,7 @@ section[id] {
      Tim's explicit call to replace with something better -- see hero-test.avif.
      Original amber-wash/dot-grid background preserved below, commented out. */
   background:
-    linear-gradient(to right, rgba(238, 238, 238, 0.55), rgba(238, 238, 238, 0)),
+    linear-gradient(to right, rgba(238, 238, 238, 0.55) 0%, rgba(238, 238, 238, 0.55) 45%, rgba(238, 238, 238, 0) 80%),
     url('./hero-test.png') 5% 40% / 160% auto;
   /*
   background:

@@ -934,7 +934,7 @@ section[id] {
 }
 
 /* Phone sits in the warm light: soft gold halo plus a gentle drop */
-#home .oc-mockup-standalone .oc-phone {
+#home .oc-mockup-lead .oc-phone {
   box-shadow:
     0 0 80px rgba(184, 146, 42, 0.35),
     10px 10px 0 rgba(26, 26, 26, 0.10);
@@ -949,17 +949,15 @@ section[id] {
   }
 }
 
-/* TEMPORARY TEST: standalone section holding the phone mockup, now that
-   it's been pulled out of the hero entirely. */
-#home .oc-mockup-standalone {
+/* Phone mockup as the lead visual inside Services, merged so the demo
+   and the service cards read as one unified "here's what we do" section. */
+#home .oc-mockup-lead {
   display: flex;
   justify-content: center;
-  padding: var(--oc-sp-8) var(--oc-page-padding-x);
-  background: var(--oc-surface-page);
-  border-bottom: var(--oc-border-dominant) solid var(--oc-text-primary);
+  margin-bottom: var(--oc-sp-8);
 }
 
-#home .oc-mockup-standalone .oc-hero-visual {
+#home .oc-mockup-lead.oc-hero-visual {
   width: 100%;
   max-width: 400px;
 }

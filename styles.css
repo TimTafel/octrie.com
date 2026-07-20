@@ -325,8 +325,15 @@ section[id] {
   font-family: var(--oc-font-mono);
   font-size: var(--oc-text-10);
   letter-spacing: 0.03em;
-  color: var(--oc-text-tertiary);
+  color: var(--oc-text-secondary);
   margin-top: var(--oc-sp-3);
+}
+
+/* TEMPORARY TEST: secondary button needs a solid fill to stay legible
+   against the busy hero photo -- the transparent/outline style it uses
+   elsewhere on the site blends into the background here. */
+.oc-hero-actions .oc-btn:not(.oc-btn--filled) {
+  background: var(--oc-surface-page);
 }
 
 .oc-hero-scroll {

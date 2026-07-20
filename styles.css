@@ -488,9 +488,9 @@ section[id] {
 
 .oc-vertical-dot-label {
   font-family: var(--oc-font-mono);
-  font-size: 8px;
+  font-size: var(--oc-text-10);
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--oc-vertical-accent);
 }
@@ -890,7 +890,16 @@ section[id] {
 #home .oc-card-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-tool-listing-tag { color: var(--oc-vertical-accent-deep); }
 #home .oc-vertical-dot-label,
-#home .oc-vertical-eyebrow { color: var(--oc-vertical-accent-deep); }
+#home .oc-vertical-eyebrow,
+#home .oc-label { color: var(--oc-vertical-accent-deep); }
+
+/* Unify every section's top eyebrow/label to the same size, weight, and
+   letter-spacing -- was three different sizes/weights across sections. */
+#home .oc-label {
+  font-size: var(--oc-text-10);
+  font-weight: 500;
+  letter-spacing: 0.25em;
+}
 
 #home .oc-btn--filled {
   background: var(--oc-vertical-accent);
@@ -1179,6 +1188,7 @@ section[id] {
 #home .oc-band-label {
   font-family: var(--oc-font-mono);
   font-size: var(--oc-text-10);
+  font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--oc-vertical-accent-deep);

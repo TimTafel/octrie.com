@@ -927,7 +927,7 @@ section[id] {
 }
 
 /* Phone sits in the warm light: soft gold halo plus a gentle drop */
-#home .oc-hero .oc-phone {
+#home .oc-mockup-standalone .oc-phone {
   box-shadow:
     0 0 80px rgba(184, 146, 42, 0.35),
     10px 10px 0 rgba(26, 26, 26, 0.10);
@@ -935,29 +935,26 @@ section[id] {
 
 #home .oc-hero-copy { max-width: 560px; }
 
-/* TEMPORARY TEST: pulled out of the grid and tucked in the corner so it
-   doesn't sit on top of the background photo's subject. */
-#home .oc-hero-visual {
-  position: absolute;
-  right: var(--oc-page-padding-x);
-  bottom: var(--oc-sp-5);
-  width: 220px;
-  z-index: 2;
-}
-
 @media (max-width: 1023px) {
   #home .oc-hero {
     grid-template-columns: 1fr;
     gap: var(--oc-sp-6);
   }
-  /* TEMPORARY TEST: undo the desktop corner-pinning below 1024px so the
-     mockup goes back to flowing normally under the text, like before. */
-  #home .oc-hero-visual {
-    position: static;
-    max-width: 400px;
-    width: auto;
-    margin-top: var(--oc-sp-5);
-  }
+}
+
+/* TEMPORARY TEST: standalone section holding the phone mockup, now that
+   it's been pulled out of the hero entirely. */
+#home .oc-mockup-standalone {
+  display: flex;
+  justify-content: center;
+  padding: var(--oc-sp-8) var(--oc-page-padding-x);
+  background: var(--oc-surface-page);
+  border-bottom: var(--oc-border-dominant) solid var(--oc-text-primary);
+}
+
+#home .oc-mockup-standalone .oc-hero-visual {
+  width: 100%;
+  max-width: 400px;
 }
 
 /* ── Phone / text-thread mockup ── */

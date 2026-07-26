@@ -77,25 +77,6 @@
         </div>
       </div>
 
-      <!-- Merged with the demo so "concretely showing what we do" reads as
-           one unified section beat instead of two separate ones. -->
-      <div class="oc-hero-visual oc-mockup-lead" aria-hidden="true">
-        <div class="oc-phone">
-          <div class="oc-phone-top">
-            <span>Your Business</span>
-            <span>2:47 PM</span>
-          </div>
-          <div class="oc-thread">
-            <div class="oc-thread-event" style="--d: 0.2s"><span class="oc-missed-dot" aria-hidden="true"></span><span class="oc-missed-text">Missed call · (214) 555-0182 · 2:47 PM</span></div>
-            <div class="oc-typing" style="--d: 0.45s" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="oc-msg oc-msg--out" style="--d: 0.9s">Sorry we missed your call! What do you need done? Reply here and we'll get you scheduled.</div>
-            <div class="oc-msg oc-msg--in" style="--d: 1.8s">Do you have anything open tomorrow morning?</div>
-            <div class="oc-thread-event oc-thread-event--result" style="--d: 2.6s">Lead captured · replied in 8 seconds</div>
-          </div>
-          <div class="oc-phone-note">Sent automatically — before you've even seen the missed call.</div>
-        </div>
-      </div>
-
       <div class="oc-tool-grid">
         <div class="oc-tool-listing oc-reveal">
           <div class="oc-tool-listing-header">
@@ -279,38 +260,6 @@
         });
       }, { threshold: 0.15 });
       els.forEach(function (el) { io.observe(el); });
-    })();
-
-    /* Hero phone: real clock + looping conversation */
-    (function () {
-      var clock = document.querySelector('.oc-phone-top span:last-child');
-      var firstEvent = document.querySelector('.oc-missed-text');
-      function fmt() {
-        var d = new Date(), h = d.getHours(), m = d.getMinutes();
-        var ap = h >= 12 ? 'PM' : 'AM';
-        h = h % 12 || 12;
-        return h + ':' + (m < 10 ? '0' + m : m) + ' ' + ap;
-      }
-      function setTimes() {
-        var t = fmt();
-        if (clock) clock.textContent = t;
-        if (firstEvent) firstEvent.textContent = 'Missed call · (214) 555-0182 · ' + t;
-      }
-      setTimes();
-      setInterval(setTimes, 60000);
-
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var thread = document.querySelector('.oc-thread');
-      if (!thread) return;
-      setInterval(function () {
-        if (document.hidden) return;
-        setTimes();
-        Array.prototype.forEach.call(thread.children, function (el) {
-          el.style.animation = 'none';
-          void el.offsetWidth;
-          el.style.animation = '';
-        });
-      }, 14000);
     })();
 
     /* Services demos: replay each card's messages on a staggered loop.

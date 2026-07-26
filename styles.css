@@ -1557,6 +1557,76 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
   html.oc-js .oc-reveal.is-visible .oc-recap > * { opacity: 1; transform: none; transition: none; }
 }
 
+/* ================================================================
+   PROCESS PIPELINE (#how-it-works) — job-ticket spine
+   Vertical work-order: oversized DM Mono numbers in a left gutter
+   on a gold spine that fills with scroll; each stage lights as the
+   fill reaches it. Spine geometry + scroll fill driven by JS.
+================================================================ */
+#home .oc-flow { position: relative; max-width: 1200px; margin: 0 auto; --spine-x: 92px; }
+
+#home .oc-flow-meta {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--oc-sp-4);
+  padding-left: calc(var(--spine-x) + 38px); margin-bottom: var(--oc-sp-6);
+  font-family: var(--oc-font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--oc-text-tertiary);
+}
+#home .oc-flow-meta b { color: var(--oc-vertical-accent-deep); font-weight: 500; }
+
+/* Continuous spine track + gold fill (geometry set by JS to span markers) */
+#home .oc-flow-spine { position: absolute; left: var(--spine-x); width: 2px; background: var(--oc-border-strong); z-index: 1; }
+#home .oc-flow-fill { position: absolute; left: 0; top: 0; width: 2px; height: 0%; background: var(--oc-vertical-accent); transition: height 0.12s linear; }
+#home .oc-flow-fill::after {
+  content: ""; position: absolute; left: -4px; bottom: -5px; width: 10px; height: 10px;
+  background: var(--oc-vertical-accent); box-shadow: 0 0 10px 2px rgba(184, 146, 42, 0.65);
+  animation: oc-flow-head 1.6s ease-in-out infinite;
+}
+@keyframes oc-flow-head { 0%, 100% { transform: scale(0.82); opacity: 0.75; } 50% { transform: scale(1.1); opacity: 1; } }
+
+#home .oc-flow-steps { list-style: none; margin: 0; padding: 0; }
+#home .oc-flow-step { position: relative; padding: var(--oc-sp-6) 0 var(--oc-sp-6) calc(var(--spine-x) + 38px); }
+
+/* Oversized number in the left gutter */
+#home .oc-flow-index { position: absolute; left: 0; top: 24px; width: calc(var(--spine-x) - 22px); text-align: right; }
+#home .oc-flow-num { font-family: var(--oc-font-mono); font-size: 52px; font-weight: 500; line-height: 0.8; color: var(--oc-text-tertiary); letter-spacing: -0.02em; transition: color 0.35s ease; }
+
+/* Marker square on the spine, aligned to the number */
+#home .oc-flow-marker {
+  position: absolute; left: calc(var(--spine-x) - 7px); top: 33px; width: 16px; height: 16px;
+  background: var(--oc-surface-section-alt); border: 2px solid var(--oc-border-strong); z-index: 3;
+  transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+
+#home .oc-flow-tagrow { display: flex; align-items: baseline; justify-content: space-between; gap: var(--oc-sp-4); margin-bottom: var(--oc-sp-2); }
+#home .oc-flow-tag { font-family: var(--oc-font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--oc-vertical-accent-deep); }
+#home .oc-flow-status { font-family: var(--oc-font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--oc-text-tertiary); border: 1px solid var(--oc-border-medium); padding: 3px 8px; white-space: nowrap; }
+#home .oc-flow-heading { font-family: var(--oc-font-heading); font-size: 26px; font-weight: 700; line-height: 1.18; color: var(--oc-text-primary); letter-spacing: -0.01em; margin-bottom: var(--oc-sp-2); max-width: 22ch; text-wrap: balance; }
+#home .oc-flow-copy { font-family: var(--oc-font-body); font-size: var(--oc-text-13); color: var(--oc-text-secondary); line-height: 1.55; max-width: 46ch; }
+
+/* Reading spotlight: steps dim until the fill reaches them. Gated behind a
+   JS-added class so content is never stuck dim if the script fails. */
+#home .oc-flow.is-spotlight .oc-flow-step { opacity: 0.4; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+#home .oc-flow.is-spotlight .oc-flow-step.is-active { opacity: 1; transform: none; }
+#home .oc-flow-step.is-active .oc-flow-num { color: var(--oc-vertical-accent); }
+#home .oc-flow-step.is-active .oc-flow-marker { border-color: var(--oc-vertical-accent); background: var(--oc-vertical-accent); box-shadow: 0 0 0 5px rgba(184, 146, 42, 0.16); }
+#home .oc-flow-step:hover .oc-flow-heading { color: var(--oc-vertical-accent-deep); }
+#home .oc-flow-step:hover .oc-flow-marker { border-color: var(--oc-vertical-accent); }
+
+@media (max-width: 767px) {
+  #home .oc-flow { --spine-x: 54px; }
+  #home .oc-flow-meta { padding-left: calc(var(--spine-x) + 26px); }
+  #home .oc-flow-step { padding-left: calc(var(--spine-x) + 26px); }
+  #home .oc-flow-num { font-size: 34px; }
+  #home .oc-flow-index { top: 22px; width: calc(var(--spine-x) - 16px); }
+  #home .oc-flow-marker { top: 24px; }
+  #home .oc-flow-heading { font-size: 21px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #home .oc-flow-fill { transition: none; }
+  #home .oc-flow-fill::after { animation: none; }
+  #home .oc-flow.is-spotlight .oc-flow-step { opacity: 1; transform: none; transition: none; }
+}
+
 /* About: founder block */
 .oc-founder {
   display: flex;

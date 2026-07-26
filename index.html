@@ -190,22 +190,32 @@
         <h2 class="oc-heading-lg">A simple setup, built around how you work.</h2>
         <p class="oc-body">No new habits, no software to babysit — it runs in the background of however you already operate.</p>
       </div>
-      <div class="oc-content-grid">
-        <div class="oc-card oc-reveal">
-          <span class="oc-step-num" aria-hidden="true">01</span>
-          <h3 class="oc-card-heading">We look at what's happening now</h3>
-          <p class="oc-card-body">We find where calls and follow-up are falling through today.</p>
-        </div>
-        <div class="oc-card oc-reveal" style="--rd: 0.1s">
-          <span class="oc-step-num" aria-hidden="true">02</span>
-          <h3 class="oc-card-heading">We set it up for you</h3>
-          <p class="oc-card-body">Capture and follow-up, built around your business — free to start.</p>
-        </div>
-        <div class="oc-card oc-reveal" style="--rd: 0.2s">
-          <span class="oc-step-num" aria-hidden="true">03</span>
-          <h3 class="oc-card-heading">You stop losing customers</h3>
-          <p class="oc-card-body">Every call gets a response, even when no one's free to pick up the phone.</p>
-        </div>
+      <div class="oc-flow">
+        <div class="oc-flow-meta"><span>// Setup timeline</span><span><b>Free to start</b> · no lock-in</span></div>
+        <div class="oc-flow-spine" aria-hidden="true"><div class="oc-flow-fill"></div></div>
+        <ol class="oc-flow-steps">
+          <li class="oc-flow-step">
+            <div class="oc-flow-index" aria-hidden="true"><span class="oc-flow-num">01</span></div>
+            <span class="oc-flow-marker" aria-hidden="true"></span>
+            <div class="oc-flow-tagrow"><span class="oc-flow-tag">Diagnose</span><span class="oc-flow-status">Day one</span></div>
+            <h3 class="oc-flow-heading">We find the gaps</h3>
+            <p class="oc-flow-copy">We map the calls, quotes, follow-ups, and busywork quietly costing you jobs today.</p>
+          </li>
+          <li class="oc-flow-step">
+            <div class="oc-flow-index" aria-hidden="true"><span class="oc-flow-num">02</span></div>
+            <span class="oc-flow-marker" aria-hidden="true"></span>
+            <div class="oc-flow-tagrow"><span class="oc-flow-tag">Setup</span><span class="oc-flow-status">Free</span></div>
+            <h3 class="oc-flow-heading">We wire it up</h3>
+            <p class="oc-flow-copy">The right automations wired into how you already work: follow-up, reminders, reviews, invoicing.</p>
+          </li>
+          <li class="oc-flow-step">
+            <div class="oc-flow-index" aria-hidden="true"><span class="oc-flow-num">03</span></div>
+            <span class="oc-flow-marker" aria-hidden="true"></span>
+            <div class="oc-flow-tagrow"><span class="oc-flow-tag">Live</span><span class="oc-flow-status">Always on</span></div>
+            <h3 class="oc-flow-heading">AI starts working for you</h3>
+            <p class="oc-flow-copy">Leads, follow-ups, reviews, and invoices, all handled automatically. You win back work you'd have lost, and get your time back.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -332,6 +342,61 @@
         });
       }, { threshold: 0.4 });
       nums.forEach(function (el) { render(el, 0); io.observe(el); });
+    })();
+
+    /* Process pipeline: a gold spine fills as you scroll and each stage
+       lights up as the fill reaches it. Reduced motion shows it complete
+       and static. Spine geometry is measured so it always spans the
+       first and last markers, whatever the content height. */
+    (function () {
+      var flow = document.querySelector('.oc-flow');
+      if (!flow) return;
+      var spine = flow.querySelector('.oc-flow-spine');
+      var fill = flow.querySelector('.oc-flow-fill');
+      var steps = Array.prototype.slice.call(flow.querySelectorAll('.oc-flow-step'));
+      var markers = Array.prototype.slice.call(flow.querySelectorAll('.oc-flow-marker'));
+      if (!spine || !fill || !markers.length) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var ticking = false;
+
+      function layoutSpine() {
+        var fr = flow.getBoundingClientRect();
+        var a = markers[0].getBoundingClientRect();
+        var b = markers[markers.length - 1].getBoundingClientRect();
+        spine.style.top = ((a.top + a.height / 2) - fr.top) + 'px';
+        spine.style.height = Math.max(0, (b.top + b.height / 2) - (a.top + a.height / 2)) + 'px';
+      }
+      function activateAll() {
+        steps.forEach(function (s) { s.classList.add('is-active'); });
+        fill.style.height = '100%';
+      }
+      function update() {
+        ticking = false;
+        var vh = window.innerHeight;
+        if (!vh) return;
+        var readLine = vh * 0.62;
+        var sr = spine.getBoundingClientRect();
+        var p = sr.height ? (readLine - sr.top) / sr.height : 0;
+        p = Math.max(0, Math.min(1, p));
+        fill.style.height = (p * 100) + '%';
+        markers.forEach(function (m, i) {
+          var r = m.getBoundingClientRect();
+          steps[i].classList.toggle('is-active', (r.top + r.height / 2) <= readLine + 6);
+        });
+      }
+      function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+
+      if (reduce.matches) { layoutSpine(); activateAll(); return; }
+
+      flow.classList.add('is-spotlight');
+      layoutSpine();
+      update();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () { layoutSpine(); onScroll(); });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { layoutSpine(); update(); });
+      if (reduce.addEventListener) reduce.addEventListener('change', function () {
+        if (reduce.matches) { flow.classList.remove('is-spotlight'); layoutSpine(); activateAll(); }
+      });
     })();
   </script>
 

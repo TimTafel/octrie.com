@@ -1801,7 +1801,7 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
   font-size: var(--oc-text-10);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--oc-text-tertiary);
+  color: var(--oc-text-secondary);
   margin-bottom: var(--oc-sp-3);
 }
 

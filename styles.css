@@ -874,6 +874,27 @@ section[id] {
   color: var(--oc-text-secondary);
 }
 
+/* Footer fine print: wraps onto its own full-width line below the links */
+.oc-footer-legal {
+  flex: 1 0 100%;
+  font-family: var(--oc-font-mono);
+  font-size: 10px;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  color: var(--oc-text-tertiary);
+  max-width: 960px;
+  margin-top: var(--oc-sp-3);
+}
+
+.oc-footer-copy {
+  flex: 1 0 100%;
+  font-family: var(--oc-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--oc-text-disabled);
+}
+
 @media (max-width: 767px) {
   .oc-footer {
     padding: var(--oc-sp-5) var(--oc-page-padding-x-mob);

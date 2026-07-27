@@ -309,7 +309,9 @@ section[id] {
 .oc-hero-sub {
   font-family: var(--oc-font-body);
   font-size: var(--oc-text-18);
-  color: var(--oc-text-secondary);
+  /* Darker than the site's secondary grey so the pitch holds contrast over
+     the hero photo and reads clearly as the #2 element under the headline. */
+  color: #3a3a3a;
   line-height: 1.6;
   max-width: 540px;
 }
@@ -325,7 +327,9 @@ section[id] {
   font-family: var(--oc-font-mono);
   font-size: var(--oc-text-10);
   letter-spacing: 0.03em;
-  color: var(--oc-text-secondary);
+  /* Fine print, but with enough contrast over the photo to read as
+     intentional rather than washed out. */
+  color: #555555;
   margin-top: var(--oc-sp-3);
 }
 
@@ -946,7 +950,7 @@ section[id] {
      Tim's explicit call to replace with something better -- see hero-test.avif.
      Original amber-wash/dot-grid background preserved below, commented out. */
   background:
-    linear-gradient(to right, rgba(238, 238, 238, 0.8) 0%, rgba(238, 238, 238, 0.8) 45%, rgba(238, 238, 238, 0) 80%),
+    linear-gradient(to right, rgba(238, 238, 238, 0.92) 0%, rgba(238, 238, 238, 0.84) 46%, rgba(238, 238, 238, 0) 80%),
     url('./hero-test.png') 5% 40% / 160% auto;
   /*
   background:
@@ -1601,12 +1605,17 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
 
 #home .oc-flow { position: relative; --spine-x: 92px; }
 
-#home .oc-flow-meta {
-  display: flex; justify-content: space-between; align-items: baseline; gap: var(--oc-sp-4);
-  padding-left: calc(var(--spine-x) + 38px); margin-bottom: var(--oc-sp-6);
-  font-family: var(--oc-font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--oc-text-tertiary);
+/* Card header banner: full-width, amber-washed, aligned to the card edge
+   (not indented) so it reads as a deliberate header, not floating text. */
+#home .oc-flow-header {
+  display: flex; align-items: center; gap: var(--oc-sp-2);
+  margin: 0 0 var(--oc-sp-7);
+  padding: var(--oc-sp-3) var(--oc-sp-4);
+  background: linear-gradient(to right, rgba(184, 146, 42, 0.13), rgba(184, 146, 42, 0.03) 68%, transparent);
+  border-bottom: var(--oc-border-dominant) solid var(--oc-vertical-accent);
 }
-#home .oc-flow-meta b { color: var(--oc-vertical-accent-deep); font-weight: 500; }
+#home .oc-flow-header-sq { width: 8px; height: 8px; flex-shrink: 0; background: var(--oc-vertical-accent); animation: oc-breathe 2.2s ease-in-out infinite; }
+#home .oc-flow-header-label { font-family: var(--oc-font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--oc-vertical-accent-deep); }
 
 /* Continuous spine track + gold fill (geometry set by JS to span markers) */
 #home .oc-flow-spine { position: absolute; left: var(--spine-x); width: 2px; background: var(--oc-border-strong); z-index: 1; }
@@ -1649,7 +1658,6 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
 @media (max-width: 767px) {
   #home .oc-flow { --spine-x: 54px; }
   #home .oc-flow-card { padding: var(--oc-sp-5) var(--oc-sp-4); }
-  #home .oc-flow-meta { padding-left: calc(var(--spine-x) + 26px); }
   #home .oc-flow-step { padding-left: calc(var(--spine-x) + 26px); }
   #home .oc-flow-num { font-size: 34px; }
   #home .oc-flow-index { top: 22px; width: calc(var(--spine-x) - 16px); }
@@ -1660,6 +1668,7 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
 @media (prefers-reduced-motion: reduce) {
   #home .oc-flow-fill { transition: none; }
   #home .oc-flow-fill::after { animation: none; }
+  #home .oc-flow-header-sq { animation: none; opacity: 1; }
   #home .oc-flow.is-spotlight .oc-flow-step { opacity: 1; transform: none; transition: none; }
 }
 

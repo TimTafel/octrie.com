@@ -1826,8 +1826,15 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--oc-text-secondary);
-  background: var(--oc-surface-sunken);
-  border: 1px solid var(--oc-border-medium);
+  background: var(--oc-surface-page);
+  border: 1px solid rgba(184, 146, 42, 0.45);
+  transition: background var(--oc-transition-fast), color var(--oc-transition-fast), border-color var(--oc-transition-fast);
   padding: 5px 10px;
   white-space: nowrap;
+}
+
+#home .oc-chips span:hover {
+  background: var(--oc-vertical-accent);
+  border-color: var(--oc-vertical-accent);
+  color: var(--oc-text-primary);
 }

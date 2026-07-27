@@ -563,7 +563,7 @@ section[id] {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--oc-sp-5);
+  gap: var(--oc-sp-6);
 }
 
 @media (max-width: 1023px) {
@@ -589,42 +589,36 @@ section[id] {
 }
 
 .oc-tool-listing-header {
-  padding: var(--oc-sp-4) var(--oc-sp-4) var(--oc-sp-3);
-  border-bottom: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  /* No footer/actions row below anymore -- this is the whole card, so it
+     gets padding on all four sides instead of dividing from an actions bar. */
+  padding: var(--oc-sp-5);
   flex: 1;
 }
 
 .oc-tool-listing-tag {
   font-family: var(--oc-font-mono);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--oc-vertical-accent);
-  margin-bottom: var(--oc-sp-1);
+  margin-bottom: var(--oc-sp-2);
   display: block;
 }
 
 .oc-tool-listing-name {
   font-family: var(--oc-font-heading);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--oc-text-primary);
-  margin-bottom: var(--oc-sp-1);
+  margin-bottom: var(--oc-sp-2);
 }
 
 .oc-tool-listing-desc {
   font-family: var(--oc-font-body);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--oc-text-secondary);
-  line-height: 1.4;
-}
-
-.oc-tool-listing-actions {
-  padding: var(--oc-sp-3) var(--oc-sp-4);
-  display: flex;
-  gap: var(--oc-sp-2);
-  flex-wrap: wrap;
+  line-height: 1.5;
 }
 
 /* Coming soon card */
@@ -1130,22 +1124,22 @@ section[id] {
 
 /* ── Per-service demo panels ── */
 #home .oc-demo {
-  margin-top: var(--oc-sp-3);
+  margin-top: var(--oc-sp-4);
   border: var(--oc-border-subordinate) solid var(--oc-border-medium);
   background: var(--oc-surface-sunken);
-  padding: var(--oc-sp-3);
+  padding: var(--oc-sp-4);
   display: flex;
   flex-direction: column;
   gap: var(--oc-sp-2);
-  min-height: 132px;
+  min-height: 146px;
 }
 
 #home .oc-demo-line {
   font-family: var(--oc-font-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--oc-text-tertiary);
+  color: var(--oc-text-secondary);
 }
 
 #home .oc-demo-line--result {
@@ -1154,11 +1148,11 @@ section[id] {
 }
 
 #home .oc-demo-bubble {
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: 14px;
+  line-height: 1.45;
   background: var(--oc-vertical-accent);
   color: var(--oc-text-primary);
-  padding: 6px 9px;
+  padding: 7px 10px;
   align-self: flex-start;
   max-width: 92%;
 }
@@ -1173,7 +1167,7 @@ section[id] {
 
 #home .oc-demo-stars {
   color: var(--oc-vertical-accent-deep);
-  font-size: 15px;
+  font-size: 17px;
   letter-spacing: 0.3em;
   line-height: 1;
 }
@@ -1354,7 +1348,7 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
 /* Full-width row carrying the Ongoing Management recap card */
 .oc-tool-grid--full {
   grid-template-columns: 1fr;
-  margin-top: var(--oc-sp-5);
+  margin-top: var(--oc-sp-6);
 }
 
 /* ── "Live" breathing marker: a sharp 6px square, not a round dot ── */
@@ -1374,38 +1368,15 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
   50%      { opacity: 1;    transform: scale(1); }
 }
 
-/* ── Quiet per-card "Learn More" text link (replaces ghost button) ── */
-#home .oc-tool-listing-learn {
-  font-family: var(--oc-font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--oc-vertical-accent-deep);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: color var(--oc-transition-fast);
-}
-
-#home .oc-tool-listing-learn:hover { color: var(--oc-vertical-accent); }
-
-#home .oc-tool-listing-learn .oc-learn-arrow {
-  transition: transform var(--oc-transition-fast);
-}
-
-#home .oc-tool-listing-learn:hover .oc-learn-arrow { transform: translateX(3px); }
-
 /* ── Monthly recap panel (Ongoing Management) ── */
 #home .oc-recap {
-  margin-top: var(--oc-sp-3);
+  margin-top: var(--oc-sp-4);
   border: var(--oc-border-subordinate) solid var(--oc-border-medium);
   background: var(--oc-surface-sunken);
-  padding: var(--oc-sp-3);
+  padding: var(--oc-sp-4);
   display: flex;
   flex-direction: column;
-  gap: var(--oc-sp-3);
+  gap: var(--oc-sp-4);
 }
 
 #home .oc-recap-top {
@@ -1417,16 +1388,16 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
 
 #home .oc-recap-label {
   font-family: var(--oc-font-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--oc-text-tertiary);
+  color: var(--oc-text-secondary);
 }
 
 #home .oc-recap-month {
   font-family: var(--oc-font-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--oc-vertical-accent-deep);
   font-weight: 500;
@@ -1436,20 +1407,20 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
 #home .oc-recap-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--oc-sp-2);
+  gap: var(--oc-sp-3);
 }
 
 #home .oc-recap-stat {
   background: var(--oc-surface-page);
   border: var(--oc-border-subordinate) solid var(--oc-border-medium);
-  padding: var(--oc-sp-3) var(--oc-sp-2);
+  padding: var(--oc-sp-4) var(--oc-sp-3);
   text-align: center;
 }
 
 #home .oc-recap-num {
   display: block;
   font-family: var(--oc-font-heading);
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 1;
   color: var(--oc-text-primary);
@@ -1461,21 +1432,21 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
 #home .oc-recap-key {
   display: block;
   font-family: var(--oc-font-mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--oc-text-tertiary);
-  margin-top: var(--oc-sp-1);
+  color: var(--oc-text-secondary);
+  margin-top: var(--oc-sp-2);
 }
 
 #home .oc-recap-tuned {
   font-family: var(--oc-font-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--oc-text-tertiary);
+  color: var(--oc-text-secondary);
   border-top: var(--oc-border-subordinate) solid var(--oc-border-medium);
-  padding-top: var(--oc-sp-2);
+  padding-top: var(--oc-sp-3);
   line-height: 1.6;
 }
 

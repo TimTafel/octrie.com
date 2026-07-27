@@ -1568,6 +1568,10 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
    JS-measured spine geometry is unaffected. Sized to hug the content. */
 #home .oc-flow-card {
   max-width: 780px;
+  /* Align the card's left edge with the section heading, which lives in a
+     1200px centred column. On narrower screens this collapses to 0 so the
+     card sits at the section padding, same as the heading. */
+  margin-left: max(0px, calc(50% - 600px));
   background: var(--oc-surface-page);
   border: var(--oc-border-dominant) solid var(--oc-border-medium);
   box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.07);

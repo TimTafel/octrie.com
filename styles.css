@@ -1,5 +1,5 @@
 /* ================================================================
-   OCTRIE â€” COMBINED STYLESHEET
+   OCTRIE — COMBINED STYLESHEET
    octrie-tokens.css + octrie-skin.css + page utilities
    Version: 1.0
 ================================================================ */
@@ -111,7 +111,7 @@ body {
   max-width: var(--oc-page-max-width);
   margin: 0 auto;
   position: relative;
-  /* NOTE: no z-index here â€” keeping body out of its own stacking context
+  /* NOTE: no z-index here — keeping body out of its own stacking context
      so the fixed .oc-bg/.oc-fog (z-index: -2/-1) fall behind body in the
      root stacking context, not above body's own background paint. */
   box-shadow:
@@ -122,7 +122,7 @@ body {
   min-height: 100vh;
 }
 
-/* â”€â”€ Concrete background layer (isolated so filter never touches card) â”€â”€ */
+/* ── Concrete background layer (isolated so filter never touches card) ── */
 .oc-bg {
   position: fixed;
   inset: 0;
@@ -131,7 +131,7 @@ body {
   filter: contrast(0.55) brightness(1.06);
 }
 
-/* â”€â”€ Dark fog overlay: 20% black over the concrete â”€â”€ */
+/* ── Dark fog overlay: 20% black over the concrete ── */
 .oc-fog {
   position: fixed;
   inset: 0;
@@ -1023,7 +1023,7 @@ section[id] {
    band, and reveal/hover motion. Scoped to #home.
 ================================================================ */
 
-/* â”€â”€ Split hero â”€â”€ */
+/* ── Split hero ── */
 #home .oc-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
@@ -1079,7 +1079,7 @@ section[id] {
   max-width: 400px;
 }
 
-/* â”€â”€ Phone / text-thread mockup â”€â”€ */
+/* ── Phone / text-thread mockup ── */
 #home .oc-phone {
   border: var(--oc-border-dominant) solid var(--oc-text-primary);
   background: var(--oc-surface-page);
@@ -1213,7 +1213,7 @@ section[id] {
   animation-delay: var(--d, 0s);
 }
 
-/* â”€â”€ Per-service demo panels â”€â”€ */
+/* ── Per-service demo panels ── */
 #home .oc-demo {
   margin-top: var(--oc-sp-4);
   border: var(--oc-border-subordinate) solid var(--oc-border-medium);
@@ -1248,7 +1248,7 @@ section[id] {
   max-width: 92%;
 }
 
-/* Incoming reply bubble â€” lighter, right-aligned */
+/* Incoming reply bubble — lighter, right-aligned */
 #home .oc-demo-bubble--reply {
   background: var(--oc-surface-elevated);
   border: var(--oc-border-subordinate) solid var(--oc-border-medium);
@@ -1290,7 +1290,7 @@ section[id] {
   50% { opacity: 0.3; }
 }
 
-/* â”€â”€ Statement band â”€â”€ */
+/* ── Statement band ── */
 #home .oc-band {
   padding: var(--oc-sp-9) var(--oc-page-padding-x);
   background:
@@ -1325,7 +1325,7 @@ section[id] {
   #home .oc-band-line { font-size: var(--oc-text-24); }
 }
 
-/* â”€â”€ Process step numerals â”€â”€ */
+/* ── Process step numerals ── */
 #home .oc-step-num {
   display: block;
   font-family: var(--oc-font-mono);
@@ -1336,14 +1336,14 @@ section[id] {
   margin-bottom: var(--oc-sp-3);
 }
 
-/* â”€â”€ Closing section: soft echo of the hero's warm light â”€â”€ */
+/* ── Closing section: soft echo of the hero's warm light ── */
 #home .oc-section:last-of-type {
   background:
     radial-gradient(ellipse 50% 75% at 85% 15%, rgba(184, 146, 42, 0.08) 0%, transparent 62%),
     var(--oc-surface-elevated);
 }
 
-/* â”€â”€ Motion: reveal on scroll + card hover lift â”€â”€ */
+/* ── Motion: reveal on scroll + card hover lift ── */
 /* Hidden state only applies when JS has run (html.oc-js), so content
    is never lost if scripts fail. */
 html.oc-js .oc-reveal {
@@ -1411,7 +1411,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 /* ================================================================
-   SERVICES SECTION â€” v1.1 additions
+   SERVICES SECTION — v1.1 additions
    Live marker, looping demos, reply bubble, monthly recap panel,
    quiet Learn More link, consolidated CTA, ambient motion.
 ================================================================ */
@@ -1662,7 +1662,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   line-height: 1.55;
 }
 
-/* Inside the square, the demo IS the content â€” no nested frame, and its
+/* Inside the square, the demo IS the content — no nested frame, and its
    lines spread across the full height instead of clustering mid-box. */
 #home .oc-tool-listing--split .oc-demo {
   width: 100%;
@@ -2970,7 +2970,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   align-self: center;
 }
 
-/* â”€â”€ Review demo: chat phase wipes away to reveal the posted review â”€â”€ */
+/* ── Review demo: chat phase wipes away to reveal the posted review ── */
 #home .oc-demo--review {
   position: relative;
   display: block;
@@ -3091,7 +3091,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
   }
 }
 
-/* â”€â”€ "Live" breathing marker: a sharp 6px square, not a round dot â”€â”€ */
+/* ── "Live" breathing marker: a sharp 6px square, not a round dot ── */
 #home .oc-live-square {
   width: 6px;
   height: 6px;
@@ -3108,7 +3108,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
   50%      { opacity: 1;    transform: scale(1); }
 }
 
-/* â”€â”€ Consolidated section CTA â”€â”€ */
+/* ── Consolidated section CTA ── */
 #home .oc-services-cta {
   max-width: 1200px;
   margin: var(--oc-sp-7) auto 0;
@@ -3149,9 +3149,9 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
   55%, 100% { left: 130%; }
 }
 
-/* â”€â”€ Looping demos: JS drives child visibility via .oc-demo-show so the
+/* ── Looping demos: JS drives child visibility via .oc-demo-show so the
    messages can replay. Equal specificity + later source order than the
-   boot-reveal rule, so the fade-out actually takes. â”€â”€ */
+   boot-reveal rule, so the fade-out actually takes. ── */
 html.oc-js .oc-reveal.is-visible .oc-demo--loop > * {
   opacity: 0;
   transform: translateY(7px);
@@ -3163,7 +3163,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *.oc-demo-show {
   transform: none;
 }
 
-/* Neutralize the boot-reveal per-child stagger delays â€” the loop's stagger
+/* Neutralize the boot-reveal per-child stagger delays — the loop's stagger
    comes from JS, not CSS transition-delay. */
 html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(1),
 html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(2),
@@ -3182,7 +3182,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
   50%      { color: var(--oc-vertical-accent); }
 }
 
-/* â”€â”€ Reduced motion: freeze all ambient motion, show everything static â”€â”€ */
+/* ── Reduced motion: freeze all ambient motion, show everything static ── */
 @media (prefers-reduced-motion: reduce) {
   #home .oc-live-square { animation: none; opacity: 1; transform: none; }
   #home .oc-cta-sheen::after { animation: none; display: none; }
@@ -3192,7 +3192,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 }
 
 /* ================================================================
-   PROCESS PIPELINE (#how-it-works) â€” job-ticket spine
+   PROCESS PIPELINE (#how-it-works) — job-ticket spine
    Vertical work-order: oversized DM Mono numbers in a left gutter
    on a gold spine that fills with scroll; each stage lights as the
    fill reaches it. Spine geometry + scroll fill driven by JS.
@@ -3289,7 +3289,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 }
 
 /* ================================================================
-   CLOSING CTA â€” "the signed promise"
+   CLOSING CTA — "the signed promise"
    Tim's personal, first-person guarantee. Signature underline draws
    itself in on reveal. Uses the site .oc-reveal system for fades.
 ================================================================ */
@@ -3375,7 +3375,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 }
 
 /* ================================================================
-   "WHY IT MATTERS" BAND â€” the silent-loss beat
+   "WHY IT MATTERS" BAND — the silent-loss beat
    Broadened beyond calls; each leak's marker cools from live gold
    to grey as it lands (an opportunity going cold). Deliberate
    inverse of the solution sections, whose markers breathe gold.

@@ -3238,9 +3238,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 #home .oc-flow-spine { position: absolute; left: var(--spine-x); width: 2px; background: var(--oc-border-strong); z-index: 1; }
 #home .oc-flow-fill { position: absolute; left: 0; top: 0; width: 2px; height: 0%; background: var(--oc-vertical-accent); transition: height 0.12s linear; }
 #home .oc-flow-fill::after {
-  content: ""; position: absolute; left: -4px; bottom: -5px; width: 10px; height: 10px;
-  background: var(--oc-vertical-accent); box-shadow: 0 0 10px 2px rgba(184, 146, 42, 0.65);
-  animation: oc-flow-head 1.6s ease-in-out infinite;
+  content: none;
 }
 @keyframes oc-flow-head { 0%, 100% { transform: scale(0.82); opacity: 0.75; } 50% { transform: scale(1.1); opacity: 1; } }
 

@@ -1389,6 +1389,60 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
   padding: 0;
 }
 
+/* Square demo on the left, the plain-English payoff beside it. */
+.oc-tool-listing-row {
+  display: flex;
+  align-items: center;
+  gap: var(--oc-sp-8);
+  width: 100%;
+}
+
+.oc-benefit {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.oc-benefit-label {
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-10);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oc-vertical-accent-deep);
+  margin-bottom: var(--oc-sp-2);
+}
+
+.oc-benefit-lead {
+  font-size: var(--oc-text-13);
+  line-height: 1.6;
+  color: var(--oc-text-secondary);
+  margin-bottom: var(--oc-sp-5);
+}
+
+.oc-benefit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--oc-sp-3);
+}
+
+.oc-benefit-list li {
+  position: relative;
+  padding-left: var(--oc-sp-4);
+  font-size: var(--oc-text-13);
+  line-height: 1.55;
+  color: var(--oc-text-primary);
+}
+
+.oc-benefit-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  background: var(--oc-vertical-accent);
+}
+
 .oc-tool-listing-box {
   flex: 0 0 auto;
   width: 45%;
@@ -1548,6 +1602,18 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
   padding-top: var(--oc-sp-7);
 }
 
+@media (max-width: 1023px) {
+  .oc-tool-listing-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--oc-sp-6);
+  }
+  .oc-tool-listing-box {
+    width: 100%;
+    max-width: 460px;
+  }
+}
+
 @media (max-width: 767px) {
   .oc-tool-listing--split .oc-tool-listing-header--split {
     flex-direction: column;
@@ -1555,7 +1621,6 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
     gap: var(--oc-sp-5);
   }
   .oc-tool-listing-box {
-    width: 100%;
     max-width: none;
   }
 }

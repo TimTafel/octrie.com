@@ -1,5 +1,5 @@
 /* ================================================================
-   OCTRIE — COMBINED STYLESHEET
+   OCTRIE â€” COMBINED STYLESHEET
    octrie-tokens.css + octrie-skin.css + page utilities
    Version: 1.0
 ================================================================ */
@@ -111,7 +111,7 @@ body {
   max-width: var(--oc-page-max-width);
   margin: 0 auto;
   position: relative;
-  /* NOTE: no z-index here — keeping body out of its own stacking context
+  /* NOTE: no z-index here â€” keeping body out of its own stacking context
      so the fixed .oc-bg/.oc-fog (z-index: -2/-1) fall behind body in the
      root stacking context, not above body's own background paint. */
   box-shadow:
@@ -122,7 +122,7 @@ body {
   min-height: 100vh;
 }
 
-/* ── Concrete background layer (isolated so filter never touches card) ── */
+/* â”€â”€ Concrete background layer (isolated so filter never touches card) â”€â”€ */
 .oc-bg {
   position: fixed;
   inset: 0;
@@ -131,7 +131,7 @@ body {
   filter: contrast(0.55) brightness(1.06);
 }
 
-/* ── Dark fog overlay: 20% black over the concrete ── */
+/* â”€â”€ Dark fog overlay: 20% black over the concrete â”€â”€ */
 .oc-fog {
   position: fixed;
   inset: 0;
@@ -1023,7 +1023,7 @@ section[id] {
    band, and reveal/hover motion. Scoped to #home.
 ================================================================ */
 
-/* ── Split hero ── */
+/* â”€â”€ Split hero â”€â”€ */
 #home .oc-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
@@ -1079,7 +1079,7 @@ section[id] {
   max-width: 400px;
 }
 
-/* ── Phone / text-thread mockup ── */
+/* â”€â”€ Phone / text-thread mockup â”€â”€ */
 #home .oc-phone {
   border: var(--oc-border-dominant) solid var(--oc-text-primary);
   background: var(--oc-surface-page);
@@ -1213,7 +1213,7 @@ section[id] {
   animation-delay: var(--d, 0s);
 }
 
-/* ── Per-service demo panels ── */
+/* â”€â”€ Per-service demo panels â”€â”€ */
 #home .oc-demo {
   margin-top: var(--oc-sp-4);
   border: var(--oc-border-subordinate) solid var(--oc-border-medium);
@@ -1248,7 +1248,7 @@ section[id] {
   max-width: 92%;
 }
 
-/* Incoming reply bubble — lighter, right-aligned */
+/* Incoming reply bubble â€” lighter, right-aligned */
 #home .oc-demo-bubble--reply {
   background: var(--oc-surface-elevated);
   border: var(--oc-border-subordinate) solid var(--oc-border-medium);
@@ -1290,7 +1290,7 @@ section[id] {
   50% { opacity: 0.3; }
 }
 
-/* ── Statement band ── */
+/* â”€â”€ Statement band â”€â”€ */
 #home .oc-band {
   padding: var(--oc-sp-9) var(--oc-page-padding-x);
   background:
@@ -1325,7 +1325,7 @@ section[id] {
   #home .oc-band-line { font-size: var(--oc-text-24); }
 }
 
-/* ── Process step numerals ── */
+/* â”€â”€ Process step numerals â”€â”€ */
 #home .oc-step-num {
   display: block;
   font-family: var(--oc-font-mono);
@@ -1336,14 +1336,14 @@ section[id] {
   margin-bottom: var(--oc-sp-3);
 }
 
-/* ── Closing section: soft echo of the hero's warm light ── */
+/* â”€â”€ Closing section: soft echo of the hero's warm light â”€â”€ */
 #home .oc-section:last-of-type {
   background:
     radial-gradient(ellipse 50% 75% at 85% 15%, rgba(184, 146, 42, 0.08) 0%, transparent 62%),
     var(--oc-surface-elevated);
 }
 
-/* ── Motion: reveal on scroll + card hover lift ── */
+/* â”€â”€ Motion: reveal on scroll + card hover lift â”€â”€ */
 /* Hidden state only applies when JS has run (html.oc-js), so content
    is never lost if scripts fail. */
 html.oc-js .oc-reveal {
@@ -1411,7 +1411,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 /* ================================================================
-   SERVICES SECTION — v1.1 additions
+   SERVICES SECTION â€” v1.1 additions
    Live marker, looping demos, reply bubble, monthly recap panel,
    quiet Learn More link, consolidated CTA, ambient motion.
 ================================================================ */
@@ -1662,7 +1662,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   line-height: 1.55;
 }
 
-/* Inside the square, the demo IS the content — no nested frame, and its
+/* Inside the square, the demo IS the content â€” no nested frame, and its
    lines spread across the full height instead of clustering mid-box. */
 #home .oc-tool-listing--split .oc-demo {
   width: 100%;
@@ -1741,12 +1741,13 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 96px;
+  min-height: 42px;
+  padding: 6px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   align-self: stretch;
-  animation: oc-before-label-text-out 11.8s linear infinite;
+  animation: oc-before-label-text-out 13.8s linear infinite;
 }
 
 #home .oc-demo--missed-call .oc-demo-phase--lost .oc-demo-label::before {
@@ -1769,7 +1770,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   background-size: 220% 100%;
   background-position: 140% 0;
   opacity: 0;
-  animation: oc-before-label-reflective-wipe 11.8s linear infinite;
+  animation: oc-before-label-reflective-wipe 13.8s linear infinite;
 }
 
 #home .oc-demo--missed-call .oc-demo-phase--lost .oc-demo-label::after {
@@ -1782,23 +1783,233 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   color: var(--oc-text-primary);
   opacity: 0;
   clip-path: inset(0 100% 0 0);
-  animation: oc-before-label-after-in 11.8s linear infinite;
+  animation: oc-before-label-after-in 13.8s linear infinite;
 }
 
 #home .oc-demo-phase--lost {
   opacity: 1;
   gap: var(--oc-sp-3);
-  animation: oc-missed-lost 11.8s linear infinite;
+  animation: oc-missed-lost 13.8s linear infinite;
 }
 
 #home .oc-demo-phase--caught {
   opacity: 0;
-  justify-content: space-between;
-  animation: oc-missed-caught 11.8s linear infinite;
+  justify-content: flex-start;
+  animation: oc-missed-caught 13.8s linear infinite;
 }
 
 #home .oc-demo--missed-call .oc-demo-phase--caught > * {
   visibility: hidden;
+}
+
+#home .oc-demo--missed-call .oc-demo-phase--caught > .oc-demo-after-window {
+  visibility: visible;
+}
+
+#home .oc-demo-after-window {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#home .oc-demo-after-pan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  height: 100%;
+  animation: oc-after-camera-pan 13.8s ease-in-out infinite;
+}
+
+#home .oc-demo-after-flow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 100%;
+  gap: var(--oc-sp-3);
+  height: 100%;
+  width: 100%;
+  padding: 56px 0 22px var(--oc-demo-board-left);
+}
+
+#home .oc-demo-after-flow::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--oc-demo-track-x) - 1px);
+  top: 96px;
+  bottom: 42px;
+  width: 4px;
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 132, 87, 0.18) 0%,
+    rgba(43, 132, 87, 0.7) 32%,
+    rgba(43, 105, 190, 0.78) 48%,
+    rgba(43, 105, 190, 0.78) 100%
+  );
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: oc-after-flow-line 13.8s ease-in-out infinite;
+}
+
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(1) {
+  border-color: rgba(43, 132, 87, 0.32);
+  background: rgba(239, 250, 244, 0.9);
+  color: #236b47;
+  animation-name: oc-after-flow-step-one, oc-after-incoming-bubble-alert;
+  animation-duration: 13.8s, 13.8s;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(1) .oc-demo-flow-dot {
+  color: #2b8457;
+  filter: drop-shadow(0 0 9px rgba(43, 132, 87, 0.58));
+  animation: oc-after-phone-ring 13.8s ease-in-out infinite;
+}
+
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(2) {
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  color: #174f8f;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(2)::before {
+  content: none;
+}
+
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(2) .oc-demo-flow-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  width: 100%;
+  padding: 7px var(--oc-sp-3);
+  border: var(--oc-border-subordinate) solid rgba(43, 105, 190, 0.78);
+  background: rgba(218, 235, 255, 0.98);
+  box-shadow: 4px 4px 0 rgba(23, 79, 143, 0.16);
+  opacity: 0;
+  animation: oc-after-flow-step-two 13.8s linear infinite;
+}
+
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(2) .oc-demo-flow-dot {
+  color: #2b8457;
+  filter: drop-shadow(0 0 8px rgba(43, 132, 87, 0.45));
+  opacity: 0;
+  animation: oc-after-check-reveal 13.8s ease-in-out infinite;
+}
+
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(2) .oc-demo-flow-dot::before,
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(2) .oc-demo-flow-dot::after {
+  content: none;
+}
+
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(3) {
+  border-color: rgba(43, 105, 190, 0.54);
+  background: rgba(218, 235, 255, 0.96);
+  box-shadow: 4px 4px 0 rgba(23, 79, 143, 0.16);
+  color: #174f8f;
+  animation-name: oc-after-flow-step-three;
+  animation-duration: 13.8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#home .oc-demo-after-flow .oc-demo-flow-step:nth-child(3) .oc-demo-flow-dot {
+  color: #236b47;
+  opacity: 0;
+  filter: drop-shadow(0 0 8px rgba(43, 132, 87, 0.4));
+  animation: oc-after-appointment-icon 13.8s ease-in-out infinite;
+}
+
+#home .oc-demo-after-tail {
+  position: relative;
+  flex: 0 0 154px;
+  width: 100%;
+}
+
+#home .oc-demo-after-tail::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--oc-demo-track-x) - 1px);
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 105, 190, 0.34),
+    rgba(43, 105, 190, 0.72)
+  );
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: oc-after-flow-tail 13.8s ease-in-out infinite;
+}
+
+#home .oc-missed-stack--after {
+  border-color: rgba(43, 105, 190, 0.66);
+  background: rgba(214, 233, 255, 0.96);
+  box-shadow: 5px 5px 0 rgba(23, 79, 143, 0.18);
+  color: #153f73;
+  animation: oc-after-stack-reveal 13.8s ease-in-out infinite;
+}
+
+#home .oc-missed-stack--after .oc-missed-stack-title,
+#home .oc-missed-stack--after .oc-missed-period,
+#home .oc-missed-stack--after .oc-missed-total {
+  color: #153f73;
+}
+
+#home .oc-missed-stack--after .oc-missed-row {
+  border-top-color: rgba(43, 105, 190, 0.2);
+}
+
+#home .oc-missed-stack--after .oc-missed-stack-icon {
+  color: #236b47;
+  animation: oc-after-stack-icon-reveal 13.8s ease-in-out infinite;
+}
+
+#home .oc-missed-stack--after .oc-missed-board-line,
+#home .oc-missed-stack--after .oc-missed-board-x {
+  opacity: 1;
+  stroke-dashoffset: 0;
+  animation: none;
+}
+
+#home .oc-demo--missed-call .oc-demo-phase--lost,
+#home .oc-demo--missed-call .oc-demo-phase--caught,
+#home .oc-demo--missed-call .oc-demo-phase--lost .oc-demo-label,
+#home .oc-demo--missed-call .oc-demo-phase--lost .oc-demo-label::before,
+#home .oc-demo--missed-call .oc-demo-phase--lost .oc-demo-label::after,
+#home .oc-demo--missed-call .oc-demo-before-pan,
+#home .oc-demo--missed-call .oc-demo-after-pan,
+#home .oc-demo--missed-call .oc-demo-flow::before,
+#home .oc-demo--missed-call .oc-demo-after-flow::before,
+#home .oc-demo--missed-call .oc-demo-flow-step,
+#home .oc-demo--missed-call .oc-demo-flow-step:nth-child(1),
+#home .oc-demo--missed-call .oc-demo-flow-step:nth-child(1) .oc-demo-flow-dot,
+#home .oc-demo--missed-call .oc-demo-after-flow .oc-demo-flow-step:nth-child(2) .oc-demo-flow-dot,
+#home .oc-demo--missed-call .oc-demo-after-flow .oc-demo-flow-step:nth-child(3) .oc-demo-flow-dot,
+#home .oc-demo--missed-call .oc-demo-flow-step:nth-child(2) .oc-demo-flow-card,
+#home .oc-demo--missed-call .oc-demo-flow-step:nth-child(2) .oc-demo-flow-dot::before,
+#home .oc-demo--missed-call .oc-demo-flow-step:nth-child(2) .oc-demo-flow-dot::after,
+#home .oc-demo--missed-call .oc-demo-flow-step:nth-child(3),
+#home .oc-demo--missed-call .oc-demo-missed-slash,
+#home .oc-demo--missed-call .oc-demo-flow-tail::before,
+#home .oc-demo--missed-call .oc-demo-after-tail::before,
+#home .oc-demo--missed-call .oc-missed-stack,
+#home .oc-demo--missed-call .oc-missed-stack-icon,
+#home .oc-demo--missed-call .oc-missed-board-line,
+#home .oc-demo--missed-call .oc-missed-board-x {
+  animation-duration: 24s !important;
 }
 
 #home .oc-demo--before-only .oc-demo-phase--lost {
@@ -1872,7 +2083,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   gap: 0;
   width: 100%;
   height: 100%;
-  animation: oc-before-camera-pan 11.8s ease-in-out infinite;
+  animation: oc-before-camera-pan 13.8s ease-in-out infinite;
 }
 
 #home .oc-demo-flow {
@@ -1903,7 +2114,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   );
   transform: scaleY(0);
   transform-origin: top;
-  animation: oc-before-flow-line 11.8s ease-in-out infinite;
+  animation: oc-before-flow-line 13.8s ease-in-out infinite;
 }
 
 #home .oc-demo-flow-step {
@@ -1928,7 +2139,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   color: var(--oc-text-primary);
   opacity: 0;
   transform: translateY(10px);
-  animation: oc-before-flow-step 11.8s ease-in-out infinite;
+  animation: oc-before-flow-step 13.8s ease-in-out infinite;
   overflow: visible;
 }
 
@@ -1937,7 +2148,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   background: rgba(239, 250, 244, 0.9);
   color: #236b47;
   animation-name: oc-before-flow-step-one, oc-incoming-bubble-alert;
-  animation-duration: 11.8s, 11.8s;
+  animation-duration: 13.8s, 13.8s;
   animation-timing-function: ease-in-out, ease-in-out;
   animation-iteration-count: infinite, infinite;
 }
@@ -1945,7 +2156,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 #home .oc-demo-flow-step:nth-child(1) .oc-demo-flow-dot {
   color: #2b8457;
   filter: drop-shadow(0 0 9px rgba(43, 132, 87, 0.58));
-  animation: oc-phone-ring 11.8s ease-in-out infinite;
+  animation: oc-phone-ring 13.8s ease-in-out infinite;
 }
 
 #home .oc-demo-flow-step:nth-child(2) {
@@ -1979,12 +2190,12 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   background: rgba(255, 218, 176, 0.98);
   box-shadow: 4px 4px 0 rgba(154, 54, 18, 0.18);
   opacity: 0;
-  animation: oc-before-flow-step-two 11.8s linear infinite;
+  animation: oc-before-flow-step-two 13.8s linear infinite;
 }
 
 #home .oc-demo-flow-step:nth-child(3) {
   animation-name: oc-before-flow-step-three;
-  animation-duration: 11.8s;
+  animation-duration: 13.8s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
@@ -2030,7 +2241,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 #home .oc-demo-missed-slash {
   stroke-dasharray: 22;
   stroke-dashoffset: 22;
-  animation: oc-missed-slash-draw 11.8s ease-in-out infinite;
+  animation: oc-missed-slash-draw 13.8s ease-in-out infinite;
 }
 
 #home .oc-demo-flow-step:nth-child(2) .oc-demo-flow-dot {
@@ -2055,12 +2266,12 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 
 #home .oc-demo-flow-step:nth-child(2) .oc-demo-flow-dot::before {
   transform: translate(-50%, -50%) rotate(45deg);
-  animation: oc-voicemail-x-one 11.8s ease-in-out infinite;
+  animation: oc-voicemail-x-one 13.8s ease-in-out infinite;
 }
 
 #home .oc-demo-flow-step:nth-child(2) .oc-demo-flow-dot::after {
   transform: translate(-50%, -50%) rotate(-45deg);
-  animation: oc-voicemail-x-two 11.8s ease-in-out infinite;
+  animation: oc-voicemail-x-two 13.8s ease-in-out infinite;
 }
 
 #home .oc-demo-flow-step--cold {
@@ -2092,7 +2303,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   opacity: 0;
   transform: scaleY(0);
   transform-origin: top;
-  animation: oc-before-flow-tail 11.8s ease-in-out infinite;
+  animation: oc-before-flow-tail 13.8s ease-in-out infinite;
 }
 
 #home .oc-missed-stack {
@@ -2109,7 +2320,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   opacity: 0;
   transform: translateY(18px);
   filter: saturate(1) grayscale(0) contrast(1);
-  animation: oc-missed-stack-reveal 11.8s ease-in-out infinite;
+  animation: oc-missed-stack-reveal 13.8s ease-in-out infinite;
 }
 
 #home .oc-missed-stack-icon {
@@ -2125,7 +2336,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   opacity: 0;
   transform: translateY(-50%) scale(0.82);
   filter: saturate(1) grayscale(0) blur(0);
-  animation: oc-missed-stack-icon-reveal 11.8s ease-in-out infinite;
+  animation: oc-missed-stack-icon-reveal 13.8s ease-in-out infinite;
 }
 
 #home .oc-missed-stack-icon svg {
@@ -2150,17 +2361,17 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 #home .oc-missed-board-line--one {
-  animation: oc-missed-board-line-one 11.8s ease-in-out infinite;
+  animation: oc-missed-board-line-one 13.8s ease-in-out infinite;
 }
 
 #home .oc-missed-board-line--two {
-  animation: oc-missed-board-line-two 11.8s ease-in-out infinite;
+  animation: oc-missed-board-line-two 13.8s ease-in-out infinite;
 }
 
 #home .oc-missed-board-line--three {
   stroke-dasharray: 7;
   stroke-dashoffset: 7;
-  animation: oc-missed-board-line-three 11.8s ease-in-out infinite;
+  animation: oc-missed-board-line-three 13.8s ease-in-out infinite;
 }
 
 #home .oc-missed-board-x {
@@ -2170,11 +2381,11 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 #home .oc-missed-board-x--one {
-  animation: oc-missed-board-x-one 11.8s ease-in-out infinite;
+  animation: oc-missed-board-x-one 13.8s ease-in-out infinite;
 }
 
 #home .oc-missed-board-x--two {
-  animation: oc-missed-board-x-two 11.8s ease-in-out infinite;
+  animation: oc-missed-board-x-two 13.8s ease-in-out infinite;
 }
 
 #home .oc-missed-stack-title {
@@ -2240,7 +2451,17 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 @keyframes oc-missed-caught {
-  0%, 100% {
+  0%, 53.9% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 100% 0 0);
+  }
+  54%, 99.8% {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
     opacity: 0;
     transform: none;
     clip-path: inset(0 100% 0 0);
@@ -2248,16 +2469,16 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 @keyframes oc-before-label-text-out {
-  0%, 98.1% { color: var(--oc-text-primary); }
-  98.2%, 100% { color: transparent; }
+  0%, 50% { color: var(--oc-text-primary); }
+  50.1%, 100% { color: transparent; }
 }
 
 @keyframes oc-before-label-after-in {
-  0%, 98.1% {
+  0%, 50% {
     opacity: 0;
     clip-path: inset(0 100% 0 0);
   }
-  99.5%, 99.8% {
+  54%, 99.8% {
     opacity: 1;
     clip-path: inset(0 0 0 0);
   }
@@ -2268,19 +2489,19 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 @keyframes oc-before-label-reflective-wipe {
-  0%, 98.1% {
+  0%, 50% {
     opacity: 0;
     background-position: 140% 0;
   }
-  98.2% {
+  50.1% {
     opacity: 0.95;
     background-position: 140% 0;
   }
-  99.5% {
+  54% {
     opacity: 0.95;
     background-position: -40% 0;
   }
-  99.8%, 100% {
+  55%, 100% {
     opacity: 0;
     background-position: -40% 0;
   }
@@ -2288,29 +2509,29 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 
 @keyframes oc-before-flow-line {
   0%, 8% { opacity: 0; transform: scaleY(0); filter: blur(0); }
-  36%, 74% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
-  76% { opacity: 1; transform: scaleY(1); filter: saturate(0.35) grayscale(0.55) blur(0); }
-  78% { opacity: 1; transform: scaleY(1); filter: saturate(0.18) grayscale(0.7) blur(0); }
-  84% { opacity: 0.12; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(5px); }
-  86% { opacity: 0; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(7px); }
+  36%, 43% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
+  45% { opacity: 1; transform: scaleY(1); filter: saturate(0.35) grayscale(0.55) blur(0); }
+  47% { opacity: 1; transform: scaleY(1); filter: saturate(0.18) grayscale(0.7) blur(0); }
+  49% { opacity: 0.12; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(5px); }
+  50% { opacity: 0; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(7px); }
   100% { opacity: 0; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(7px); }
 }
 
 @keyframes oc-before-flow-tail {
   0%, 52% { opacity: 0; transform: scaleY(0); filter: blur(0); }
-  64%, 74% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
-  76% { opacity: 1; transform: scaleY(1); filter: saturate(0.35) grayscale(0.55) blur(0); }
-  78% { opacity: 1; transform: scaleY(1); filter: saturate(0.18) grayscale(0.7) blur(0); }
-  84% { opacity: 0.12; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(5px); }
-  86% { opacity: 0; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(7px); }
+  42%, 43% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
+  45% { opacity: 1; transform: scaleY(1); filter: saturate(0.35) grayscale(0.55) blur(0); }
+  47% { opacity: 1; transform: scaleY(1); filter: saturate(0.18) grayscale(0.7) blur(0); }
+  49% { opacity: 0.12; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(5px); }
+  50% { opacity: 0; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(7px); }
   100% { opacity: 0; transform: scaleY(1); filter: saturate(0.08) grayscale(0.9) blur(7px); }
 }
 
 @keyframes oc-before-flow-step-one {
   0%, 7% { opacity: 0; transform: translateY(-26px); }
   10% { opacity: 1; transform: translateY(4px); }
-  13%, 70% { opacity: 1; transform: translateY(0); }
-  82%, 100% { opacity: 0; transform: translateY(-5px); }
+  13%, 47% { opacity: 1; transform: translateY(0); }
+  50%, 100% { opacity: 0; transform: translateY(-5px); }
 }
 
 @keyframes oc-incoming-bubble-alert {
@@ -2348,6 +2569,151 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   29% { transform: translateY(-50%) rotate(-8deg) scale(1.08); }
 }
 
+@keyframes oc-after-flow-step-one {
+  0%, 54% { opacity: 0; transform: translateY(-26px); }
+  57% { opacity: 1; transform: translateY(4px); }
+  59%, 86% { opacity: 1; transform: translateY(0); }
+  91%, 99.8% { opacity: 0; transform: translateY(-5px); }
+  100% { opacity: 0; transform: translateY(-5px); }
+}
+
+@keyframes oc-after-incoming-bubble-alert {
+  0%, 56%, 59%, 62%, 65%, 68%, 72%, 99.8%, 100% {
+    border-color: rgba(43, 132, 87, 0.32);
+    background: rgba(239, 250, 244, 0.9);
+    box-shadow: 3px 3px 0 rgba(26, 26, 26, 0.055);
+  }
+  57.5%, 61%, 64%, 67% {
+    border-color: rgba(43, 132, 87, 1);
+    background: rgba(200, 247, 220, 1);
+    box-shadow: 0 0 0 9px rgba(43, 132, 87, 0.22), 0 0 28px rgba(43, 132, 87, 0.28), 4px 4px 0 rgba(43, 132, 87, 0.2);
+  }
+  58.2%, 62.2%, 65.5%, 69% {
+    border-color: rgba(43, 132, 87, 1);
+    background: rgba(184, 242, 210, 1);
+    box-shadow: 0 0 0 13px rgba(43, 132, 87, 0.14), 0 0 34px rgba(43, 132, 87, 0.32), 5px 5px 0 rgba(43, 132, 87, 0.22);
+  }
+  57.5%, 58.2%, 61%, 62.2%, 64%, 65.5%, 67%, 69% {
+    color: #155f39;
+  }
+}
+
+@keyframes oc-after-phone-ring {
+  0%, 54%, 99.8%, 100% { transform: translateY(-50%) rotate(0deg) scale(1); }
+  57% { transform: translateY(-50%) rotate(-16deg) scale(1.2); }
+  59% { transform: translateY(-50%) rotate(15deg) scale(1.12); }
+  61% { transform: translateY(-50%) rotate(-14deg) scale(1.18); }
+  63% { transform: translateY(-50%) rotate(13deg) scale(1.1); }
+  65% { transform: translateY(-50%) rotate(-11deg) scale(1.16); }
+  67% { transform: translateY(-50%) rotate(10deg) scale(1.08); }
+  69%, 73% { transform: translateY(-50%) rotate(0deg) scale(1); }
+  71% { transform: translateY(-50%) rotate(-12deg) scale(1.14); }
+  75% { transform: translateY(-50%) rotate(10deg) scale(1.1); }
+}
+
+@keyframes oc-after-flow-line {
+  0%, 56% { opacity: 0; transform: scaleY(0); }
+  75%, 99.8% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+
+@keyframes oc-after-flow-tail {
+  0%, 78% { opacity: 0; transform: scaleY(0); }
+  88%, 99.8% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+
+@keyframes oc-after-flow-step-two {
+  0%, 68% {
+    opacity: 0;
+    transform: translateX(72px);
+  }
+  71% {
+    opacity: 1;
+    transform: translateX(-7px) scaleX(1.03);
+  }
+  73%, 86% {
+    opacity: 1;
+    transform: translateX(0);
+    border-color: rgba(43, 105, 190, 0.78);
+    background: rgba(218, 235, 255, 0.98);
+    box-shadow: 4px 4px 0 rgba(23, 79, 143, 0.16);
+  }
+  91%, 100% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes oc-after-check-reveal {
+  0%, 69% { opacity: 0; transform: translateY(-50%) scale(0.65); }
+  71.5% { opacity: 1; transform: translateY(-50%) scale(1.18); }
+  73%, 86% { opacity: 1; transform: translateY(-50%) scale(1); }
+  91%, 100% { opacity: 0; transform: translateY(-50%) scale(1); }
+  100% { opacity: 0; transform: translateY(-50%) scale(1); }
+}
+
+@keyframes oc-after-flow-step-three {
+  0%, 78% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.88);
+  }
+  81% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.06);
+  }
+  83%, 86% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  91%, 100% {
+    opacity: 0;
+    transform: translateY(-5px) scale(1);
+  }
+}
+
+@keyframes oc-after-appointment-icon {
+  0%, 79% { opacity: 0; transform: translateY(-50%) scale(0.72); }
+  81.5% { opacity: 1; transform: translateY(-50%) scale(1.14); }
+  83%, 86% { opacity: 1; transform: translateY(-50%) scale(1); }
+  91%, 100% { opacity: 0; transform: translateY(-50%) scale(1); }
+  100% { opacity: 0; transform: translateY(-50%) scale(1); }
+}
+
+@keyframes oc-after-camera-pan {
+  0%, 86% { transform: translateY(0); }
+  91%, 100% { transform: translateY(calc(-100% - 154px + var(--oc-demo-board-center-offset))); }
+}
+
+@keyframes oc-after-stack-reveal {
+  0%, 91.2% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  92.5% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+  93.5%, 99.8% {
+    opacity: 1;
+    transform: none;
+    border-color: rgba(43, 105, 190, 0.66);
+    background: rgba(214, 233, 255, 0.96);
+    color: #153f73;
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+@keyframes oc-after-stack-icon-reveal {
+  0%, 91.5% { opacity: 0; transform: translateY(-50%) scale(0.72); }
+  92.8% { opacity: 1; transform: translateY(-50%) scale(1.16); }
+  93.5%, 99.8% { opacity: 1; transform: translateY(-50%) scale(1); }
+  100% { opacity: 0; transform: translateY(-50%) scale(1); }
+}
+
 @keyframes oc-before-flow-step-two {
   0%, 21% {
     opacity: 0;
@@ -2382,14 +2748,14 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
     opacity: 1;
     transform: translateX(-4px);
   }
-  28.3%, 70% {
+  28.3%, 47% {
     opacity: 1;
     transform: translateX(0);
     border-color: rgba(214, 94, 28, 0.82);
     background: rgba(255, 218, 176, 0.98);
     box-shadow: 4px 4px 0 rgba(154, 54, 18, 0.18);
   }
-  82%, 100% {
+  50%, 100% {
     opacity: 0;
     transform: translateY(-5px);
   }
@@ -2397,69 +2763,69 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 
 @keyframes oc-voicemail-x-one {
   0%, 23% { opacity: 0; transform: translate(-50%, -50%) rotate(45deg); }
-  28%, 76% { opacity: 1; transform: translate(-50%, -50%) rotate(45deg); }
-  86%, 100% { opacity: 0; transform: translate(-50%, -50%) rotate(45deg); }
+  28%, 47% { opacity: 1; transform: translate(-50%, -50%) rotate(45deg); }
+  50%, 100% { opacity: 0; transform: translate(-50%, -50%) rotate(45deg); }
 }
 
 @keyframes oc-voicemail-x-two {
   0%, 25% { opacity: 0; transform: translate(-50%, -50%) rotate(-45deg); }
-  30%, 76% { opacity: 1; transform: translate(-50%, -50%) rotate(-45deg); }
-  86%, 100% { opacity: 0; transform: translate(-50%, -50%) rotate(-45deg); }
+  30%, 47% { opacity: 1; transform: translate(-50%, -50%) rotate(-45deg); }
+  50%, 100% { opacity: 0; transform: translate(-50%, -50%) rotate(-45deg); }
 }
 
 @keyframes oc-before-flow-step-three {
-  0%, 36% {
+  0%, 32% {
     opacity: 0;
     transform: translateY(22px) scale(0.48) rotate(-3deg);
     border-color: rgba(163, 52, 52, 0.48);
     background: rgba(255, 226, 221, 0.94);
     box-shadow: 4px 4px 0 rgba(120, 34, 34, 0.18);
   }
-  39% {
+  34% {
     opacity: 1;
     transform: translateY(-12px) scale(1.18) rotate(2deg);
     border-color: rgba(105, 24, 24, 1);
     background: rgba(232, 154, 145, 1);
     box-shadow: 9px 9px 0 rgba(120, 34, 34, 0.32);
   }
-  41.5% {
+  36.5% {
     opacity: 1;
     transform: translateY(5px) scale(0.94) rotate(-1.5deg);
   }
-  43.5% {
+  38.5% {
     opacity: 1;
     transform: translateY(-4px) scale(1.04) rotate(0.8deg);
   }
-  45.5% {
+  40.5% {
     opacity: 1;
     transform: translateY(1px) scale(0.99) rotate(-0.4deg);
   }
-  48%, 76% {
+  43%, 48% {
     opacity: 1;
     transform: translateY(0) scale(1) rotate(0deg);
     border-color: rgba(163, 52, 52, 0.48);
     background: rgba(255, 226, 221, 0.94);
     box-shadow: 4px 4px 0 rgba(120, 34, 34, 0.18);
   }
-  86%, 100% {
+  50%, 100% {
     opacity: 0;
     transform: translateY(-5px) scale(1);
   }
 }
 
 @keyframes oc-missed-slash-draw {
-  0%, 42% { stroke-dashoffset: 22; opacity: 1; }
-  46%, 76% { stroke-dashoffset: 0; opacity: 1; }
-  86%, 100% { stroke-dashoffset: 0; opacity: 0; }
+  0%, 37% { stroke-dashoffset: 22; opacity: 1; }
+  41%, 48% { stroke-dashoffset: 0; opacity: 1; }
+  50%, 100% { stroke-dashoffset: 0; opacity: 0; }
 }
 
 @keyframes oc-before-camera-pan {
-  0%, 46% { transform: translateY(0); }
-  68%, 100% { transform: translateY(calc(-100% - 154px + var(--oc-demo-board-center-offset))); }
+  0%, 39% { transform: translateY(0); }
+  46%, 100% { transform: translateY(calc(-100% - 154px + var(--oc-demo-board-center-offset))); }
 }
 
 @keyframes oc-missed-stack-reveal {
-  0%, 58% {
+  0%, 43% {
     opacity: 0;
     transform: translateY(18px);
     filter: saturate(1) grayscale(0) contrast(1);
@@ -2467,7 +2833,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
     background: rgba(229, 168, 160, 0.98);
     color: #4f1515;
   }
-  66%, 74% {
+  46%, 47% {
     opacity: 1;
     transform: none;
     filter: saturate(1) grayscale(0) contrast(1);
@@ -2475,7 +2841,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
     background: rgba(229, 168, 160, 0.98);
     color: #4f1515;
   }
-  92% {
+  48% {
     opacity: 1;
     transform: none;
     filter: saturate(0.35) grayscale(0.55) contrast(0.92);
@@ -2483,7 +2849,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
     background: rgba(196, 183, 180, 0.96);
     color: #4a3b3b;
   }
-  94% {
+  49% {
     opacity: 1;
     transform: none;
     filter: saturate(0.18) grayscale(0.7) contrast(0.9) blur(0);
@@ -2491,7 +2857,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
     background: rgba(196, 183, 180, 0.9);
     color: #4a3b3b;
   }
-  97% {
+  50% {
     opacity: 0.12;
     transform: none;
     filter: saturate(0.08) grayscale(0.9) contrast(0.86) blur(5px);
@@ -2499,7 +2865,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
     background: rgba(196, 183, 180, 0.9);
     color: #4a3b3b;
   }
-  98.2%, 100% {
+  51%, 100% {
     opacity: 0;
     transform: none;
     filter: saturate(0.08) grayscale(0.9) contrast(0.84) blur(7px);
@@ -2510,51 +2876,50 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 @keyframes oc-missed-stack-icon-reveal {
-  0%, 62% { opacity: 0; transform: translateY(-50%) scale(0.72); filter: saturate(1) grayscale(0) blur(0); color: #a33434; }
-  66% { opacity: 1; transform: translateY(-50%) scale(1.16); filter: saturate(1) grayscale(0) blur(0); color: #a33434; }
-  69%, 86% { opacity: 1; transform: translateY(-50%) scale(1); filter: saturate(1) grayscale(0) blur(0); color: #a33434; }
-  87% { opacity: 1; transform: translateY(-50%) scale(1); filter: saturate(0.35) grayscale(0.55) blur(0); color: #5f4a4a; }
-  89% { opacity: 1; transform: translateY(-50%) scale(1); filter: saturate(0.18) grayscale(0.7) blur(0); color: #4a3b3b; }
-  92% { opacity: 0.12; transform: translateY(-50%) scale(1); filter: saturate(0.08) grayscale(0.9) blur(5px); color: #4a3b3b; }
-  93.5% { opacity: 0; transform: translateY(-50%) scale(1); filter: saturate(0.08) grayscale(0.9) blur(7px); color: #4a3b3b; }
+  0%, 44% { opacity: 0; transform: translateY(-50%) scale(0.72); filter: saturate(1) grayscale(0) blur(0); color: #a33434; }
+  46% { opacity: 1; transform: translateY(-50%) scale(1.16); filter: saturate(1) grayscale(0) blur(0); color: #a33434; }
+  47% { opacity: 1; transform: translateY(-50%) scale(1); filter: saturate(1) grayscale(0) blur(0); color: #a33434; }
+  48% { opacity: 1; transform: translateY(-50%) scale(1); filter: saturate(0.35) grayscale(0.55) blur(0); color: #5f4a4a; }
+  49% { opacity: 1; transform: translateY(-50%) scale(1); filter: saturate(0.18) grayscale(0.7) blur(0); color: #4a3b3b; }
+  50% { opacity: 0.12; transform: translateY(-50%) scale(1); filter: saturate(0.08) grayscale(0.9) blur(5px); color: #4a3b3b; }
+  51% { opacity: 0; transform: translateY(-50%) scale(1); filter: saturate(0.08) grayscale(0.9) blur(7px); color: #4a3b3b; }
   100% { opacity: 0; transform: translateY(-50%) scale(1); filter: saturate(0.08) grayscale(0.9) blur(7px); color: #4a3b3b; }
 }
 
 @keyframes oc-missed-board-line-one {
-  0%, 64% { opacity: 0; stroke-dashoffset: 13; }
-  67%, 89% { opacity: 1; stroke-dashoffset: 0; }
-  92% { opacity: 0.12; stroke-dashoffset: 0; }
-  93.5%, 100% { opacity: 0; stroke-dashoffset: 0; }
+  0%, 45% { opacity: 0; stroke-dashoffset: 13; }
+  47%, 49% { opacity: 1; stroke-dashoffset: 0; }
+  50% { opacity: 0.12; stroke-dashoffset: 0; }
+  51%, 100% { opacity: 0; stroke-dashoffset: 0; }
 }
 
 @keyframes oc-missed-board-line-two {
-  0%, 65% { opacity: 0; stroke-dashoffset: 13; }
-  69%, 89% { opacity: 1; stroke-dashoffset: 0; }
-  92% { opacity: 0.12; stroke-dashoffset: 0; }
-  93.5%, 100% { opacity: 0; stroke-dashoffset: 0; }
+  0%, 45.5% { opacity: 0; stroke-dashoffset: 13; }
+  47.5%, 49% { opacity: 1; stroke-dashoffset: 0; }
+  50% { opacity: 0.12; stroke-dashoffset: 0; }
+  51%, 100% { opacity: 0; stroke-dashoffset: 0; }
 }
 
 @keyframes oc-missed-board-line-three {
-  0%, 66% { opacity: 0; stroke-dashoffset: 7; }
-  71%, 89% { opacity: 1; stroke-dashoffset: 0; }
-  92% { opacity: 0.12; stroke-dashoffset: 0; }
-  93.5%, 100% { opacity: 0; stroke-dashoffset: 0; }
+  0%, 46% { opacity: 0; stroke-dashoffset: 7; }
+  48%, 49% { opacity: 1; stroke-dashoffset: 0; }
+  50% { opacity: 0.12; stroke-dashoffset: 0; }
+  51%, 100% { opacity: 0; stroke-dashoffset: 0; }
 }
 
 @keyframes oc-missed-board-x-one {
-  0%, 70% { opacity: 0; transform: scaleX(0.18) scaleY(0.7); }
-  73% { opacity: 1; transform: scaleX(1.18) scaleY(1); }
-  76%, 89% { opacity: 1; transform: scale(1); }
-  92% { opacity: 0.12; transform: scale(1); }
-  93.5%, 100% { opacity: 0; transform: scale(1); }
+  0%, 47% { opacity: 0; transform: scaleX(0.18) scaleY(0.7); }
+  48% { opacity: 1; transform: scaleX(1.18) scaleY(1); }
+  49% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.12; transform: scale(1); }
+  51%, 100% { opacity: 0; transform: scale(1); }
 }
 
 @keyframes oc-missed-board-x-two {
-  0%, 71% { opacity: 0; transform: scaleX(0.18) scaleY(0.7); }
-  74% { opacity: 1; transform: scaleX(1.18) scaleY(1); }
-  77%, 89% { opacity: 1; transform: scale(1); }
-  92% { opacity: 0.12; transform: scale(1); }
-  93.5%, 100% { opacity: 0; transform: scale(1); }
+  0%, 47.5% { opacity: 0; transform: scaleX(0.18) scaleY(0.7); }
+  48.5% { opacity: 1; transform: scaleX(1.18) scaleY(1); }
+  50% { opacity: 0.12; transform: scale(1); }
+  51%, 100% { opacity: 0; transform: scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2605,7 +2970,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   align-self: center;
 }
 
-/* ── Review demo: chat phase wipes away to reveal the posted review ── */
+/* â”€â”€ Review demo: chat phase wipes away to reveal the posted review â”€â”€ */
 #home .oc-demo--review {
   position: relative;
   display: block;
@@ -2726,7 +3091,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
   }
 }
 
-/* ── "Live" breathing marker: a sharp 6px square, not a round dot ── */
+/* â”€â”€ "Live" breathing marker: a sharp 6px square, not a round dot â”€â”€ */
 #home .oc-live-square {
   width: 6px;
   height: 6px;
@@ -2743,7 +3108,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
   50%      { opacity: 1;    transform: scale(1); }
 }
 
-/* ── Consolidated section CTA ── */
+/* â”€â”€ Consolidated section CTA â”€â”€ */
 #home .oc-services-cta {
   max-width: 1200px;
   margin: var(--oc-sp-7) auto 0;
@@ -2784,9 +3149,9 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
   55%, 100% { left: 130%; }
 }
 
-/* ── Looping demos: JS drives child visibility via .oc-demo-show so the
+/* â”€â”€ Looping demos: JS drives child visibility via .oc-demo-show so the
    messages can replay. Equal specificity + later source order than the
-   boot-reveal rule, so the fade-out actually takes. ── */
+   boot-reveal rule, so the fade-out actually takes. â”€â”€ */
 html.oc-js .oc-reveal.is-visible .oc-demo--loop > * {
   opacity: 0;
   transform: translateY(7px);
@@ -2798,7 +3163,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *.oc-demo-show {
   transform: none;
 }
 
-/* Neutralize the boot-reveal per-child stagger delays — the loop's stagger
+/* Neutralize the boot-reveal per-child stagger delays â€” the loop's stagger
    comes from JS, not CSS transition-delay. */
 html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(1),
 html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(2),
@@ -2817,7 +3182,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
   50%      { color: var(--oc-vertical-accent); }
 }
 
-/* ── Reduced motion: freeze all ambient motion, show everything static ── */
+/* â”€â”€ Reduced motion: freeze all ambient motion, show everything static â”€â”€ */
 @media (prefers-reduced-motion: reduce) {
   #home .oc-live-square { animation: none; opacity: 1; transform: none; }
   #home .oc-cta-sheen::after { animation: none; display: none; }
@@ -2827,7 +3192,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 }
 
 /* ================================================================
-   PROCESS PIPELINE (#how-it-works) — job-ticket spine
+   PROCESS PIPELINE (#how-it-works) â€” job-ticket spine
    Vertical work-order: oversized DM Mono numbers in a left gutter
    on a gold spine that fills with scroll; each stage lights as the
    fill reaches it. Spine geometry + scroll fill driven by JS.
@@ -2924,7 +3289,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 }
 
 /* ================================================================
-   CLOSING CTA — "the signed promise"
+   CLOSING CTA â€” "the signed promise"
    Tim's personal, first-person guarantee. Signature underline draws
    itself in on reveal. Uses the site .oc-reveal system for fades.
 ================================================================ */
@@ -3010,7 +3375,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 }
 
 /* ================================================================
-   "WHY IT MATTERS" BAND — the silent-loss beat
+   "WHY IT MATTERS" BAND â€” the silent-loss beat
    Broadened beyond calls; each leak's marker cools from live gold
    to grey as it lands (an opportunity going cold). Deliberate
    inverse of the solution sections, whose markers breathe gold.

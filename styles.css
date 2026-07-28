@@ -1955,25 +1955,25 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 #home .oc-missed-stack--after {
-  border-color: rgba(43, 105, 190, 0.66);
-  background: rgba(214, 233, 255, 0.96);
-  box-shadow: 5px 5px 0 rgba(23, 79, 143, 0.18);
-  color: #153f73;
+  border-color: rgba(28, 72, 124, 0.68);
+  background: rgba(160, 195, 229, 0.98);
+  box-shadow: 3px 3px 0 rgba(28, 72, 124, 0.2);
+  color: #15375f;
   animation: oc-after-stack-reveal 13.8s ease-in-out infinite;
 }
 
 #home .oc-missed-stack--after .oc-missed-stack-title,
 #home .oc-missed-stack--after .oc-missed-period,
 #home .oc-missed-stack--after .oc-missed-total {
-  color: #153f73;
+  color: #15375f;
 }
 
 #home .oc-missed-stack--after .oc-missed-row {
-  border-top-color: rgba(43, 105, 190, 0.2);
+  border-top-color: rgba(28, 72, 124, 0.2);
 }
 
 #home .oc-missed-stack--after .oc-missed-stack-icon {
-  color: #236b47;
+  color: #1f5e9c;
   animation: oc-after-stack-icon-reveal 13.8s ease-in-out infinite;
 }
 
@@ -2697,9 +2697,9 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   93.5%, 99.8% {
     opacity: 1;
     transform: none;
-    border-color: rgba(43, 105, 190, 0.66);
-    background: rgba(214, 233, 255, 0.96);
-    color: #153f73;
+    border-color: rgba(28, 72, 124, 0.68);
+    background: rgba(160, 195, 229, 0.98);
+    color: #15375f;
   }
   100% {
     opacity: 0;

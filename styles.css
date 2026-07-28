@@ -449,6 +449,18 @@ section[id] {
 
 .oc-section-head .oc-body {
   max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Process header reads centered; the numbered steps below keep their
+   own left-hand spine layout, which is a separate, deliberate system. */
+.oc-section-head {
+  text-align: center;
+}
+
+.oc-section-head .oc-vertical-indicator {
+  justify-content: center;
 }
 
 /* ================================================================
@@ -1211,6 +1223,7 @@ section[id] {
 #home .oc-band-inner {
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
 
 
@@ -1830,10 +1843,10 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
    JS-measured spine geometry is unaffected. Sized to hug the content. */
 #home .oc-flow-card {
   max-width: 780px;
-  /* Align the card's left edge with the section heading, which lives in a
-     1200px centred column. On narrower screens this collapses to 0 so the
-     card sits at the section padding, same as the heading. */
-  margin-left: max(0px, calc(50% - 600px));
+  /* The section heading above is centered, so the card centers too
+     instead of hanging off the old left-aligned heading position. */
+  margin-left: auto;
+  margin-right: auto;
   background: var(--oc-surface-page);
   border: var(--oc-border-dominant) solid var(--oc-border-medium);
   box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.07);
@@ -1843,16 +1856,24 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
 #home .oc-flow { position: relative; --spine-x: 92px; }
 
 /* Card header banner: full-width, amber-washed, aligned to the card edge
-   (not indented) so it reads as a deliberate header, not floating text. */
+   (not indented) so it reads as a deliberate header, not floating text.
+   Centered and headline-weight, but still one notch below the numbered
+   steps' own heading size so it reads as the card's title, not a step. */
 #home .oc-flow-header {
-  display: flex; align-items: center; gap: var(--oc-sp-2);
+  display: flex; align-items: center; justify-content: center;
   margin: 0 0 var(--oc-sp-7);
-  padding: var(--oc-sp-3) var(--oc-sp-4);
-  background: linear-gradient(to right, rgba(184, 146, 42, 0.13), rgba(184, 146, 42, 0.03) 68%, transparent);
+  padding: var(--oc-sp-4);
+  background: linear-gradient(to right, rgba(184, 146, 42, 0.03), rgba(184, 146, 42, 0.13) 50%, rgba(184, 146, 42, 0.03));
   border-bottom: var(--oc-border-dominant) solid var(--oc-vertical-accent);
 }
-#home .oc-flow-header-sq { width: 8px; height: 8px; flex-shrink: 0; background: var(--oc-vertical-accent); animation: oc-breathe 2.2s ease-in-out infinite; }
-#home .oc-flow-header-label { font-family: var(--oc-font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--oc-vertical-accent-deep); }
+#home .oc-flow-header-label {
+  font-family: var(--oc-font-heading);
+  font-size: var(--oc-text-24);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--oc-vertical-accent-deep);
+}
 
 /* Continuous spine track + gold fill (geometry set by JS to span markers) */
 #home .oc-flow-spine { position: absolute; left: var(--spine-x); width: 2px; background: var(--oc-border-strong); z-index: 1; }
@@ -1905,7 +1926,6 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
 @media (prefers-reduced-motion: reduce) {
   #home .oc-flow-fill { transition: none; }
   #home .oc-flow-fill::after { animation: none; }
-  #home .oc-flow-header-sq { animation: none; opacity: 1; }
   #home .oc-flow.is-spotlight .oc-flow-step { opacity: 1; transform: none; transition: none; }
 }
 
@@ -1914,18 +1934,18 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
    Tim's personal, first-person guarantee. Signature underline draws
    itself in on reveal. Uses the site .oc-reveal system for fades.
 ================================================================ */
-#home .oc-close { max-width: 1200px; margin: 0 auto; }
+#home .oc-close { max-width: 1200px; margin: 0 auto; text-align: center; }
 
 #home .oc-close-eyebrow { display: inline-flex; align-items: center; gap: var(--oc-sp-2); font-family: var(--oc-font-mono); font-size: var(--oc-text-10); font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--oc-vertical-accent-deep); margin-bottom: var(--oc-sp-5); }
 #home .oc-close-sq { width: 7px; height: 7px; background: var(--oc-vertical-accent); animation: oc-breathe 2.2s ease-in-out infinite; }
 
-#home .oc-close-title { font-family: var(--oc-font-heading); font-weight: 700; font-size: clamp(36px, 5vw, 56px); line-height: 1.03; letter-spacing: -0.02em; color: var(--oc-text-primary); max-width: 15ch; margin-bottom: var(--oc-sp-6); text-wrap: balance; }
+#home .oc-close-title { font-family: var(--oc-font-heading); font-weight: 700; font-size: clamp(36px, 5vw, 56px); line-height: 1.03; letter-spacing: -0.02em; color: var(--oc-text-primary); max-width: 15ch; margin: 0 auto var(--oc-sp-6); text-wrap: balance; }
 #home .oc-close-em { color: var(--oc-vertical-accent-deep); }
 
-#home .oc-close-note { font-family: var(--oc-font-body); font-size: clamp(18px, 2vw, 22px); line-height: 1.55; color: var(--oc-text-primary); max-width: 40ch; margin-bottom: var(--oc-sp-6); }
+#home .oc-close-note { font-family: var(--oc-font-body); font-size: clamp(18px, 2vw, 22px); line-height: 1.55; color: var(--oc-text-primary); max-width: 40ch; margin: 0 auto var(--oc-sp-6); }
 #home .oc-close-note b { color: var(--oc-vertical-accent-deep); font-weight: 700; }
 
-#home .oc-close-assure { display: flex; flex-wrap: wrap; gap: var(--oc-sp-2) var(--oc-sp-5); margin-bottom: var(--oc-sp-7); }
+#home .oc-close-assure { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--oc-sp-2) var(--oc-sp-5); margin-bottom: var(--oc-sp-7); }
 #home .oc-close-assure span { display: inline-flex; align-items: center; gap: var(--oc-sp-2); font-family: var(--oc-font-mono); font-size: var(--oc-text-10); letter-spacing: 0.12em; text-transform: uppercase; color: var(--oc-text-secondary); }
 #home .oc-close-mk { width: 7px; height: 7px; background: var(--oc-vertical-accent); flex-shrink: 0; }
 
@@ -1937,13 +1957,13 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
 @keyframes oc-sign-draw { to { stroke-dashoffset: 0; } }
 #home .oc-close-role { display: block; font-family: var(--oc-font-mono); font-size: var(--oc-text-10); letter-spacing: 0.18em; text-transform: uppercase; color: var(--oc-text-tertiary); margin-top: var(--oc-sp-3); }
 
-#home .oc-close-actions { display: flex; align-items: center; gap: var(--oc-sp-5); flex-wrap: wrap; }
+#home .oc-close-actions { display: flex; align-items: center; justify-content: center; gap: var(--oc-sp-5); flex-wrap: wrap; }
 #home .oc-close-contact { font-family: var(--oc-font-body); font-size: var(--oc-text-13); color: var(--oc-text-secondary); }
 #home .oc-close-contact a { color: var(--oc-vertical-accent-deep); text-decoration: none; border-bottom: 1px solid rgba(138, 104, 26, 0.35); }
 #home .oc-close-contact a:hover { border-bottom-color: var(--oc-vertical-accent-deep); }
 
 @media (max-width: 767px) {
-  #home .oc-close-actions { flex-direction: column; align-items: flex-start; gap: var(--oc-sp-4); }
+  #home .oc-close-actions { flex-direction: column; align-items: center; gap: var(--oc-sp-4); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1960,10 +1980,10 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
 #home .oc-why-eyebrow { display: inline-flex; align-items: center; gap: var(--oc-sp-2); font-family: var(--oc-font-mono); font-size: var(--oc-text-10); font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--oc-vertical-accent-deep); margin-bottom: var(--oc-sp-6); }
 #home .oc-why-sq { width: 7px; height: 7px; background: var(--oc-vertical-accent); animation: oc-breathe 2.2s ease-in-out infinite; }
 
-#home .oc-why-head { font-family: var(--oc-font-heading); font-weight: 700; font-size: clamp(34px, 4.8vw, 54px); line-height: 1.05; letter-spacing: -0.02em; color: var(--oc-text-primary); max-width: 16ch; margin-bottom: var(--oc-sp-7); text-wrap: balance; }
+#home .oc-why-head { font-family: var(--oc-font-heading); font-weight: 700; font-size: clamp(34px, 4.8vw, 54px); line-height: 1.05; letter-spacing: -0.02em; color: var(--oc-text-primary); max-width: 16ch; margin: 0 auto var(--oc-sp-7); text-wrap: balance; }
 #home .oc-why-g { color: var(--oc-vertical-accent-deep); }
 
-#home .oc-why-leaks { list-style: none; margin: 0 0 var(--oc-sp-7); padding: 0; display: flex; flex-direction: column; gap: var(--oc-sp-4); }
+#home .oc-why-leaks { list-style: none; margin: 0 0 var(--oc-sp-7); padding: 0; display: flex; flex-direction: column; align-items: center; gap: var(--oc-sp-4); }
 #home .oc-why-leak { display: flex; align-items: center; gap: var(--oc-sp-4); font-family: var(--oc-font-heading); font-size: clamp(19px, 2.1vw, 25px); font-weight: 500; line-height: 1.2; color: var(--oc-text-secondary); letter-spacing: -0.01em; }
 #home .oc-why-mark { width: 11px; height: 11px; flex-shrink: 0; background: var(--oc-border-strong); }
 #home .oc-why-leak.is-visible .oc-why-mark { animation: oc-cool 1.3s ease both; }
@@ -1976,10 +1996,10 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
   100% { background: var(--oc-border-strong); transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 146, 42, 0); }
 }
 
-#home .oc-why-punch { font-family: var(--oc-font-heading); font-weight: 700; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.25; color: var(--oc-text-primary); max-width: 22ch; margin-bottom: var(--oc-sp-6); text-wrap: balance; }
+#home .oc-why-punch { font-family: var(--oc-font-heading); font-weight: 700; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.25; color: var(--oc-text-primary); max-width: 22ch; margin: 0 auto var(--oc-sp-6); text-wrap: balance; }
 #home .oc-why-punch em { font-style: normal; color: var(--oc-vertical-accent-deep); }
 
-#home .oc-why-cost { font-family: var(--oc-font-mono); font-size: var(--oc-text-13); line-height: 1.6; letter-spacing: 0.02em; color: var(--oc-text-secondary); max-width: 48ch; }
+#home .oc-why-cost { font-family: var(--oc-font-mono); font-size: var(--oc-text-13); line-height: 1.6; letter-spacing: 0.02em; color: var(--oc-text-secondary); max-width: 48ch; margin-left: auto; margin-right: auto; }
 #home .oc-why-cost b { color: var(--oc-text-primary); font-weight: 500; }
 
 @media (prefers-reduced-motion: reduce) {

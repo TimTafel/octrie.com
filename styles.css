@@ -1546,10 +1546,10 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
   right: 34px;
   width: 84px;
   height: 84px;
-  border: var(--oc-border-subordinate) solid rgba(138, 104, 26, 0.34);
+  border: var(--oc-border-subordinate) solid rgba(78, 121, 76, 0.34);
   border-radius: 50%;
   background:
-    conic-gradient(from 18deg, rgba(138, 104, 26, 0.78) 0deg, rgba(184, 146, 42, 0.58) 82deg, rgba(184, 146, 42, 0.38) 168deg, rgba(138, 104, 26, 0.26) 260deg, rgba(138, 104, 26, 0.78) 360deg);
+    conic-gradient(from 18deg, rgba(70, 116, 72, 0.74) 0deg, rgba(126, 151, 78, 0.6) 82deg, rgba(178, 157, 84, 0.38) 168deg, rgba(70, 116, 72, 0.24) 260deg, rgba(70, 116, 72, 0.74) 360deg);
   -webkit-mask: radial-gradient(circle, transparent 0 28px, #000 29px 42px, transparent 43px);
   mask: radial-gradient(circle, transparent 0 28px, #000 29px 42px, transparent 43px);
   opacity: 0.86;

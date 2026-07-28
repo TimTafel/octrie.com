@@ -1381,24 +1381,24 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
   box-shadow: none;
 }
 
+/* All the reading (title, description, what-we-set-up, payoff) in one
+   left-hand column; the square demo sits on its own to the right. */
 .oc-tool-listing--split .oc-tool-listing-header--split {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  gap: var(--oc-sp-5);
+  gap: var(--oc-sp-9);
   padding: 0;
 }
 
-/* Square demo on the left, the plain-English payoff beside it. */
-.oc-tool-listing-row {
+.oc-tool-listing-textcol {
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
-  align-items: center;
-  gap: var(--oc-sp-8);
-  width: 100%;
+  flex-direction: column;
+  gap: var(--oc-sp-5);
 }
 
 .oc-benefit {
-  flex: 1 1 320px;
   min-width: 0;
 }
 
@@ -1453,10 +1453,6 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
   box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.07);
   padding: var(--oc-sp-6);
   overflow: hidden;
-}
-
-.oc-tool-listing-copy {
-  max-width: 640px;
 }
 
 .oc-tool-listing--split .oc-tool-listing-name {
@@ -1603,7 +1599,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
 }
 
 @media (max-width: 1023px) {
-  .oc-tool-listing-row {
+  .oc-tool-listing--split .oc-tool-listing-header--split {
     flex-direction: column;
     align-items: stretch;
     gap: var(--oc-sp-6);
@@ -1611,15 +1607,11 @@ html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
   .oc-tool-listing-box {
     width: 100%;
     max-width: 460px;
+    align-self: center;
   }
 }
 
 @media (max-width: 767px) {
-  .oc-tool-listing--split .oc-tool-listing-header--split {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--oc-sp-5);
-  }
   .oc-tool-listing-box {
     max-width: none;
   }

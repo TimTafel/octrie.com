@@ -1385,7 +1385,7 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
    left-hand column; the square demo sits on its own to the right. */
 .oc-tool-listing--split .oc-tool-listing-header--split {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--oc-sp-9);
   padding: 0;
 }

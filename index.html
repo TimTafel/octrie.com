@@ -177,27 +177,14 @@
           <div class="oc-tool-listing-header">
             <span class="oc-tool-listing-tag"><span class="oc-live-square" aria-hidden="true"></span>Custom work</span>
             <h3 class="oc-tool-listing-name">Ongoing Management</h3>
-            <div class="oc-tool-listing-desc">We keep everything running and tuned, month to month — and send you a plain recap of what it actually caught.</div>
-            <div class="oc-recap" aria-hidden="true">
-              <div class="oc-recap-top">
-                <span class="oc-recap-label"><span class="oc-live-square" aria-hidden="true"></span>This month · your recap</span>
-                <span class="oc-recap-month">March</span>
-              </div>
-              <div class="oc-recap-stats">
-                <div class="oc-recap-stat">
-                  <span class="oc-recap-num oc-recap-num--gold" data-count-to="4350" data-count-prefix="$">$4,350</span>
-                  <span class="oc-recap-key">Jobs recovered</span>
-                </div>
-                <div class="oc-recap-stat">
-                  <span class="oc-recap-num" data-count-to="17">17</span>
-                  <span class="oc-recap-key">Missed calls caught</span>
-                </div>
-                <div class="oc-recap-stat">
-                  <span class="oc-recap-num" data-count-to="9">9</span>
-                  <span class="oc-recap-key">New 5★ reviews</span>
-                </div>
-              </div>
-              <div class="oc-recap-tuned">Tuned this week: <b>added weekend after-hours reply + slowed review requests to look natural.</b></div>
+            <div class="oc-tool-listing-desc">Setting it up once isn't the whole job. We keep it running, tune it as you learn what your customers actually respond to, and add to it as your business changes.</div>
+            <div class="oc-benefit oc-benefit--wide">
+              <p class="oc-benefit-label">What that does for you</p>
+              <ul class="oc-benefit-list">
+                <li>You get a plain recap of what it caught, so you can see whether it's earning its keep.</li>
+                <li>Wording and timing get adjusted instead of left to go stale.</li>
+                <li>When new busywork shows up, it gets automated too, without starting over.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -373,38 +360,6 @@
         });
       }, { threshold: 0.2 });
       io.observe(demo);
-    })();
-
-    /* Recap stats: count up from 0 once, when the card scrolls into view.
-       Reduced-motion (or no IntersectionObserver) shows final values only. */
-    (function () {
-      var nums = Array.prototype.slice.call(document.querySelectorAll('[data-count-to]'));
-      if (!nums.length) return;
-      function render(el, val) {
-        var prefix = el.getAttribute('data-count-prefix') || '';
-        el.textContent = prefix + Math.round(val).toLocaleString('en-US');
-      }
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce || !('IntersectionObserver' in window)) {
-        nums.forEach(function (el) { render(el, +el.getAttribute('data-count-to')); });
-        return;
-      }
-      function countUp(el) {
-        var to = +el.getAttribute('data-count-to'), dur = 1400, start = null;
-        function frame(ts) {
-          if (!start) start = ts;
-          var p = Math.min((ts - start) / dur, 1);
-          render(el, to * (1 - Math.pow(1 - p, 3)));
-          if (p < 1) requestAnimationFrame(frame);
-        }
-        requestAnimationFrame(frame);
-      }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { countUp(entry.target); io.unobserve(entry.target); }
-        });
-      }, { threshold: 0.4 });
-      nums.forEach(function (el) { render(el, 0); io.observe(el); });
     })();
 
     /* Process pipeline: a gold spine fills as you scroll and each stage

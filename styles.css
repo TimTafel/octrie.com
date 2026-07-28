@@ -1306,26 +1306,6 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(1) { transition-delay: c
 html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(2) { transition-delay: calc(var(--rd, 0s) + 0.55s); }
 html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: calc(var(--rd, 0s) + 0.8s); }
 
-/* Chip strip: chips stagger in */
-html.oc-js .oc-chip-strip .oc-chips span {
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-html.oc-js .oc-chip-strip.is-visible .oc-chips span {
-  opacity: 1;
-  transform: none;
-}
-
-html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(1) { transition-delay: 0.15s; }
-html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(2) { transition-delay: 0.23s; }
-html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(3) { transition-delay: 0.31s; }
-html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(4) { transition-delay: 0.39s; }
-html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(5) { transition-delay: 0.47s; }
-html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(6) { transition-delay: 0.55s; }
-html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-delay: 0.63s; }
-
 /* Buttons: slight lift on hover */
 .oc-btn {
   transition: transform 0.15s ease, background var(--oc-transition-base), color var(--oc-transition-base), border-color var(--oc-transition-base);
@@ -1342,8 +1322,7 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
   #home .oc-typing { display: none; }
   .oc-hero-scroll-line { animation: none; }
   html.oc-js .oc-reveal { opacity: 1; transform: none; transition: none; }
-  html.oc-js .oc-reveal .oc-demo > *,
-  html.oc-js .oc-chip-strip .oc-chips span { opacity: 1; transform: none; transition: none; }
+  html.oc-js .oc-reveal .oc-demo > * { opacity: 1; transform: none; transition: none; }
   .oc-tool-listing,
   .oc-card,
   .oc-btn { transition: none; }
@@ -2054,42 +2033,3 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
   max-width: 760px;
 }
 
-/* Services: breadth chip strip */
-#home .oc-chip-strip {
-  max-width: 1200px;
-  margin: var(--oc-sp-6) auto 0;
-  padding-top: var(--oc-sp-5);
-  border-top: var(--oc-border-subordinate) solid var(--oc-border-subtle);
-}
-
-#home .oc-chip-lead {
-  font-family: var(--oc-font-mono);
-  font-size: var(--oc-text-10);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--oc-text-secondary);
-  margin-bottom: var(--oc-sp-3);
-}
-
-#home .oc-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--oc-sp-2);
-}
-
-#home .oc-chips span {
-  font-family: var(--oc-font-mono);
-  font-size: var(--oc-text-10);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--oc-text-primary);
-  background: var(--oc-vertical-accent);
-  border: 1px solid var(--oc-vertical-accent);
-  transition: opacity var(--oc-transition-fast);
-  padding: 5px 10px;
-  white-space: nowrap;
-}
-
-#home .oc-chips span:hover {
-  opacity: 0.82;
-}

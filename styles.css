@@ -1351,6 +1351,215 @@ html.oc-js .oc-chip-strip.is-visible .oc-chips span:nth-child(7) { transition-de
   margin-top: var(--oc-sp-6);
 }
 
+.oc-tool-grid--stack {
+  gap: var(--oc-sp-10);
+}
+
+.oc-tool-grid--stack + .oc-tool-grid--stack {
+  margin-top: var(--oc-sp-10);
+}
+
+@media (max-width: 767px) {
+  .oc-tool-grid--stack { gap: var(--oc-sp-7); }
+  .oc-tool-grid--stack + .oc-tool-grid--stack { margin-top: var(--oc-sp-7); }
+}
+
+/* ================================================================
+   SPLIT TOOL LISTING (services: each capability gets its own
+   full-width row, copy beside its live demo, instead of a cramped
+   3-up grid)
+================================================================ */
+
+.oc-tool-listing--split {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.oc-tool-listing--split:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.oc-tool-listing--split .oc-tool-listing-header--split {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--oc-sp-5);
+  padding: 0;
+}
+
+.oc-tool-listing-box {
+  flex: 0 0 auto;
+  width: 45%;
+  max-width: 460px;
+  aspect-ratio: 1 / 1;
+  border: var(--oc-border-dominant) solid var(--oc-border-medium);
+  background: var(--oc-surface-sunken);
+  box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.07);
+  padding: var(--oc-sp-6);
+  overflow: hidden;
+}
+
+.oc-tool-listing-copy {
+  max-width: 640px;
+}
+
+.oc-tool-listing--split .oc-tool-listing-name {
+  font-size: var(--oc-text-24);
+  margin-bottom: var(--oc-sp-3);
+}
+
+.oc-tool-listing--split .oc-tool-listing-desc {
+  font-size: var(--oc-text-13);
+  line-height: 1.55;
+}
+
+/* Inside the square, the demo IS the content — no nested frame, and its
+   lines spread across the full height instead of clustering mid-box. */
+#home .oc-tool-listing--split .oc-demo {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin-top: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  justify-content: space-between;
+  gap: var(--oc-sp-4);
+}
+
+#home .oc-tool-listing--split .oc-demo-line {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+#home .oc-tool-listing--split .oc-demo-bubble {
+  font-size: 17px;
+  line-height: 1.5;
+  padding: var(--oc-sp-4) var(--oc-sp-4);
+  max-width: 88%;
+}
+
+#home .oc-tool-listing--split .oc-demo-stars {
+  font-size: 30px;
+  align-self: center;
+}
+
+/* ── Review demo: chat phase wipes away to reveal the posted review ── */
+#home .oc-demo--review {
+  position: relative;
+  display: block;
+  padding: 0;
+}
+
+/* Phases are positioned siblings, so the generic per-child reveal
+   fade must not touch them -- their own JS drives the sequence. */
+html.oc-js .oc-reveal .oc-demo--review > *,
+html.oc-js .oc-reveal.is-visible .oc-demo--review > * {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* Soft left-to-right wipe: a feathered gradient mask 2.2x the panel width
+   slides across, so the edge dissolves rather than cutting. */
+.oc-demo-phase {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--oc-sp-3);
+  -webkit-mask-size: 220% 100%;
+  mask-size: 220% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+  transition: -webkit-mask-position 0.85s ease, mask-position 0.85s ease;
+}
+
+.oc-demo-phase--chat {
+  justify-content: flex-start;
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 44%, #000 56%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 44%, #000 56%);
+}
+
+.oc-demo-phase--review {
+  justify-content: space-between;
+  -webkit-mask-image: linear-gradient(to right, #000 44%, rgba(0, 0, 0, 0) 56%);
+  mask-image: linear-gradient(to right, #000 44%, rgba(0, 0, 0, 0) 56%);
+}
+
+.oc-demo--review.is-review .oc-demo-phase--chat,
+.oc-demo--review.is-review .oc-demo-phase--review {
+  -webkit-mask-position: 0% 0;
+  mask-position: 0% 0;
+}
+
+#home .oc-demo-phase--chat > * {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+#home .oc-demo-phase--chat > *.oc-demo-show {
+  opacity: 1;
+  transform: none;
+}
+
+#home .oc-review-card {
+  background: var(--oc-surface-page);
+  border: var(--oc-border-subordinate) solid var(--oc-border-medium);
+  padding: var(--oc-sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--oc-sp-3);
+}
+
+#home .oc-review-stars {
+  color: var(--oc-vertical-accent-deep);
+  font-size: 26px;
+  letter-spacing: 0.22em;
+  line-height: 1;
+}
+
+#home .oc-review-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--oc-text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oc-demo-phase { transition: none; }
+  #home .oc-demo-phase--chat > * { opacity: 1; transform: none; transition: none; }
+  .oc-demo--review .oc-demo-phase--chat { display: none; }
+  .oc-demo--review .oc-demo-phase--review {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* Subtle rule above every card after the first, so the eye can
+   separate one capability from the next without a heavy box. */
+.oc-tool-grid--stack > .oc-tool-listing:not(:first-child),
+.oc-tool-grid--stack + .oc-tool-grid--stack > .oc-tool-listing {
+  border-top: var(--oc-border-subordinate) solid var(--oc-border-subtle);
+  padding-top: var(--oc-sp-7);
+}
+
+@media (max-width: 767px) {
+  .oc-tool-listing--split .oc-tool-listing-header--split {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--oc-sp-5);
+  }
+  .oc-tool-listing-box {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 /* ── "Live" breathing marker: a sharp 6px square, not a round dot ── */
 #home .oc-live-square {
   width: 6px;
@@ -1796,16 +2005,14 @@ html.oc-js .oc-reveal.is-visible .oc-recap > *:nth-child(3) { transition-delay: 
   font-size: var(--oc-text-10);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--oc-text-secondary);
-  background: var(--oc-surface-page);
-  border: 1px solid rgba(184, 146, 42, 0.45);
-  transition: background var(--oc-transition-fast), color var(--oc-transition-fast), border-color var(--oc-transition-fast);
+  color: var(--oc-text-primary);
+  background: var(--oc-vertical-accent);
+  border: 1px solid var(--oc-vertical-accent);
+  transition: opacity var(--oc-transition-fast);
   padding: 5px 10px;
   white-space: nowrap;
 }
 
 #home .oc-chips span:hover {
-  background: var(--oc-vertical-accent);
-  border-color: var(--oc-vertical-accent);
-  color: var(--oc-text-primary);
+  opacity: 0.82;
 }

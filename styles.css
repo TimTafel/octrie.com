@@ -3515,6 +3515,22 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
   gap: var(--oc-sp-3);
 }
 
+#home .oc-about-split {
+  grid-template-columns: minmax(0, 820px);
+  justify-content: center;
+  gap: var(--oc-sp-5);
+}
+
+#home .oc-about-split > div:first-child {
+  text-align: center;
+}
+
+#home .oc-about-split .oc-heading-lg {
+  max-width: 16ch;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
 #home .oc-about-mini-grid > div {
   border-top: var(--oc-border-subordinate) solid var(--oc-border-light);
   padding-top: var(--oc-sp-3);

@@ -89,6 +89,7 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
   /* Concrete mid-tone shows in side margins outside the card */
   background-color: #888;
 }
@@ -1397,6 +1398,7 @@ html.oc-js .oc-reveal.is-visible .oc-demo > *:nth-child(3) { transition-delay: c
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   #home .oc-thread > * { animation: none; opacity: 1; }
   #home .oc-demo-dot { animation: none; }
   #home .oc-missed-dot { animation: none; }

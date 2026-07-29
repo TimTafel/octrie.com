@@ -985,10 +985,16 @@ section[id] {
 #home .oc-vertical-section > .oc-vertical-header {
   justify-content: center;
   text-align: center;
+  max-width: min(1400px, calc(100vw - (var(--oc-page-padding-x) * 2)));
 }
 
 #home .oc-vertical-section > .oc-vertical-header .oc-vertical-meta {
-  max-width: 1120px;
+  max-width: none;
+}
+
+#home .oc-vertical-section > .oc-vertical-header .oc-vertical-title {
+  font-size: clamp(36px, 3.9vw, var(--oc-text-56));
+  white-space: nowrap;
 }
 
 #home .oc-vertical-section > .oc-vertical-header .oc-vertical-desc {
@@ -997,6 +1003,10 @@ section[id] {
 }
 
 @media (max-width: 767px) {
+  #home .oc-vertical-section > .oc-vertical-header .oc-vertical-title {
+    white-space: normal;
+  }
+
   #home .oc-hero-eyebrow,
   #home .oc-vertical-section > .oc-vertical-header .oc-vertical-indicator,
   #home #how-it-works .oc-section-head .oc-vertical-indicator,

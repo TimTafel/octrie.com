@@ -3554,3 +3554,897 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
   margin-top: var(--oc-sp-4);
   max-width: 760px;
 }
+
+/* --------------------------------------------------------------------------
+   NOTE: the previous .oc-demo--missed-call rules above are now unused --
+   that markup was replaced by .oc-mcx below. They are left in place so
+   this change is easy to revert; safe to delete once you're happy.
+   -------------------------------------------------------------------------- */
+
+
+/* ==========================================================================
+   Missed Call Capture demo  (.oc-mcx)
+   Self-contained. Everything is expressed in --u, a unit derived from the
+   container's own size, so the demo scales with .oc-tool-listing-box instead
+   of being clipped at narrow widths. Design grid is 368 x 364 "units".
+   ========================================================================== */
+.oc-mcx {
+  --u: 1px;
+  --dur: 24s;
+
+  --frame-bg:     var(--oc-surface-sunken, #E8E8E8);
+  --frame-border: var(--oc-border-medium, #C8C8C8);
+  --ink:          var(--oc-text-primary, #1A1A1A);
+
+  --green-ink: #1f6b45;  --green-line: #3f9c6c;
+  --green-border: rgba(63, 156, 108, 0.4);   --green-bg: #eaf6ee;
+  --orange-ink: #8a4a12; --orange-line: #d9832f;
+  --orange-border: rgba(196, 118, 30, 0.55); --orange-bg: #f9d9a8;
+  --red-ink: #7a2626;    --red-line: #b23f3f;
+  --red-border: rgba(178, 63, 63, 0.5);      --red-bg: #eeb3ac;
+  --blue-ink: #163e70;   --blue-line: #2b69be;
+  --blue-border: rgba(43, 105, 190, 0.55);   --blue-bg: #d6e8ff;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+  font-family: var(--oc-font-mono, 'DM Mono', 'Courier New', monospace);
+  color: var(--ink);
+}
+.oc-mcx *, .oc-mcx *::before, .oc-mcx *::after { box-sizing: border-box; }
+
+/* the container-relative unit; falls back to 1px where unsupported */
+@supports (container-type: size) {
+  .oc-mcx { --u: calc(100cqmin / 380); }
+}
+
+.oc-mcx-stage {
+  position: relative;
+  width: calc(368 * var(--u));
+  flex: 0 0 auto;
+}
+.oc-mcx-stage {
+    -webkit-mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+    mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+    -webkit-mask-size: 200% 100%;
+    mask-size: 200% 100%;
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    animation: oc-mcx-stage-erase var(--dur) linear infinite;
+}
+
+/* Title + viewport share one wrapper so a single mask erases both as one
+   continuous edge. Masking the two separately would tilt differently on each
+   because gradient stops map to each element's own dimensions. */
+
+/* The flash itself — rides the erase edge across the whole box. */
+.oc-mcx-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: linear-gradient(
+    112deg,
+    transparent 0%,
+    transparent 43%,
+    rgba(255, 255, 255, 0.25) 46.5%,
+    rgba(255, 255, 255, 0.9) 49%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.9) 51%,
+    rgba(255, 255, 255, 0.25) 53.5%,
+    transparent 57%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-mcx-box-wipe var(--dur) linear infinite;
+}
+
+/* Sibling of .oc-mcx-pan, so it sits in screen space and stays put
+   while the camera is parked on the board. */
+.oc-mcx-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 4;
+}
+.oc-mcx-chip {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+/* linear: pieces hold their launch speed instead of easing to a stop */
+.oc-mcx-cf-a { animation: oc-mcx-confetti-a var(--dur) linear infinite; }
+.oc-mcx-cf-b { animation: oc-mcx-confetti-b var(--dur) linear infinite; }
+.oc-mcx-cf-c { animation: oc-mcx-confetti-c var(--dur) linear infinite; }
+.oc-mcx-cf-d { animation: oc-mcx-confetti-d var(--dur) linear infinite; }
+
+.oc-mcx-zero {
+  display: inline-block;
+  font-weight: 700;
+  transform-origin: 50% 100%;
+}
+.oc-mcx-zero--1 { animation: oc-mcx-zero-pop-1 var(--dur) ease-out infinite; }
+.oc-mcx-zero--2 { animation: oc-mcx-zero-pop-2 var(--dur) ease-out infinite; }
+.oc-mcx-zero--3 { animation: oc-mcx-zero-pop-3 var(--dur) ease-out infinite; }
+.oc-mcx-zero--4 { animation: oc-mcx-zero-pop-4 var(--dur) ease-out infinite; }
+.oc-mcx-zero--5 { animation: oc-mcx-zero-pop-5 var(--dur) ease-out infinite; }
+
+/* ============ TITLE BAND ============ */
+.oc-mcx-title {
+  position: relative;
+  height: calc(64 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.oc-mcx-title-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(30 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.oc-mcx-title-text--before { animation: oc-mcx-title-before var(--dur) linear infinite; }
+.oc-mcx-title-text--after  { animation: oc-mcx-title-after var(--dur) linear infinite; }
+
+.oc-mcx-title-wipe {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    128deg,
+    transparent 0%,
+    transparent 46.5%,
+    rgba(255, 255, 255, 0.22) 48.3%,
+    rgba(255, 255, 255, 0.88) 49.4%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.88) 50.6%,
+    rgba(255, 255, 255, 0.22) 51.7%,
+    transparent 53.5%,
+    transparent 100%
+  );
+  background-size: 260% 100%;
+  background-position: 150% 0;
+  opacity: 0;
+  animation: oc-mcx-title-wipe var(--dur) linear infinite;
+}
+
+/* ============ VIEWPORT / PAN ============ */
+.oc-mcx-viewport {
+  position: relative;
+  height: calc(300 * var(--u));
+  overflow: hidden;
+}
+
+.oc-mcx-phase {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+.oc-mcx-phase--before { animation: oc-mcx-phase-before-vis var(--dur) step-end infinite; }
+.oc-mcx-phase--after  { animation: oc-mcx-phase-after-vis var(--dur) step-end infinite; }
+
+.oc-mcx-pan {
+  position: relative;
+  width: 100%;
+}
+.oc-mcx-phase--before .oc-mcx-pan { animation: oc-mcx-pan-before var(--dur) ease-in-out infinite; }
+.oc-mcx-phase--after  .oc-mcx-pan { animation: oc-mcx-pan-after  var(--dur) ease-in-out infinite; }
+
+/* ---- flow section (bubbles + track) ---- */
+.oc-mcx-flow {
+  position: relative;
+  height: calc(300 * var(--u));
+  padding: calc(26 * var(--u)) calc(6 * var(--u)) calc(22 * var(--u)) calc(24 * var(--u));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Two segments: incoming -> checkpoint, then checkpoint -> outcome.
+   Each terminates at an icon, so the line visibly arrives at each one. */
+.oc-mcx-seg {
+  position: absolute;
+  left: calc(37.5 * var(--u));
+  width: calc(3 * var(--u));
+  border-radius: calc(2 * var(--u));
+  z-index: 1;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.oc-mcx-seg--upper { top: calc(59 * var(--u));  bottom: calc(163 * var(--u)); }
+.oc-mcx-seg--lower { top: calc(167 * var(--u)); bottom: calc(55 * var(--u)); }
+/* Lives in .oc-mcx-pan so it extends past the flow and travels with the camera. */
+.oc-mcx-seg--tail  { top: calc(275 * var(--u)); height: calc(51 * var(--u)); }
+
+.oc-mcx-phase--before .oc-mcx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--orange-line));
+  animation: oc-mcx-seg-upper-before var(--dur) linear infinite;
+}
+.oc-mcx-phase--before .oc-mcx-seg--lower {
+  background: var(--red-line);
+  animation: oc-mcx-seg-lower-before var(--dur) linear infinite;
+}
+.oc-mcx-phase--after .oc-mcx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--blue-line));
+  animation: oc-mcx-seg-upper-after var(--dur) linear infinite;
+}
+.oc-mcx-phase--after .oc-mcx-seg--lower {
+  background: var(--blue-line);
+  animation: oc-mcx-seg-lower-after var(--dur) linear infinite;
+}
+.oc-mcx-phase--before .oc-mcx-seg--tail {
+  background: var(--red-line);
+  animation: oc-mcx-seg-tail-before var(--dur) linear infinite;
+}
+.oc-mcx-phase--after .oc-mcx-seg--tail {
+  background: var(--blue-line);
+  animation: oc-mcx-seg-tail-after var(--dur) linear infinite;
+}
+
+.oc-mcx-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+  opacity: 0;
+  z-index: 2;
+}
+
+/* Steps whose card + icon animate themselves need a VISIBLE parent;
+   only .oc-mcx-step--incoming animates the parent element directly. */
+.oc-mcx-step--voicemail,
+.oc-mcx-step--missed,
+.oc-mcx-step--ai,
+.oc-mcx-step--appt {
+  opacity: 1;
+}
+
+.oc-mcx-icon {
+  position: relative;
+  left: 0;
+  flex: 0 0 calc(30 * var(--u));
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border-radius: 50%;
+  background: var(--frame-bg);
+  box-shadow: 0 0 0 calc(2 * var(--u)) var(--frame-bg);
+}
+.oc-mcx-icon svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); overflow: visible; }
+.oc-mcx-icon path, .oc-mcx-icon line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.oc-mcx-card {
+  flex: 1;
+  max-width: calc(235 * var(--u));
+  min-height: calc(36 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(6 * var(--u)) calc(11 * var(--u));
+  border-radius: calc(3 * var(--u));
+  border: calc(1.5 * var(--u)) solid;
+  box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  font-size: calc(11 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+}
+.oc-mcx-card--green  { border-color: var(--green-border);  background: var(--green-bg);  color: var(--green-ink); }
+.oc-mcx-card--orange { border-color: var(--orange-border); background: var(--orange-bg); color: var(--orange-ink); }
+.oc-mcx-card--red    { border-color: var(--red-border);    background: var(--red-bg);    color: var(--red-ink); }
+.oc-mcx-card--blue   { border-color: var(--blue-border);   background: var(--blue-bg);   color: var(--blue-ink); }
+
+.oc-mcx-step--incoming .oc-mcx-icon { color: var(--green-line); }
+.oc-mcx-step--voicemail .oc-mcx-icon { color: var(--red-line); }
+.oc-mcx-step--missed .oc-mcx-icon { color: var(--red-line); }
+.oc-mcx-step--ai .oc-mcx-icon { color: var(--green-line); }
+.oc-mcx-step--appt .oc-mcx-icon { color: var(--blue-line); }
+
+/* incoming call — before + after (shared timing per phase) */
+.oc-mcx-phase--before .oc-mcx-step--incoming { animation: oc-mcx-incoming-before var(--dur) ease-out infinite; }
+.oc-mcx-phase--after  .oc-mcx-step--incoming { animation: oc-mcx-incoming-after  var(--dur) ease-out infinite; }
+.oc-mcx-phase--before .oc-mcx-step--incoming .oc-mcx-icon svg { animation: oc-mcx-ring-before var(--dur) ease-in-out infinite; }
+.oc-mcx-phase--after  .oc-mcx-step--incoming .oc-mcx-icon svg { animation: oc-mcx-ring-after  var(--dur) ease-in-out infinite; }
+/* The incoming call rings identically in both phases — same drop, same wobble,
+   same urgent pulse. Only what answers it differs. */
+.oc-mcx-phase--before .oc-mcx-step--incoming .oc-mcx-card { animation: oc-mcx-incoming-flash var(--dur) linear infinite; }
+.oc-mcx-phase--before .oc-mcx-step--incoming .oc-mcx-icon { animation: oc-mcx-incoming-glow var(--dur) linear infinite; }
+.oc-mcx-phase--after .oc-mcx-step--incoming .oc-mcx-card { animation: oc-mcx-incoming-flash-after var(--dur) linear infinite; }
+.oc-mcx-phase--after .oc-mcx-step--incoming .oc-mcx-icon { animation: oc-mcx-incoming-glow-after var(--dur) linear infinite; }
+
+/* hits voicemail — fast slam + bounce on card only, icon settles clean */
+.oc-mcx-step--voicemail .oc-mcx-card { animation: oc-mcx-voicemail-card var(--dur) linear infinite; }
+.oc-mcx-step--voicemail .oc-mcx-icon { opacity: 0; animation: oc-mcx-voicemail-icon var(--dur) linear infinite; }
+
+/* missed call — irritated pop-in */
+.oc-mcx-step--missed .oc-mcx-card { animation: oc-mcx-missed-card var(--dur) linear infinite; }
+.oc-mcx-step--missed .oc-mcx-icon { opacity: 0; animation: oc-mcx-missed-icon var(--dur) linear infinite; }
+.oc-mcx-slash { stroke-dasharray: 30; stroke-dashoffset: 30; animation: oc-mcx-slash-draw var(--dur) linear infinite; }
+
+/* AI answered / appointment booked */
+.oc-mcx-step--ai .oc-mcx-card {
+  transform-origin: top center;
+  backface-visibility: hidden;
+  animation: oc-mcx-ai-card var(--dur) linear infinite,
+             oc-mcx-ai-flash var(--dur) linear infinite;
+}
+.oc-mcx-step--ai .oc-mcx-icon { opacity: 0; animation: oc-mcx-ai-icon var(--dur) linear infinite; }
+.oc-mcx-step--appt .oc-mcx-card {
+  position: relative;
+  overflow: hidden;
+  transform-origin: center;
+  animation: oc-mcx-appt-card var(--dur) linear infinite;
+}
+/* Blue sheen sweeping across the bubble alone, once it has landed. */
+.oc-mcx-step--appt .oc-mcx-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(120, 180, 255, 0.30) 45%,
+    rgba(228, 242, 255, 0.98) 50%,
+    rgba(120, 180, 255, 0.30) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 230% 100%;
+  background-position: 135% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-mcx-appt-wipe var(--dur) linear infinite;
+}
+
+/* Dollar signs rise out from beneath the appointment bubble. */
+.oc-mcx-cash {
+  position: absolute;
+  left: calc(42 * var(--u));
+  width: calc(235 * var(--u));
+  bottom: calc(2 * var(--u));
+  height: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.oc-mcx-bill {
+  position: absolute;
+  bottom: 0;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+  color: #1f8a55;
+  text-shadow: 0 0 calc(3 * var(--u)) rgba(255, 255, 255, 0.95),
+               0 0 calc(16 * var(--u)) rgba(63, 156, 108, 0.55);
+  opacity: 0;
+}
+.oc-mcx-bill--1 { left: 16%; font-size: calc(23 * var(--u)); animation: oc-mcx-cash-1 var(--dur) ease-out infinite; }
+.oc-mcx-bill--2 { left: 38%; font-size: calc(30 * var(--u)); animation: oc-mcx-cash-2 var(--dur) ease-out infinite; }
+.oc-mcx-bill--3 { left: 60%; font-size: calc(21 * var(--u)); animation: oc-mcx-cash-3 var(--dur) ease-out infinite; }
+.oc-mcx-bill--4 { left: 79%; font-size: calc(27 * var(--u)); animation: oc-mcx-cash-4 var(--dur) ease-out infinite; }
+.oc-mcx-step--appt .oc-mcx-icon { opacity: 0; animation: oc-mcx-appt-icon var(--dur) linear infinite; }
+
+/* ---- board section ---- */
+.oc-mcx-board {
+  position: relative;
+  width: calc(235 * var(--u));
+  margin: calc(10 * var(--u)) 0 0 calc(66 * var(--u));
+  padding: calc(13 * var(--u)) calc(15 * var(--u));
+  border-radius: calc(3 * var(--u));
+  border: calc(1.5 * var(--u)) solid;
+  box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  opacity: 0;
+  transform: translateY(calc(14 * var(--u)));
+}
+.oc-mcx-board--red  { border-color: var(--red-border);  background: var(--red-bg);  color: var(--red-ink); }
+.oc-mcx-board--blue { border-color: var(--blue-border); background: var(--blue-bg); color: var(--blue-ink); }
+
+.oc-mcx-phase--before .oc-mcx-board { animation: oc-mcx-board-before var(--dur) linear infinite; }
+.oc-mcx-phase--after  .oc-mcx-board { animation: oc-mcx-board-after  var(--dur) linear infinite; }
+
+.oc-mcx-board-icon {
+  position: absolute;
+  left: calc(-41 * var(--u));
+  top: calc(16 * var(--u));
+  width: calc(28 * var(--u));
+  height: calc(28 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+.oc-mcx-board-icon svg { width: calc(24 * var(--u)); height: calc(24 * var(--u)); }
+.oc-mcx-board-icon path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.oc-mcx-board--red .oc-mcx-board-icon { animation: oc-mcx-board-icon-before var(--dur) linear infinite; }
+.oc-mcx-board--blue .oc-mcx-board-icon { animation: oc-mcx-board-icon-after var(--dur) linear infinite; opacity: 1; }
+
+.oc-mcx-board-title {
+  font-size: calc(11 * var(--u));
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: calc(6 * var(--u));
+}
+
+.oc-mcx-board-row {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(10 * var(--u));
+  padding: calc(5 * var(--u)) 0;
+  border-top: calc(1 * var(--u)) solid rgba(0,0,0,0.08);
+  font-size: calc(10.5 * var(--u));
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.oc-mcx-board-row:first-of-type { border-top: none; }
+.oc-mcx-board-count { font-variant-numeric: tabular-nums; min-width: 2ch; display: inline-block; text-align: right; }
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  .oc-mcx-title-text--before { display: none; }
+  .oc-mcx-title-text--after { position: static; opacity: 1; }
+  .oc-mcx-title-wipe { display: none; }
+  .oc-mcx-phase--before { display: none; }
+  .oc-mcx-phase--after { visibility: visible; }
+  .oc-mcx-phase--after .oc-mcx-pan { animation: none; transform: translateY(calc(-300 * var(--u))); }
+  .oc-mcx-cash { display: none; }
+  .oc-mcx-confetti { display: none; }
+  .oc-mcx-zero { animation: none !important; transform: none !important; }
+  .oc-mcx-flash { display: none; }
+  .oc-mcx-stage {
+    animation: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .oc-mcx-step, .oc-mcx-card, .oc-mcx-icon, .oc-mcx-board, .oc-mcx-board-icon, .oc-mcx-seg { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* ============ KEYFRAMES ============ */
+
+@keyframes oc-mcx-title-before {
+  0%, 51.58% { opacity: 1; }
+  51.82%, 100% { opacity: 0; }
+}
+@keyframes oc-mcx-title-after {
+  0%, 51.58% { opacity: 0; }
+  51.82%, 100% { opacity: 1; }
+}
+@keyframes oc-mcx-title-wipe {
+  0%, 50.2% { opacity: 0; background-position: 150% 0; }
+  50.4%   { opacity: 1; background-position: 150% 0; }
+  53%   { opacity: 1; background-position: -50% 0; }
+  53.3%, 100% { opacity: 0; background-position: -50% 0; }
+}
+
+@keyframes oc-mcx-phase-before-vis {
+  0% { visibility: visible; }
+  50% { visibility: visible; }
+  50.01% { visibility: hidden; }
+  100% { visibility: hidden; }
+}
+@keyframes oc-mcx-phase-after-vis {
+  0% { visibility: hidden; }
+  53.2% { visibility: hidden; }
+  53.3% { visibility: visible; }
+  100% { visibility: visible; }
+}
+
+@keyframes oc-mcx-pan-before {
+  0%, 33% { transform: translateY(0); }
+  38%, 100% { transform: translateY(calc(-300 * var(--u))); }
+}
+@keyframes oc-mcx-pan-after {
+  0%, 81.2% { transform: translateY(0); }
+  84.4%, 100% { transform: translateY(calc(-300 * var(--u))); }
+}
+
+/* Upper segment reaches the X just as the voicemail card slams in (13.5%). */
+@keyframes oc-mcx-seg-upper-before {
+  0%, 6% { opacity: 1; transform: scaleY(0); filter: blur(0); }
+  13%, 45% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
+  45.8% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6) blur(calc(1.5 * var(--u))); }
+  46.5%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+}
+/* Lower segment leaves the X and reaches the missed-call icon before it pops (19%). */
+@keyframes oc-mcx-seg-lower-before {
+  0%, 15% { opacity: 1; transform: scaleY(0); filter: blur(0); }
+  18.5%, 45% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
+  45.8% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6) blur(calc(1.5 * var(--u))); }
+  46.5%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+}
+@keyframes oc-mcx-seg-upper-after {
+  0%, 58% { opacity: 1; transform: scaleY(0); }
+  64.2%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+@keyframes oc-mcx-seg-lower-after {
+  0%, 69.5% { opacity: 1; transform: scaleY(0); }
+  73.5%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+/* Tail grows as the camera pans down, so the line leads into the board icon
+   and stays connected while the board is on screen. */
+@keyframes oc-mcx-seg-tail-before {
+  0%, 33% { opacity: 1; transform: scaleY(0); filter: blur(0); }
+  38%, 45% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
+  45.8% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6) blur(calc(1.5 * var(--u))); }
+  46.5%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+}
+@keyframes oc-mcx-seg-tail-after {
+  0%, 81.2% { opacity: 1; transform: scaleY(0); }
+  84.4%, 100% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes oc-mcx-incoming-before {
+  0%, 1.5% { opacity: 0; transform: translateY(calc(-22 * var(--u))); }
+  5% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  7%, 50% { opacity: 1; transform: translateY(0); }
+  50.01%, 100% { opacity: 0; }
+}
+/* Five insistent pulses between landing and the call dropping at ~13.4%. */
+/* Starts while the bubble is still dropping in (lands at 7%), keeping the
+   same 1.45%% cadence right through until the call drops at 13.4%. */
+@keyframes oc-mcx-incoming-flash {
+  0%, 1.7%, 3.1%, 4.6%, 6.0%, 7.5%, 8.9%, 10.4%, 11.8%, 13.3%, 100% {
+    border-color: var(--green-border);
+    background: var(--green-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  2.4%, 3.9%, 5.3%, 6.8%, 8.2%, 9.7%, 11.1%, 12.6% {
+    border-color: var(--green-line);
+    background: #c6efd7;
+    box-shadow: 0 0 0 calc(7 * var(--u)) rgba(63, 156, 108, 0.22),
+                0 0 calc(18 * var(--u)) rgba(63, 156, 108, 0.30),
+                calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+}
+@keyframes oc-mcx-incoming-glow {
+  0%, 1.7%, 3.1%, 4.6%, 6.0%, 7.5%, 8.9%, 10.4%, 11.8%, 13.3%, 100% { filter: drop-shadow(0 0 0 rgba(63, 156, 108, 0)); }
+  2.4%, 3.9%, 5.3%, 6.8%, 8.2%, 9.7%, 11.1%, 12.6% { filter: drop-shadow(0 0 calc(7 * var(--u)) rgba(63, 156, 108, 0.75)); }
+}
+/* Same five pulses, same cadence — shifted to the After landing at 58%,
+   stopping at 64.4% when the AI picks up. */
+/* Same cadence, starting mid-descent (lands at 58%), until the AI answers. */
+@keyframes oc-mcx-incoming-flash-after {
+  0%, 54.0%, 55.4%, 56.9%, 58.3%, 59.8%, 61.2%, 62.7%, 64.1%, 100% {
+    border-color: var(--green-border);
+    background: var(--green-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  54.7%, 56.2%, 57.6%, 59.1%, 60.5%, 62.0%, 63.4% {
+    border-color: var(--green-line);
+    background: #c6efd7;
+    box-shadow: 0 0 0 calc(7 * var(--u)) rgba(63, 156, 108, 0.22),
+                0 0 calc(18 * var(--u)) rgba(63, 156, 108, 0.30),
+                calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+}
+@keyframes oc-mcx-incoming-glow-after {
+  0%, 54.0%, 55.4%, 56.9%, 58.3%, 59.8%, 61.2%, 62.7%, 64.1%, 100% { filter: drop-shadow(0 0 0 rgba(63, 156, 108, 0)); }
+  54.7%, 56.2%, 57.6%, 59.1%, 60.5%, 62.0%, 63.4% { filter: drop-shadow(0 0 calc(7 * var(--u)) rgba(63, 156, 108, 0.75)); }
+}
+@keyframes oc-mcx-incoming-after {
+  0%, 54% { opacity: 0; transform: translateY(calc(-22 * var(--u))); }
+  56.5% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  58%, 99.6% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; }
+}
+@keyframes oc-mcx-ring-before {
+  0%, 2.0% { transform: rotate(0deg) scale(1); }
+  2.7% { transform: rotate(-13deg) scale(1.12); }
+  3.5% { transform: rotate(11deg) scale(1.07); }
+  4.3% { transform: rotate(-11deg) scale(1.1); }
+  5.1% { transform: rotate(9deg) scale(1.05); }
+  5.9% { transform: rotate(-11deg) scale(1.1); }
+  6.7% { transform: rotate(9deg) scale(1.05); }
+  7.5% { transform: rotate(-10deg) scale(1.09); }
+  8.3% { transform: rotate(8deg) scale(1.05); }
+  9.1% { transform: rotate(-10deg) scale(1.09); }
+  9.9% { transform: rotate(8deg) scale(1.04); }
+  10.7% { transform: rotate(-9deg) scale(1.08); }
+  11.5% { transform: rotate(7deg) scale(1.04); }
+  12.3% { transform: rotate(-8deg) scale(1.07); }
+  13.1%, 100% { transform: rotate(0deg) scale(1); }
+}
+@keyframes oc-mcx-ring-after {
+  0%, 54.3% { transform: rotate(0deg) scale(1); }
+  55.0% { transform: rotate(-13deg) scale(1.12); }
+  55.8% { transform: rotate(11deg) scale(1.07); }
+  56.6% { transform: rotate(-11deg) scale(1.1); }
+  57.4% { transform: rotate(9deg) scale(1.05); }
+  58.2% { transform: rotate(-11deg) scale(1.1); }
+  59.0% { transform: rotate(9deg) scale(1.05); }
+  59.8% { transform: rotate(-10deg) scale(1.09); }
+  60.6% { transform: rotate(8deg) scale(1.05); }
+  61.4% { transform: rotate(-10deg) scale(1.09); }
+  62.2% { transform: rotate(8deg) scale(1.04); }
+  63.0% { transform: rotate(-9deg) scale(1.08); }
+  63.8% { transform: rotate(7deg) scale(1.04); }
+  64.6% { transform: rotate(-8deg) scale(1.07); }
+  65.4%, 100% { transform: rotate(0deg) scale(1); }
+}
+
+/* hits voicemail: fast right-to-left slam, bounce on card only */
+/* Shorter approach = higher speed, then a heavier multi-stage rebound. */
+@keyframes oc-mcx-voicemail-card {
+  0%, 12.1% { opacity: 0; transform: translateX(calc(155 * var(--u))); }
+  13.4% { opacity: 1; transform: translateX(calc(-27 * var(--u))); }
+  14.1% { opacity: 1; transform: translateX(calc(15 * var(--u))); }
+  14.7% { opacity: 1; transform: translateX(calc(-10 * var(--u))); }
+  15.3% { opacity: 1; transform: translateX(calc(6 * var(--u))); }
+  15.8% { opacity: 1; transform: translateX(calc(-3 * var(--u))); }
+  16.3%, 48% { opacity: 1; transform: translateX(0); }
+  50.01%, 100% { opacity: 0; }
+}
+/* icon settles cleanly, no bounce, no flash */
+@keyframes oc-mcx-voicemail-icon {
+  0%, 12.5% { opacity: 0; transform: scale(0.7); }
+  14% { opacity: 1; transform: scale(1); }
+  48%, 50% { opacity: 1; transform: scale(1); }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* missed call: irritated popup, no flashing */
+@keyframes oc-mcx-missed-card {
+  0%, 17.5% { opacity: 0; transform: scale(0.5) rotate(-4deg) translateY(calc(16 * var(--u))); }
+  19% { opacity: 1; transform: scale(1.16) rotate(2deg) translateY(calc(-8 * var(--u))); }
+  20% { opacity: 1; transform: scale(0.95) rotate(-1deg) translateY(calc(3 * var(--u))); }
+  21% { opacity: 1; transform: scale(1.03) rotate(0.5deg) translateY(calc(-1 * var(--u))); }
+  22%, 48% { opacity: 1; transform: scale(1) rotate(0deg) translateY(0); }
+  50.01%, 100% { opacity: 0; }
+}
+@keyframes oc-mcx-missed-icon {
+  0%, 18% { opacity: 0; transform: scale(0.7); }
+  19.5% { opacity: 1; transform: scale(1); }
+  48%, 50% { opacity: 1; transform: scale(1); }
+  50.01%, 100% { opacity: 0; }
+}
+@keyframes oc-mcx-slash-draw {
+  0%, 19% { stroke-dashoffset: 30; }
+  21.5%, 48% { stroke-dashoffset: 0; }
+  50.01%, 100% { stroke-dashoffset: 0; }
+}
+
+/* Hinges on its top edge and swings down into place — no lateral travel. */
+@keyframes oc-mcx-ai-card {
+  0%, 64.5% { opacity: 0; transform: perspective(calc(620 * var(--u))) rotateX(-90deg); }
+  65.3% { opacity: 1; transform: perspective(calc(620 * var(--u))) rotateX(-68deg); }
+  66.6% { opacity: 1; transform: perspective(calc(620 * var(--u))) rotateX(-16deg); }
+  67.4% { opacity: 1; transform: perspective(calc(620 * var(--u))) rotateX(10deg); }
+  68.1% { opacity: 1; transform: perspective(calc(620 * var(--u))) rotateX(-4deg); }
+  68.8%, 98% { opacity: 1; transform: perspective(calc(620 * var(--u))) rotateX(0deg); }
+  99.6%, 100% { opacity: 0; transform: perspective(calc(620 * var(--u))) rotateX(0deg); }
+}
+@keyframes oc-mcx-ai-icon {
+  0%, 66% { opacity: 0; transform: scale(0.65); }
+  68% { opacity: 1; transform: scale(1.15); }
+  69%, 98% { opacity: 1; transform: scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-mcx-appt-card {
+  0%, 71.5% { opacity: 0; transform: translateY(calc(16 * var(--u))) scale(0.9); }
+  74% { opacity: 1; transform: translateY(calc(-4 * var(--u))) scale(1.04); }
+  75.5%, 98% { opacity: 1; transform: translateY(0) scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-mcx-appt-icon {
+  0%, 73% { opacity: 0; transform: scale(0.65); }
+  75% { opacity: 1; transform: scale(1.14); }
+  76%, 98% { opacity: 1; transform: scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+/* Staggered so they trickle out rather than firing in unison,
+   drifting apart as they rise and clearing before the camera pans at 80%. */
+@keyframes oc-mcx-cash-1 {
+  0%, 77.4% { opacity: 0; transform: translate(0, calc(-4 * var(--u))) scale(0.55) rotate(0deg); }
+  78.1% { opacity: 1; transform: translate(calc(-20 * var(--u)), calc(4 * var(--u))) scale(1.18) rotate(-14deg); }
+  80.2%, 100% { opacity: 0; transform: translate(calc(-58 * var(--u)), calc(15 * var(--u))) scale(1.06) rotate(-34deg); }
+}
+@keyframes oc-mcx-cash-2 {
+  0%, 77.5% { opacity: 0; transform: translate(0, calc(-4 * var(--u))) scale(0.55) rotate(0deg); }
+  78.4% { opacity: 1; transform: translate(calc(-9 * var(--u)), calc(6 * var(--u))) scale(1.2) rotate(-7deg); }
+  80.5%, 100% { opacity: 0; transform: translate(calc(-27 * var(--u)), calc(16 * var(--u))) scale(1.08) rotate(-18deg); }
+}
+@keyframes oc-mcx-cash-3 {
+  0%, 77.9% { opacity: 0; transform: translate(0, calc(-4 * var(--u))) scale(0.55) rotate(0deg); }
+  78.8% { opacity: 1; transform: translate(calc(10 * var(--u)), calc(6 * var(--u))) scale(1.18) rotate(8deg); }
+  80.7%, 100% { opacity: 0; transform: translate(calc(30 * var(--u)), calc(15 * var(--u))) scale(1.06) rotate(20deg); }
+}
+@keyframes oc-mcx-cash-4 {
+  0%, 78.3% { opacity: 0; transform: translate(0, calc(-4 * var(--u))) scale(0.55) rotate(0deg); }
+  79.2% { opacity: 1; transform: translate(calc(21 * var(--u)), calc(4 * var(--u))) scale(1.2) rotate(15deg); }
+  81.0%, 100% { opacity: 0; transform: translate(calc(60 * var(--u)), calc(14 * var(--u))) scale(1.08) rotate(36deg); }
+}
+
+/* board reveal + soft-fog disappearance, staggered: bar -> icon -> board */
+@keyframes oc-mcx-board-before {
+  0%, 36% { opacity: 0; transform: translateY(calc(14 * var(--u))); filter: saturate(1) blur(0); }
+  39%, 48% { opacity: 1; transform: translateY(0); filter: saturate(1) grayscale(0) blur(0); }
+  48.8% { opacity: 1; filter: saturate(0.35) grayscale(0.6) blur(calc(1.5 * var(--u))); }
+  49.4% { opacity: 0.2; filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+  50%, 100% { opacity: 0; transform: translateY(0); filter: saturate(0.05) grayscale(0.95) blur(calc(4 * var(--u))); }
+}
+@keyframes oc-mcx-board-icon-before {
+  0%, 37% { opacity: 0; transform: scale(0.7); filter: blur(0); }
+  40% { opacity: 1; transform: scale(1.12); filter: blur(0); }
+  41%, 46.5% { opacity: 1; transform: scale(1); filter: saturate(1) grayscale(0) blur(0); }
+  47.3% { opacity: 1; filter: saturate(0.3) grayscale(0.6) blur(calc(1.5 * var(--u))); }
+  48% { opacity: 0; filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+  100% { opacity: 0; }
+}
+
+@keyframes oc-mcx-board-after {
+  0%, 84.6% { opacity: 0; transform: translateY(calc(14 * var(--u))); }
+  86.2%, 100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes oc-mcx-board-icon-after {
+  0%, 85.0% { opacity: 0; transform: scale(0.7); }
+  86.0% { opacity: 1; transform: scale(1.1); }
+  86.6%, 100% { opacity: 1; transform: scale(1); }
+}
+/* Final sweep: erases everything — After flow, the zeroed board, the title —
+   in one pass, then holds blank for a beat and the loop restarts on Before.
+   Both use mask/background-size 200% with the edge at 50% of the tile, so the
+   erase boundary and the bright core travel together. */
+@keyframes oc-mcx-stage-erase {
+  0%, 96.1% {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  99.7%, 100% {
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
+}
+@keyframes oc-mcx-box-wipe {
+  0%, 96.0% { opacity: 0; background-position: 100% 0; }
+  96.2% { opacity: 1; background-position: 98% 0; }
+  99.5% { opacity: 1; background-position: 2% 0; }
+  99.8%, 100% { opacity: 0; background-position: 0% 0; }
+}
+
+/* Each zero hops once, cascading top-to-bottom, so the row of zeros
+   registers as deliberate rather than static. */
+@keyframes oc-mcx-zero-pop-1 {
+  0%, 86.6% { transform: translateY(0) scale(1); }
+  87.30% { transform: translateY(calc(-9 * var(--u))) scale(1.30); }
+  87.75% { transform: translateY(0) scale(1); }
+  88.05% { transform: translateY(calc(-3 * var(--u))) scale(1.09); }
+  88.40%, 100% { transform: translateY(0) scale(1); }
+}
+@keyframes oc-mcx-zero-pop-2 {
+  0%, 87.6% { transform: translateY(0) scale(1); }
+  88.30% { transform: translateY(calc(-9 * var(--u))) scale(1.30); }
+  88.75% { transform: translateY(0) scale(1); }
+  89.05% { transform: translateY(calc(-3 * var(--u))) scale(1.09); }
+  89.40%, 100% { transform: translateY(0) scale(1); }
+}
+@keyframes oc-mcx-zero-pop-3 {
+  0%, 88.6% { transform: translateY(0) scale(1); }
+  89.30% { transform: translateY(calc(-9 * var(--u))) scale(1.30); }
+  89.75% { transform: translateY(0) scale(1); }
+  90.05% { transform: translateY(calc(-3 * var(--u))) scale(1.09); }
+  90.40%, 100% { transform: translateY(0) scale(1); }
+}
+@keyframes oc-mcx-zero-pop-4 {
+  0%, 89.6% { transform: translateY(0) scale(1); }
+  90.30% { transform: translateY(calc(-9 * var(--u))) scale(1.30); }
+  90.75% { transform: translateY(0) scale(1); }
+  91.05% { transform: translateY(calc(-3 * var(--u))) scale(1.09); }
+  91.40%, 100% { transform: translateY(0) scale(1); }
+}
+@keyframes oc-mcx-zero-pop-5 {
+  0%, 90.6% { transform: translateY(0) scale(1); }
+  91.30% { transform: translateY(calc(-9 * var(--u))) scale(1.30); }
+  91.75% { transform: translateY(0) scale(1); }
+  92.05% { transform: translateY(calc(-3 * var(--u))) scale(1.09); }
+  92.40%, 100% { transform: translateY(0) scale(1); }
+}
+
+/* Four stagger groups so the burst scatters rather than firing as one block.
+   var() offsets let 26 pieces share four keyframes. */
+@keyframes oc-mcx-confetti-a {
+  0%, 92.7% { opacity: 0; transform: translate(0, 0) scale(0.35) rotate(0deg); }
+  93.2% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% {
+    opacity: 1;
+    transform: translate(calc(var(--dx) * 3.778), calc(var(--dy) * 3.778))
+               scale(1) rotate(calc(var(--rot) * 3.778));
+  }
+}
+@keyframes oc-mcx-confetti-b {
+  0%, 93.0% { opacity: 0; transform: translate(0, 0) scale(0.35) rotate(0deg); }
+  93.5% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% {
+    opacity: 1;
+    transform: translate(calc(var(--dx) * 3.611), calc(var(--dy) * 3.611))
+               scale(1) rotate(calc(var(--rot) * 3.611));
+  }
+}
+@keyframes oc-mcx-confetti-c {
+  0%, 93.3% { opacity: 0; transform: translate(0, 0) scale(0.35) rotate(0deg); }
+  93.8% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% {
+    opacity: 1;
+    transform: translate(calc(var(--dx) * 3.444), calc(var(--dy) * 3.444))
+               scale(1) rotate(calc(var(--rot) * 3.444));
+  }
+}
+@keyframes oc-mcx-confetti-d {
+  0%, 93.6% { opacity: 0; transform: translate(0, 0) scale(0.35) rotate(0deg); }
+  94.1% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% {
+    opacity: 1;
+    transform: translate(calc(var(--dx) * 3.278), calc(var(--dy) * 3.278))
+               scale(1) rotate(calc(var(--rot) * 3.278));
+  }
+}
+/* One solid confirmation flash, fired once the flip has settled at 68.8%
+   and clear before the appointment card arrives at 71.5%. */
+@keyframes oc-mcx-ai-flash {
+  0%, 68.8% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  69.5% {
+    border-color: var(--blue-line);
+    background: #ffffff;
+    box-shadow: 0 0 0 calc(9 * var(--u)) rgba(43, 105, 190, 0.24),
+                0 0 calc(24 * var(--u)) rgba(43, 105, 190, 0.48),
+                calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  70.7%, 100% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+}
+/* Fires once the appointment bubble has settled at 75.5%. */
+@keyframes oc-mcx-appt-wipe {
+  0%, 75.7% { opacity: 0; background-position: 135% 0; }
+  75.9% { opacity: 1; background-position: 135% 0; }
+  77.1% { opacity: 1; background-position: -35% 0; }
+  77.3%, 100% { opacity: 0; background-position: -35% 0; }
+}

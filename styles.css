@@ -945,6 +945,7 @@ section[id] {
 #home .oc-vertical-section,
 #home #how-it-works,
 #home .oc-band,
+#home #about,
 #home .oc-section--promise {
   position: relative;
 }
@@ -953,6 +954,7 @@ section[id] {
 #home .oc-vertical-section > .oc-vertical-header .oc-vertical-indicator,
 #home #how-it-works .oc-section-head .oc-vertical-indicator,
 #home .oc-why-eyebrow,
+#home .oc-about-eyebrow,
 #home .oc-close-eyebrow {
   position: absolute;
   top: var(--oc-sp-5);

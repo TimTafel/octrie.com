@@ -5605,3 +5605,599 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
   99.5% { opacity: 1; background-position: 2% 0; }
   99.8%, 100% { opacity: 0; background-position: 0% 0; }
 }
+
+
+/* ==========================================================================
+   Appointment Booking & Reminders demo  (.oc-apx)
+   Fourth sibling of .oc-mcx / .oc-lqx / .oc-rvx: same container-query --u
+   unit, title wipe, spine, status cards, 24s loop and closing box wipe.
+   Its own beat is THE HOLE IN THE DAY -- a strip of the day's slots sits
+   under the flow, and in Before the booked slot drains out to an empty
+   dashed gap, while in After it stays solid and confirms.
+   Design grid is 368 x 364 "units".
+   ========================================================================== */
+.oc-apx {
+  --u: 1px;
+  --dur: 24s;
+
+  --frame-bg: var(--oc-surface-sunken, #E8E8E8);
+  --ink:      var(--oc-text-primary, #1A1A1A);
+
+  --green-ink: #1f6b45;  --green-line: #3f9c6c;
+  --green-border: rgba(63, 156, 108, 0.4);   --green-bg: #eaf6ee;
+  --warn-ink: #8a4a12;   --warn-line: #d9832f;
+  --warn-border: rgba(196, 118, 30, 0.55);   --warn-bg: #f9d9a8;
+  --red-ink: #7a2626;    --red-line: #b23f3f;
+  --red-border: rgba(178, 63, 63, 0.5);      --red-bg: #eeb3ac;
+  --blue-ink: #163e70;   --blue-line: #2b69be;
+  --blue-border: rgba(43, 105, 190, 0.55);   --blue-bg: #d6e8ff;
+
+  --slot-full: #9db4cf;
+  --slot-line: rgba(43, 105, 190, 0.5);
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+  font-family: var(--oc-font-mono, 'DM Mono', 'Courier New', monospace);
+  color: var(--ink);
+}
+.oc-apx *, .oc-apx *::before, .oc-apx *::after { box-sizing: border-box; }
+
+@supports (container-type: size) {
+  .oc-apx { --u: calc(100cqmin / 380); }
+}
+
+.oc-apx-stage {
+  position: relative;
+  width: calc(368 * var(--u));
+  flex: 0 0 auto;
+  -webkit-mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+  mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+  -webkit-mask-size: 200% 100%;
+  mask-size: 200% 100%;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: oc-apx-stage-erase var(--dur) linear infinite;
+}
+
+.oc-apx-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: linear-gradient(
+    112deg,
+    transparent 0%,
+    transparent 43%,
+    rgba(255, 255, 255, 0.25) 46.5%,
+    rgba(255, 255, 255, 0.9) 49%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.9) 51%,
+    rgba(255, 255, 255, 0.25) 53.5%,
+    transparent 57%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-apx-box-wipe var(--dur) linear infinite;
+}
+
+/* ============ TITLE BAND ============ */
+.oc-apx-title {
+  position: relative;
+  height: calc(64 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.oc-apx-title-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(30 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.oc-apx-title-text--before { animation: oc-apx-title-before var(--dur) linear infinite; }
+.oc-apx-title-text--after  { animation: oc-apx-title-after var(--dur) linear infinite; }
+
+.oc-apx-title-wipe {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    128deg,
+    transparent 0%,
+    transparent 46.5%,
+    rgba(255, 255, 255, 0.22) 48.3%,
+    rgba(255, 255, 255, 0.88) 49.4%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.88) 50.6%,
+    rgba(255, 255, 255, 0.22) 51.7%,
+    transparent 53.5%,
+    transparent 100%
+  );
+  background-size: 260% 100%;
+  background-position: 150% 0;
+  opacity: 0;
+  animation: oc-apx-title-wipe var(--dur) linear infinite;
+}
+
+/* ============ VIEWPORT / PHASES ============ */
+.oc-apx-viewport {
+  position: relative;
+  height: calc(300 * var(--u));
+  overflow: hidden;
+}
+.oc-apx-phase {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+.oc-apx-phase--before { animation: oc-apx-phase-before-vis var(--dur) step-end infinite; }
+.oc-apx-phase--after  { animation: oc-apx-phase-after-vis var(--dur) step-end infinite; }
+
+/* Bottom 64u reserved for the day strip, same proportion the review demo
+   gives its star band. */
+.oc-apx-flow {
+  position: relative;
+  height: calc(236 * var(--u));
+  padding: calc(26 * var(--u)) calc(6 * var(--u)) calc(10 * var(--u)) calc(24 * var(--u));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.oc-apx-seg {
+  position: absolute;
+  left: calc(37.5 * var(--u));
+  width: calc(3 * var(--u));
+  border-radius: calc(2 * var(--u));
+  z-index: 1;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.oc-apx-seg--upper { top: calc(59 * var(--u));  bottom: calc(125 * var(--u)); }
+.oc-apx-seg--lower { top: calc(141 * var(--u)); bottom: calc(43 * var(--u)); }
+
+.oc-apx-phase--before .oc-apx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--warn-line));
+  animation: oc-apx-seg-upper-before var(--dur) linear infinite;
+}
+.oc-apx-phase--before .oc-apx-seg--lower {
+  background: linear-gradient(to bottom, var(--warn-line), var(--red-line));
+  animation: oc-apx-seg-lower-before var(--dur) linear infinite;
+}
+.oc-apx-phase--after .oc-apx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--blue-line));
+  animation: oc-apx-seg-upper-after var(--dur) linear infinite;
+}
+.oc-apx-phase--after .oc-apx-seg--lower {
+  background: var(--blue-line);
+  animation: oc-apx-seg-lower-after var(--dur) linear infinite;
+}
+
+.oc-apx-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+  opacity: 0;
+  z-index: 2;
+}
+.oc-apx-step--noremind,
+.oc-apx-step--noshow,
+.oc-apx-step--remind,
+.oc-apx-step--showed { opacity: 1; }
+
+.oc-apx-icon {
+  position: relative;
+  flex: 0 0 calc(30 * var(--u));
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border-radius: 50%;
+  background: var(--frame-bg);
+  box-shadow: 0 0 0 calc(2 * var(--u)) var(--frame-bg);
+}
+.oc-apx-icon svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); overflow: visible; }
+.oc-apx-icon path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.oc-apx-card {
+  flex: 1;
+  max-width: calc(235 * var(--u));
+  min-height: calc(36 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(6 * var(--u)) calc(11 * var(--u));
+  border-radius: calc(3 * var(--u));
+  border: calc(1.5 * var(--u)) solid;
+  box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  font-size: calc(11 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+}
+.oc-apx-card--green { border-color: var(--green-border); background: var(--green-bg); color: var(--green-ink); }
+.oc-apx-card--warn  { border-color: var(--warn-border);  background: var(--warn-bg);  color: var(--warn-ink); }
+.oc-apx-card--red   { border-color: var(--red-border);   background: var(--red-bg);   color: var(--red-ink); }
+.oc-apx-card--blue  { border-color: var(--blue-border);  background: var(--blue-bg);  color: var(--blue-ink); }
+
+.oc-apx-step--set .oc-apx-icon       { color: var(--green-line); }
+.oc-apx-step--noremind .oc-apx-icon  { color: var(--warn-line); }
+.oc-apx-step--noshow .oc-apx-icon    { color: var(--red-line); }
+.oc-apx-step--remind .oc-apx-icon    { color: var(--blue-line); }
+.oc-apx-step--showed .oc-apx-icon    { color: var(--blue-line); }
+
+/* ============ DAY STRIP (the payoff) ============ */
+.oc-apx-day {
+  height: calc(64 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(12 * var(--u));
+}
+.oc-apx-daylabel {
+  font-size: calc(11 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--oc-text-secondary, #767676);
+}
+.oc-apx-slots {
+  display: flex;
+  align-items: center;
+  gap: calc(7 * var(--u));
+}
+.oc-apx-slot {
+  display: block;
+  width: calc(37 * var(--u));
+  height: calc(29 * var(--u));
+  border-radius: calc(2 * var(--u));
+  border: calc(1.5 * var(--u)) solid var(--slot-line);
+  background: var(--slot-full);
+}
+
+/* Before: the booked slot bleeds out into an empty dashed gap. */
+.oc-apx-slot--gap { animation: oc-apx-slot-drain var(--dur) ease-in-out infinite; }
+/* The untouched slots simply fade with the phase. */
+.oc-apx-phase--before .oc-apx-slot:not(.oc-apx-slot--gap) { animation: oc-apx-slot-idle var(--dur) linear infinite; }
+
+/* After: the slot holds, then confirms with a pop. */
+.oc-apx-slot--kept { animation: oc-apx-slot-kept var(--dur) ease-out infinite; }
+
+/* ---- BEFORE step motion ---- */
+.oc-apx-phase--before .oc-apx-step--set { animation: oc-apx-set-before var(--dur) ease-out infinite; }
+.oc-apx-step--noremind .oc-apx-card { animation: oc-apx-noremind-card var(--dur) linear infinite; }
+.oc-apx-step--noremind .oc-apx-icon { opacity: 0; animation: oc-apx-noremind-icon var(--dur) linear infinite; }
+.oc-apx-step--noshow .oc-apx-card { animation: oc-apx-noshow-card var(--dur) linear infinite; }
+.oc-apx-step--noshow .oc-apx-icon { opacity: 0; animation: oc-apx-noshow-icon var(--dur) linear infinite; }
+.oc-apx-phase--before .oc-apx-slash { stroke-dasharray: 24; stroke-dashoffset: 24; }
+.oc-apx-step--noremind .oc-apx-slash { animation: oc-apx-slash-noremind var(--dur) linear infinite; }
+.oc-apx-step--noshow .oc-apx-slash { animation: oc-apx-slash-noshow var(--dur) linear infinite; }
+
+/* ---- AFTER step motion ---- */
+.oc-apx-phase--after .oc-apx-step--set { animation: oc-apx-set-after var(--dur) ease-out infinite; }
+.oc-apx-step--remind .oc-apx-card {
+  animation: oc-apx-remind-card var(--dur) linear infinite,
+             oc-apx-remind-flash var(--dur) linear infinite;
+}
+.oc-apx-step--remind .oc-apx-icon {
+  opacity: 0;
+  animation: oc-apx-remind-icon var(--dur) linear infinite,
+             oc-apx-bell-shake var(--dur) ease-in-out infinite;
+}
+.oc-apx-step--showed .oc-apx-card {
+  position: relative;
+  overflow: hidden;
+  animation: oc-apx-showed-card var(--dur) linear infinite;
+}
+.oc-apx-step--showed .oc-apx-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(120, 180, 255, 0.30) 45%,
+    rgba(228, 242, 255, 0.98) 50%,
+    rgba(120, 180, 255, 0.30) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 230% 100%;
+  background-position: 135% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-apx-showed-wipe var(--dur) linear infinite;
+}
+.oc-apx-step--showed .oc-apx-icon { opacity: 0; animation: oc-apx-showed-icon var(--dur) linear infinite; }
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  .oc-apx-title-text--before { display: none; }
+  .oc-apx-title-text--after { position: static; opacity: 1; }
+  .oc-apx-title-wipe { display: none; }
+  .oc-apx-phase--before { display: none; }
+  .oc-apx-phase--after { visibility: visible; }
+  .oc-apx-flash { display: none; }
+  .oc-apx-stage {
+    animation: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .oc-apx-step, .oc-apx-card, .oc-apx-icon, .oc-apx-seg, .oc-apx-slot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============ KEYFRAMES ============ */
+
+@keyframes oc-apx-title-before {
+  0%, 51.58% { opacity: 1; }
+  51.82%, 100% { opacity: 0; }
+}
+@keyframes oc-apx-title-after {
+  0%, 51.58% { opacity: 0; }
+  51.82%, 100% { opacity: 1; }
+}
+@keyframes oc-apx-title-wipe {
+  0%, 50.2% { opacity: 0; background-position: 150% 0; }
+  50.4% { opacity: 1; background-position: 150% 0; }
+  53% { opacity: 1; background-position: -50% 0; }
+  53.3%, 100% { opacity: 0; background-position: -50% 0; }
+}
+@keyframes oc-apx-phase-before-vis {
+  0% { visibility: visible; }
+  50% { visibility: visible; }
+  50.01% { visibility: hidden; }
+  100% { visibility: hidden; }
+}
+@keyframes oc-apx-phase-after-vis {
+  0% { visibility: hidden; }
+  53.2% { visibility: hidden; }
+  53.3% { visibility: visible; }
+  100% { visibility: visible; }
+}
+
+/* --- BEFORE --- */
+@keyframes oc-apx-set-before {
+  0%, 1.5% { opacity: 0; transform: translateY(calc(-20 * var(--u))); }
+  4% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  5.5%, 46% { opacity: 1; transform: translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-apx-seg-upper-before {
+  0%, 5.5% { opacity: 1; transform: scaleY(0); }
+  11%, 46% { opacity: 1; transform: scaleY(1); filter: saturate(1); }
+  47.5% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-apx-noremind-card {
+  0%, 11% { opacity: 0; transform: translateY(calc(-12 * var(--u))); }
+  14.5%, 46% { opacity: 1; transform: translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-apx-noremind-icon {
+  0%, 12% { opacity: 0; transform: scale(0.7); }
+  14.5% { opacity: 1; transform: scale(1.1); }
+  15.5%, 46% { opacity: 1; transform: scale(1); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-apx-slash-noremind {
+  0%, 16% { stroke-dashoffset: 24; }
+  19%, 46% { stroke-dashoffset: 0; }
+  49%, 100% { stroke-dashoffset: 0; }
+}
+/* The slot bleeds out through the dead stretch, so the gap is already
+   there by the time the no-show lands. */
+@keyframes oc-apx-slot-drain {
+  0%, 20% {
+    opacity: 1;
+    background: var(--slot-full);
+    border-color: var(--slot-line);
+    border-style: solid;
+    transform: scaleY(1);
+  }
+  27% {
+    opacity: 1;
+    background: #c6cdd4;
+    border-color: rgba(120, 120, 120, 0.5);
+    border-style: solid;
+    transform: scaleY(1);
+  }
+  34%, 46% {
+    opacity: 1;
+    background: transparent;
+    border-color: var(--red-line);
+    border-style: dashed;
+    transform: scaleY(0.82);
+  }
+  49%, 100% {
+    opacity: 0;
+    background: transparent;
+    border-color: var(--red-line);
+    border-style: dashed;
+    transform: scaleY(0.82);
+  }
+}
+@keyframes oc-apx-slot-idle {
+  0%, 46% { opacity: 1; filter: saturate(1); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-apx-seg-lower-before {
+  0%, 33% { opacity: 1; transform: scaleY(0); }
+  38%, 46% { opacity: 1; transform: scaleY(1); filter: saturate(1); }
+  47.5% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-apx-noshow-card {
+  0%, 38% { opacity: 0; transform: scale(1.08) translateY(calc(-5 * var(--u))); }
+  40.5% { opacity: 1; transform: scale(0.95) translateY(calc(2 * var(--u))); }
+  42%, 46% { opacity: 1; transform: scale(1) translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-apx-noshow-icon {
+  0%, 38.5% { opacity: 0; transform: scale(0.7); }
+  40.5% { opacity: 1; transform: scale(1.12); }
+  41.5%, 46% { opacity: 1; transform: scale(1); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-apx-slash-noshow {
+  0%, 41% { stroke-dashoffset: 24; }
+  43.5%, 46% { stroke-dashoffset: 0; }
+  49%, 100% { stroke-dashoffset: 0; }
+}
+
+/* --- AFTER --- */
+@keyframes oc-apx-set-after {
+  0%, 54% { opacity: 0; transform: translateY(calc(-20 * var(--u))); }
+  56.5% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  57.5%, 98% { opacity: 1; transform: translateY(0); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-apx-seg-upper-after {
+  0%, 57.5% { opacity: 1; transform: scaleY(0); }
+  63%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+@keyframes oc-apx-remind-card {
+  0%, 63% { opacity: 0; transform: translateX(calc(60 * var(--u))); }
+  65.5% { opacity: 1; transform: translateX(calc(-5 * var(--u))); }
+  66.5% { opacity: 1; transform: translateX(calc(2 * var(--u))); }
+  67%, 98% { opacity: 1; transform: translateX(0); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-apx-remind-flash {
+  0%, 67% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  67.9% {
+    border-color: var(--blue-line);
+    background: #ffffff;
+    box-shadow: 0 0 0 calc(9 * var(--u)) rgba(43, 105, 190, 0.24),
+                0 0 calc(24 * var(--u)) rgba(43, 105, 190, 0.48),
+                calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  69.2%, 100% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+}
+@keyframes oc-apx-remind-icon {
+  0%, 64.5% { opacity: 0; }
+  66.5%, 98% { opacity: 1; }
+  99.6%, 100% { opacity: 0; }
+}
+/* The bell rings once as the reminder goes out. */
+@keyframes oc-apx-bell-shake {
+  0%, 66% { transform: rotate(0deg) scale(0.7); }
+  66.8% { transform: rotate(0deg) scale(1.14); }
+  67.6% { transform: rotate(-13deg) scale(1.05); }
+  68.4% { transform: rotate(11deg) scale(1.05); }
+  69.2% { transform: rotate(-8deg) scale(1.02); }
+  70%, 100% { transform: rotate(0deg) scale(1); }
+}
+@keyframes oc-apx-seg-lower-after {
+  0%, 69.5% { opacity: 1; transform: scaleY(0); }
+  74%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+@keyframes oc-apx-showed-card {
+  0%, 74% { opacity: 0; transform: translateY(calc(14 * var(--u))) scale(0.9); }
+  76.5% { opacity: 1; transform: translateY(calc(-4 * var(--u))) scale(1.04); }
+  77.5%, 98% { opacity: 1; transform: translateY(0) scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-apx-showed-icon {
+  0%, 75% { opacity: 0; transform: scale(0.65); }
+  77% { opacity: 1; transform: scale(1.14); }
+  78%, 98% { opacity: 1; transform: scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-apx-showed-wipe {
+  0%, 78% { opacity: 0; background-position: 135% 0; }
+  78.2% { opacity: 1; background-position: 135% 0; }
+  79.4% { opacity: 1; background-position: -35% 0; }
+  79.6%, 100% { opacity: 0; background-position: -35% 0; }
+}
+/* The kept slot brightens and settles: the day stayed whole. */
+@keyframes oc-apx-slot-kept {
+  0%, 79.6% {
+    background: var(--slot-full);
+    border-color: var(--slot-line);
+    transform: scale(1);
+  }
+  80.8% {
+    background: #7ea6d8;
+    border-color: var(--blue-line);
+    transform: scale(1.14);
+    box-shadow: 0 0 0 calc(6 * var(--u)) rgba(43, 105, 190, 0.18);
+  }
+  82.4%, 98% {
+    background: #8fb0da;
+    border-color: var(--blue-line);
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(43, 105, 190, 0);
+  }
+  99.6%, 100% {
+    background: #8fb0da;
+    border-color: var(--blue-line);
+    transform: scale(1);
+  }
+}
+
+@keyframes oc-apx-stage-erase {
+  0%, 96.1% {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  99.7%, 100% {
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
+}
+@keyframes oc-apx-box-wipe {
+  0%, 96.0% { opacity: 0; background-position: 100% 0; }
+  96.2% { opacity: 1; background-position: 98% 0; }
+  99.5% { opacity: 1; background-position: 2% 0; }
+  99.8%, 100% { opacity: 0; background-position: 0% 0; }
+}

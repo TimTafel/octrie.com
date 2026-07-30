@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@800&amp;family=DM+Sans:wght@400;700&amp;family=DM+Mono:wght@400;500&amp;display=swap" />
-  <link rel="stylesheet" href="./styles.css?v=20260729-review-requests-demo" />
+  <link rel="stylesheet" href="./styles.css?v=20260729-appointment-demo" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -467,11 +467,99 @@
               </div>
             </div>
             <div class="oc-tool-listing-box">
-              <div class="oc-demo oc-demo--loop" aria-hidden="true">
-                <div class="oc-demo-line">New lead · wants service this week</div>
-                <div class="oc-demo-bubble">We can get you on the schedule Thursday morning. Does 9:30 work?</div>
-                <div class="oc-demo-bubble oc-demo-bubble--reply">Yes, book it.</div>
-                <div class="oc-demo-line oc-demo-line--result">Appointment booked · reminder queued</div>
+              <div class="oc-apx" aria-hidden="true">
+                <div class="oc-apx-stage">
+                  <div class="oc-apx-title">
+                    <span class="oc-apx-title-text oc-apx-title-text--before">Before</span>
+                    <span class="oc-apx-title-text oc-apx-title-text--after">After</span>
+                    <span class="oc-apx-title-wipe"></span>
+                  </div>
+
+                  <div class="oc-apx-viewport">
+
+                    <!-- ============ BEFORE ============ -->
+                    <div class="oc-apx-phase oc-apx-phase--before">
+                      <div class="oc-apx-flow">
+                        <div class="oc-apx-seg oc-apx-seg--upper"></div>
+                        <div class="oc-apx-seg oc-apx-seg--lower"></div>
+
+                        <div class="oc-apx-step oc-apx-step--set">
+                          <span class="oc-apx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M7 3.5v4M17 3.5v4M4.5 9.5h15M6.5 5.5h11c1.1 0 2 .9 2 2v10.5c0 1.1-.9 2-2 2h-11c-1.1 0-2-.9-2-2V7.5c0-1.1.9-2 2-2Z"/><path d="M8 15l2.4 2.3L16 12"/></svg>
+                          </span>
+                          <span class="oc-apx-card oc-apx-card--green">Booked &middot; Thu 9:30</span>
+                        </div>
+
+                        <div class="oc-apx-step oc-apx-step--noremind">
+                          <span class="oc-apx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 4.2a5.3 5.3 0 0 0-5.3 5.3c0 5-2 6.5-2 6.5h14.6s-2-1.5-2-6.5A5.3 5.3 0 0 0 12 4.2Z"/><path d="M10.3 19a1.9 1.9 0 0 0 3.4 0"/><path class="oc-apx-slash" d="M4 20 20 4"/></svg>
+                          </span>
+                          <span class="oc-apx-card oc-apx-card--warn">No Reminder Sent</span>
+                        </div>
+
+                        <div class="oc-apx-step oc-apx-step--noshow">
+                          <span class="oc-apx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 12.6a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2Z"/><path d="M5.4 20.2c0-3.3 3-5.4 6.6-5.4s6.6 2.1 6.6 5.4"/><path class="oc-apx-slash" d="M4 20 20 4"/></svg>
+                          </span>
+                          <span class="oc-apx-card oc-apx-card--red">No-Show</span>
+                        </div>
+                      </div>
+
+                      <div class="oc-apx-day">
+                        <span class="oc-apx-daylabel">Thu</span>
+                        <span class="oc-apx-slots">
+                          <i class="oc-apx-slot"></i>
+                          <i class="oc-apx-slot"></i>
+                          <i class="oc-apx-slot oc-apx-slot--gap"></i>
+                          <i class="oc-apx-slot"></i>
+                          <i class="oc-apx-slot"></i>
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- ============ AFTER ============ -->
+                    <div class="oc-apx-phase oc-apx-phase--after">
+                      <div class="oc-apx-flow">
+                        <div class="oc-apx-seg oc-apx-seg--upper"></div>
+                        <div class="oc-apx-seg oc-apx-seg--lower"></div>
+
+                        <div class="oc-apx-step oc-apx-step--set">
+                          <span class="oc-apx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M7 3.5v4M17 3.5v4M4.5 9.5h15M6.5 5.5h11c1.1 0 2 .9 2 2v10.5c0 1.1-.9 2-2 2h-11c-1.1 0-2-.9-2-2V7.5c0-1.1.9-2 2-2Z"/><path d="M8 15l2.4 2.3L16 12"/></svg>
+                          </span>
+                          <span class="oc-apx-card oc-apx-card--green">Booked &middot; Thu 9:30</span>
+                        </div>
+
+                        <div class="oc-apx-step oc-apx-step--remind">
+                          <span class="oc-apx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 4.2a5.3 5.3 0 0 0-5.3 5.3c0 5-2 6.5-2 6.5h14.6s-2-1.5-2-6.5A5.3 5.3 0 0 0 12 4.2Z"/><path d="M10.3 19a1.9 1.9 0 0 0 3.4 0"/></svg>
+                          </span>
+                          <span class="oc-apx-card oc-apx-card--blue">Reminder Sent &middot; Day Before</span>
+                        </div>
+
+                        <div class="oc-apx-step oc-apx-step--showed">
+                          <span class="oc-apx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 12.6a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2Z"/><path d="M5.4 20.2c0-3.3 3-5.4 6.6-5.4s6.6 2.1 6.6 5.4"/></svg>
+                          </span>
+                          <span class="oc-apx-card oc-apx-card--blue">Showed Up &middot; Job Done</span>
+                        </div>
+                      </div>
+
+                      <div class="oc-apx-day">
+                        <span class="oc-apx-daylabel">Thu</span>
+                        <span class="oc-apx-slots">
+                          <i class="oc-apx-slot"></i>
+                          <i class="oc-apx-slot"></i>
+                          <i class="oc-apx-slot oc-apx-slot--kept"></i>
+                          <i class="oc-apx-slot"></i>
+                          <i class="oc-apx-slot"></i>
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <span class="oc-apx-flash" aria-hidden="true"></span>
               </div>
             </div>
           </div>

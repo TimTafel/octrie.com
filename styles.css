@@ -3742,6 +3742,460 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
   }
 }
 
+/* ================================================================
+   PAGE MOTION
+   One-shot, section-specific reveals built on the existing observer.
+================================================================ */
+
+/* Hero: assemble the pitch in a deliberate reading order. */
+.oc-hero-line {
+  display: block;
+}
+
+html.oc-js .oc-hero--motion .oc-hero-eyebrow,
+html.oc-js .oc-hero--motion .oc-hero-line,
+html.oc-js .oc-hero--motion .oc-hero-sub,
+html.oc-js .oc-hero--motion .oc-hero-actions,
+html.oc-js .oc-hero--motion .oc-hero-guarantee {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+html.oc-js .oc-hero--motion .oc-hero-eyebrow {
+  animation: oc-hero-eyebrow-in 0.45s ease 0.05s forwards;
+}
+
+html.oc-js .oc-hero--motion .oc-hero-line {
+  transform: translateY(var(--oc-sp-5));
+  animation: oc-hero-line-in 0.7s cubic-bezier(0.2, 0.75, 0.25, 1) 0.12s forwards;
+}
+
+html.oc-js .oc-hero--motion .oc-hero-line:nth-child(2) {
+  animation-delay: 0.24s;
+}
+
+html.oc-js .oc-hero--motion .oc-hero-sub {
+  transform: translateY(var(--oc-sp-4));
+  animation: oc-hero-copy-in 0.6s ease 0.42s forwards;
+}
+
+html.oc-js .oc-hero--motion .oc-hero-actions {
+  transform: translateY(var(--oc-sp-3));
+  animation: oc-hero-copy-in 0.55s ease 0.56s forwards;
+}
+
+html.oc-js .oc-hero--motion .oc-hero-guarantee {
+  transform: translateY(var(--oc-sp-2));
+  animation: oc-hero-copy-in 0.5s ease 0.68s forwards;
+}
+
+#home .oc-hero-guarantee {
+  position: relative;
+  padding-left: var(--oc-sp-4);
+}
+
+#home .oc-hero-guarantee::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--oc-border-dominant);
+  background: var(--oc-vertical-accent);
+  transform: scaleY(0);
+  transform-origin: center top;
+}
+
+html.oc-js #home .oc-hero-guarantee::before {
+  animation: oc-hero-guarantee-rule 0.4s ease 0.78s forwards;
+}
+
+@keyframes oc-hero-eyebrow-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes oc-hero-line-in {
+  from { opacity: 0; transform: translateY(var(--oc-sp-5)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes oc-hero-copy-in {
+  from { opacity: 0; transform: translateY(var(--oc-sp-4)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes oc-hero-guarantee-rule {
+  to { transform: scaleY(1); }
+}
+
+/* Why it matters: each missed opportunity lands, traces, then cools. */
+#home .oc-why-leak {
+  position: relative;
+  padding-bottom: var(--oc-sp-3);
+  overflow: hidden;
+}
+
+#home .oc-why-leak::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--oc-border-subordinate);
+  background: var(--oc-border-medium);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+html.oc-js #home .oc-why-leak.oc-reveal {
+  transform: translateX(calc(0px - var(--oc-sp-5)));
+  transition-duration: 0.55s;
+}
+
+html.oc-js #home .oc-why-leak.oc-reveal.is-visible {
+  transform: translateX(0);
+}
+
+html.oc-js #home .oc-why-leak.is-visible::after {
+  animation: oc-why-trace 0.85s ease calc(var(--rd, 0s) + 0.14s) forwards;
+}
+
+#home .oc-why-punch em {
+  padding-bottom: var(--oc-border-dominant);
+  background-image: linear-gradient(var(--oc-vertical-accent), var(--oc-vertical-accent));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0 var(--oc-border-dominant);
+}
+
+html.oc-js #home .oc-why-punch.is-visible em {
+  background-size: 100% var(--oc-border-dominant);
+  transition: background-size 0.75s ease 0.42s;
+}
+
+#home .oc-why-cost b {
+  display: inline-block;
+}
+
+html.oc-js #home .oc-why-cost.is-visible b {
+  animation: oc-why-value-in 0.6s ease 0.58s both;
+}
+
+@keyframes oc-why-trace {
+  0% {
+    background: var(--oc-vertical-accent);
+    transform: scaleX(0);
+  }
+  65% {
+    background: var(--oc-vertical-accent);
+    transform: scaleX(1);
+  }
+  100% {
+    background: var(--oc-border-medium);
+    transform: scaleX(1);
+  }
+}
+
+@keyframes oc-why-value-in {
+  0% { color: var(--oc-vertical-accent-deep); transform: translateY(var(--oc-sp-1)); }
+  100% { color: var(--oc-text-primary); transform: translateY(0); }
+}
+
+/* Homepage About: portrait shutter, title rule, and resolving proof rows. */
+#home .oc-about-title span {
+  padding-bottom: var(--oc-border-dominant);
+  background-image: linear-gradient(var(--oc-vertical-accent), var(--oc-vertical-accent));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0 var(--oc-border-dominant);
+}
+
+html.oc-js #home .oc-about-title.is-visible span {
+  background-size: 100% var(--oc-border-dominant);
+  transition: background-size 0.65s ease 0.32s;
+}
+
+html.oc-js #home .oc-about-portrait .oc-about-photo-frame {
+  box-shadow: 0 0 0 var(--oc-vertical-accent);
+  transition: box-shadow 0.55s ease 0.34s;
+}
+
+html.oc-js #home .oc-about-portrait.is-visible .oc-about-photo-frame {
+  box-shadow: calc(0px - var(--oc-sp-4)) var(--oc-sp-4) 0 var(--oc-vertical-accent);
+}
+
+html.oc-js #home .oc-about-portrait .oc-about-photo-frame img {
+  clip-path: inset(0 100% 0 0);
+  transform: scale(1.035);
+  transform-origin: center center;
+  transition:
+    clip-path 0.85s cubic-bezier(0.2, 0.75, 0.25, 1) 0.12s,
+    transform 1.05s ease 0.12s;
+}
+
+html.oc-js #home .oc-about-portrait.is-visible .oc-about-photo-frame img {
+  clip-path: inset(0 0 0 0);
+  transform: scale(1);
+}
+
+#home .oc-about-photo-frame::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: var(--oc-sp-2);
+  right: var(--oc-sp-2);
+  left: var(--oc-sp-2);
+  height: var(--oc-border-dominant);
+  background: var(--oc-vertical-accent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+html.oc-js #home .oc-about-portrait.is-visible .oc-about-photo-frame::after {
+  animation: oc-about-scan 0.95s ease 0.28s both;
+}
+
+html.oc-js #home .oc-about-principle.oc-reveal {
+  transform: translateX(var(--oc-sp-4));
+}
+
+html.oc-js #home .oc-about-principle.oc-reveal.is-visible {
+  transform: translateX(0);
+}
+
+#home .oc-about-number {
+  position: relative;
+  display: block;
+}
+
+#home .oc-about-number::after {
+  content: "";
+  position: absolute;
+  right: var(--oc-sp-2);
+  bottom: calc(0px - var(--oc-sp-1));
+  left: 0;
+  height: var(--oc-border-subordinate);
+  background: var(--oc-vertical-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+html.oc-js #home .oc-about-principle.is-visible .oc-about-number::after {
+  animation: oc-about-number-rule 0.45s ease calc(var(--rd, 0s) + 0.2s) forwards;
+}
+
+@keyframes oc-about-scan {
+  0% {
+    top: var(--oc-sp-2);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.72;
+  }
+  80% {
+    opacity: 0.2;
+  }
+  100% {
+    top: calc(100% - var(--oc-sp-2) - var(--oc-border-dominant));
+    opacity: 0;
+  }
+}
+
+@keyframes oc-about-number-rule {
+  to { transform: scaleX(1); }
+}
+
+@media (hover: hover) {
+  #home .oc-about-principle > div {
+    transition: transform var(--oc-transition-base);
+  }
+
+  #home .oc-about-principle:hover > div {
+    transform: translateX(var(--oc-sp-1));
+  }
+}
+
+/* Standalone About page: restore the founder block and share the motion. */
+#about-page .oc-founder {
+  display: flex;
+  align-items: center;
+  gap: var(--oc-sp-4);
+  margin-bottom: var(--oc-sp-4);
+}
+
+#about-page .oc-founder-photo {
+  width: var(--oc-sp-10);
+  height: var(--oc-sp-10);
+  flex: 0 0 auto;
+  display: block;
+  object-fit: cover;
+  background: var(--oc-surface-sunken);
+  border: var(--oc-border-dominant) solid var(--oc-border-medium);
+}
+
+#about-page .oc-founder-name {
+  margin-bottom: 2px;
+}
+
+#about-page .oc-founder-meta {
+  font-family: var(--oc-font-mono);
+  font-size: var(--oc-text-10);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--oc-text-tertiary);
+}
+
+html.oc-js #about-page .oc-about-page-heading.oc-reveal {
+  transform: translateX(calc(0px - var(--oc-sp-4)));
+}
+
+html.oc-js #about-page .oc-about-page-heading.oc-reveal.is-visible {
+  transform: translateX(0);
+}
+
+html.oc-js #about-page .oc-about-page-profile .oc-founder-photo {
+  clip-path: inset(0 100% 0 0);
+  transform: scale(1.06);
+  transition:
+    clip-path 0.7s ease 0.18s,
+    transform 0.85s ease 0.18s,
+    border-color 0.5s ease 0.28s;
+}
+
+html.oc-js #about-page .oc-about-page-profile.is-visible .oc-founder-photo {
+  clip-path: inset(0 0 0 0);
+  transform: scale(1);
+  border-color: var(--oc-vertical-accent);
+}
+
+/* Promise: one quiet sequence, then the section settles. */
+#home .oc-close-em {
+  padding-bottom: var(--oc-border-dominant);
+  background-image: linear-gradient(var(--oc-vertical-accent), var(--oc-vertical-accent));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0 var(--oc-border-dominant);
+}
+
+html.oc-js #home .oc-close-title.is-visible .oc-close-em {
+  background-size: 100% var(--oc-border-dominant);
+  transition: background-size 0.7s ease 0.38s;
+}
+
+html.oc-js #home .oc-close-assure span {
+  opacity: 0;
+  transform: translateY(var(--oc-sp-2));
+}
+
+html.oc-js #home .oc-close-assure.is-visible span {
+  animation: oc-close-assure-in 0.45s ease both;
+}
+
+html.oc-js #home .oc-close-assure.is-visible span:nth-child(1) {
+  animation-delay: 0.16s;
+}
+
+html.oc-js #home .oc-close-assure.is-visible span:nth-child(2) {
+  animation-delay: 0.26s;
+}
+
+html.oc-js #home .oc-close-assure.is-visible span:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+html.oc-js #home .oc-close-assure.is-visible .oc-close-mk {
+  animation: oc-close-mark-in 0.42s ease both;
+}
+
+html.oc-js #home .oc-close-actions .oc-btn {
+  animation: none;
+}
+
+html.oc-js #home .oc-close-actions.is-visible .oc-btn {
+  animation: oc-close-cta-settle 0.9s ease 0.18s;
+}
+
+#home .oc-cta-sheen::after {
+  animation-duration: 6.5s;
+}
+
+@keyframes oc-close-assure-in {
+  from { opacity: 0; transform: translateY(var(--oc-sp-2)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes oc-close-mark-in {
+  0% { opacity: 0; transform: scale(0.5); }
+  70% { opacity: 1; transform: scale(1.25); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes oc-close-cta-settle {
+  0%, 100% {
+    box-shadow: 0 14px 30px rgba(41, 38, 30, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  55% {
+    box-shadow: 0 18px 38px rgba(184, 146, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.oc-js .oc-hero--motion .oc-hero-eyebrow,
+  html.oc-js .oc-hero--motion .oc-hero-line,
+  html.oc-js .oc-hero--motion .oc-hero-sub,
+  html.oc-js .oc-hero--motion .oc-hero-actions,
+  html.oc-js .oc-hero--motion .oc-hero-guarantee,
+  html.oc-js #home .oc-why-leak.oc-reveal,
+  html.oc-js #home .oc-about-principle.oc-reveal,
+  html.oc-js #about-page .oc-about-page-heading.oc-reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+
+  #home .oc-hero-guarantee::before,
+  #home .oc-why-leak::after,
+  #home .oc-about-number::after {
+    transform: none;
+    animation: none;
+  }
+
+  #home .oc-why-punch em,
+  #home .oc-about-title span,
+  #home .oc-close-em {
+    background-size: 100% var(--oc-border-dominant);
+    transition: none;
+  }
+
+  html.oc-js #home .oc-why-cost.is-visible b,
+  html.oc-js #home .oc-about-portrait .oc-about-photo-frame img,
+  html.oc-js #home .oc-about-portrait.is-visible .oc-about-photo-frame img,
+  html.oc-js #about-page .oc-about-page-profile .oc-founder-photo,
+  html.oc-js #about-page .oc-about-page-profile.is-visible .oc-founder-photo,
+  html.oc-js #home .oc-close-assure span,
+  html.oc-js #home .oc-close-assure.is-visible span,
+  html.oc-js #home .oc-close-assure.is-visible .oc-close-mk,
+  html.oc-js #home .oc-close-actions.is-visible .oc-btn {
+    opacity: 1;
+    clip-path: none;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+
+  html.oc-js #home .oc-about-portrait .oc-about-photo-frame,
+  html.oc-js #home .oc-about-portrait.is-visible .oc-about-photo-frame {
+    box-shadow: calc(0px - var(--oc-sp-4)) var(--oc-sp-4) 0 var(--oc-vertical-accent);
+    transition: none;
+  }
+
+  #home .oc-about-photo-frame::after {
+    display: none;
+  }
+}
+
 /* Statement band: money-math sub-line */
 #home .oc-band-sub {
   font-family: var(--oc-font-mono);

@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@800&amp;family=DM+Sans:wght@400;700&amp;family=DM+Mono:wght@400;500&amp;display=swap" />
-  <link rel="stylesheet" href="./styles.css?v=20260729-appointment-demo" />
+  <link rel="stylesheet" href="./styles.css?v=20260729-invoice-demo" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -583,11 +583,88 @@
               </div>
             </div>
             <div class="oc-tool-listing-box">
-              <div class="oc-demo oc-demo--loop" aria-hidden="true">
-                <div class="oc-demo-line">Invoice #2187 · balance due</div>
-                <div class="oc-demo-bubble">Quick reminder that your remaining balance is ready here. Want me to resend the payment link?</div>
-                <div class="oc-demo-bubble oc-demo-bubble--reply">Please resend it. I'll take care of it now.</div>
-                <div class="oc-demo-line oc-demo-line--result">Payment link sent · balance collected</div>
+              <div class="oc-ivx" aria-hidden="true">
+                <div class="oc-ivx-stage">
+                  <div class="oc-ivx-title">
+                    <span class="oc-ivx-title-text oc-ivx-title-text--before">Before</span>
+                    <span class="oc-ivx-title-text oc-ivx-title-text--after">After</span>
+                    <span class="oc-ivx-title-wipe"></span>
+                  </div>
+
+                  <div class="oc-ivx-viewport">
+
+                    <!-- ============ BEFORE ============ -->
+                    <div class="oc-ivx-phase oc-ivx-phase--before">
+                      <div class="oc-ivx-flow">
+                        <div class="oc-ivx-seg oc-ivx-seg--upper"></div>
+                        <div class="oc-ivx-seg oc-ivx-seg--lower"></div>
+
+                        <div class="oc-ivx-step oc-ivx-step--sent">
+                          <span class="oc-ivx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M6.5 3.5h11c.6 0 1 .4 1 1v16l-2.2-1.6-2.1 1.6-2.2-1.6-2.1 1.6L7.7 19l-2.2 1.5V4.5c0-.6.4-1 1-1Z"/><path d="M9 8.5h6M9 12h6"/></svg>
+                          </span>
+                          <span class="oc-ivx-card oc-ivx-card--green">Invoice Sent &middot; $1,240</span>
+                        </div>
+
+                        <div class="oc-ivx-step oc-ivx-step--noremind">
+                          <span class="oc-ivx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M3.5 6.5h17v11h-17z"/><path d="M3.5 10h17"/><path d="M6.5 14h4"/><path class="oc-ivx-slash" d="M4 20 20 4"/></svg>
+                          </span>
+                          <span class="oc-ivx-card oc-ivx-card--warn">No Reminder Sent</span>
+                        </div>
+
+                        <div class="oc-ivx-step oc-ivx-step--unpaid">
+                          <span class="oc-ivx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 20.5a8.5 8.5 0 1 0 0-17 8.5 8.5 0 0 0 0 17Z"/><path class="oc-ivx-slash" d="M6.4 17.6 17.6 6.4"/></svg>
+                          </span>
+                          <span class="oc-ivx-card oc-ivx-card--red">Still Unpaid</span>
+                        </div>
+                      </div>
+
+                      <div class="oc-ivx-balance">
+                        <span class="oc-ivx-bal-label">Balance Due</span>
+                        <span class="oc-ivx-bal-amount">$1,240</span>
+                      </div>
+                    </div>
+
+                    <!-- ============ AFTER ============ -->
+                    <div class="oc-ivx-phase oc-ivx-phase--after">
+                      <div class="oc-ivx-flow">
+                        <div class="oc-ivx-seg oc-ivx-seg--upper"></div>
+                        <div class="oc-ivx-seg oc-ivx-seg--lower"></div>
+
+                        <div class="oc-ivx-step oc-ivx-step--sent">
+                          <span class="oc-ivx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M6.5 3.5h11c.6 0 1 .4 1 1v16l-2.2-1.6-2.1 1.6-2.2-1.6-2.1 1.6L7.7 19l-2.2 1.5V4.5c0-.6.4-1 1-1Z"/><path d="M9 8.5h6M9 12h6"/></svg>
+                          </span>
+                          <span class="oc-ivx-card oc-ivx-card--green">Invoice Sent &middot; $1,240</span>
+                        </div>
+
+                        <div class="oc-ivx-step oc-ivx-step--remind">
+                          <span class="oc-ivx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M3.5 6.5h17v11h-17z"/><path d="M3.5 10h17"/><path d="M6.5 14h4"/></svg>
+                          </span>
+                          <span class="oc-ivx-card oc-ivx-card--blue">Reminder &middot; Payment Link</span>
+                        </div>
+
+                        <div class="oc-ivx-step oc-ivx-step--paid">
+                          <span class="oc-ivx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 20.5a8.5 8.5 0 1 0 0-17 8.5 8.5 0 0 0 0 17Z"/><path d="M8.2 12.2l2.6 2.5 5-5.4"/></svg>
+                          </span>
+                          <span class="oc-ivx-card oc-ivx-card--blue">Paid In Full</span>
+                        </div>
+                      </div>
+
+                      <div class="oc-ivx-balance">
+                        <span class="oc-ivx-bal-label">Balance Due</span>
+                        <span class="oc-ivx-bal-amount">$1,240</span>
+                        <span class="oc-ivx-stamp">Paid</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <span class="oc-ivx-flash" aria-hidden="true"></span>
               </div>
             </div>
           </div>
@@ -788,46 +865,6 @@
         });
       }, { threshold: 0.15 });
       els.forEach(function (el) { io.observe(el); });
-    })();
-
-    /* Services demos: replay each card's messages on a staggered loop.
-       Starts when the card first scrolls into view; skipped entirely
-       under reduced-motion (children are shown static via CSS). */
-    (function () {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var demos = Array.prototype.slice.call(document.querySelectorAll('.oc-demo--loop'));
-      if (!demos.length) return;
-
-      function startLoop(demo, stagger) {
-        var kids = Array.prototype.slice.call(demo.children);
-        var step = 380, hold = 3200, fade = 700;
-        var revealSpan = kids.length * step;
-        function cycle() {
-          if (document.hidden) { setTimeout(cycle, 1200); return; }
-          kids.forEach(function (k, idx) {
-            setTimeout(function () { k.classList.add('oc-demo-show'); }, idx * step);
-          });
-          setTimeout(function () {
-            kids.forEach(function (k) { k.classList.remove('oc-demo-show'); });
-            setTimeout(cycle, fade);
-          }, revealSpan + hold);
-        }
-        setTimeout(cycle, stagger);
-      }
-
-      if (!('IntersectionObserver' in window)) {
-        demos.forEach(function (d, i) { startLoop(d, i * 500); });
-        return;
-      }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            startLoop(entry.target, demos.indexOf(entry.target) * 500);
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      demos.forEach(function (d) { io.observe(d); });
     })();
 
     /* Missed-call board: the totals count up as the board is revealed.

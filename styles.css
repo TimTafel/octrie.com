@@ -6201,3 +6201,601 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
   99.5% { opacity: 1; background-position: 2% 0; }
   99.8%, 100% { opacity: 0; background-position: 0% 0; }
 }
+
+
+/* ==========================================================================
+   Invoice & Payment Follow-Up demo  (.oc-ivx)
+   Fifth sibling of .oc-mcx / .oc-lqx / .oc-rvx / .oc-apx: same
+   container-query --u unit, title wipe, spine, status cards, 24s loop and
+   closing box wipe. Its own beat is THE STAMP -- the balance sits under the
+   flow, hardening from amber to red through Before while nobody chases it,
+   and in After a PAID stamp thuds down over it.
+   Design grid is 368 x 364 "units".
+   ========================================================================== */
+.oc-ivx {
+  --u: 1px;
+  --dur: 24s;
+
+  --frame-bg: var(--oc-surface-sunken, #E8E8E8);
+  --ink:      var(--oc-text-primary, #1A1A1A);
+
+  --green-ink: #1f6b45;  --green-line: #3f9c6c;
+  --green-border: rgba(63, 156, 108, 0.4);   --green-bg: #eaf6ee;
+  --warn-ink: #8a4a12;   --warn-line: #d9832f;
+  --warn-border: rgba(196, 118, 30, 0.55);   --warn-bg: #f9d9a8;
+  --red-ink: #7a2626;    --red-line: #b23f3f;
+  --red-border: rgba(178, 63, 63, 0.5);      --red-bg: #eeb3ac;
+  --blue-ink: #163e70;   --blue-line: #2b69be;
+  --blue-border: rgba(43, 105, 190, 0.55);   --blue-bg: #d6e8ff;
+
+  --cash-green: #1f8a55;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+  font-family: var(--oc-font-mono, 'DM Mono', 'Courier New', monospace);
+  color: var(--ink);
+}
+.oc-ivx *, .oc-ivx *::before, .oc-ivx *::after { box-sizing: border-box; }
+
+@supports (container-type: size) {
+  .oc-ivx { --u: calc(100cqmin / 380); }
+}
+
+.oc-ivx-stage {
+  position: relative;
+  width: calc(368 * var(--u));
+  flex: 0 0 auto;
+  -webkit-mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+  mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+  -webkit-mask-size: 200% 100%;
+  mask-size: 200% 100%;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: oc-ivx-stage-erase var(--dur) linear infinite;
+}
+
+.oc-ivx-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: linear-gradient(
+    112deg,
+    transparent 0%,
+    transparent 43%,
+    rgba(255, 255, 255, 0.25) 46.5%,
+    rgba(255, 255, 255, 0.9) 49%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.9) 51%,
+    rgba(255, 255, 255, 0.25) 53.5%,
+    transparent 57%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-ivx-box-wipe var(--dur) linear infinite;
+}
+
+/* ============ TITLE BAND ============ */
+.oc-ivx-title {
+  position: relative;
+  height: calc(64 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.oc-ivx-title-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(30 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.oc-ivx-title-text--before { animation: oc-ivx-title-before var(--dur) linear infinite; }
+.oc-ivx-title-text--after  { animation: oc-ivx-title-after var(--dur) linear infinite; }
+
+.oc-ivx-title-wipe {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    128deg,
+    transparent 0%,
+    transparent 46.5%,
+    rgba(255, 255, 255, 0.22) 48.3%,
+    rgba(255, 255, 255, 0.88) 49.4%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.88) 50.6%,
+    rgba(255, 255, 255, 0.22) 51.7%,
+    transparent 53.5%,
+    transparent 100%
+  );
+  background-size: 260% 100%;
+  background-position: 150% 0;
+  opacity: 0;
+  animation: oc-ivx-title-wipe var(--dur) linear infinite;
+}
+
+/* ============ VIEWPORT / PHASES ============ */
+.oc-ivx-viewport {
+  position: relative;
+  height: calc(300 * var(--u));
+  overflow: hidden;
+}
+.oc-ivx-phase {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+.oc-ivx-phase--before { animation: oc-ivx-phase-before-vis var(--dur) step-end infinite; }
+.oc-ivx-phase--after  { animation: oc-ivx-phase-after-vis var(--dur) step-end infinite; }
+
+/* Bottom 64u reserved for the balance line, same proportion the review and
+   appointment demos give their payoff bands. */
+.oc-ivx-flow {
+  position: relative;
+  height: calc(236 * var(--u));
+  padding: calc(26 * var(--u)) calc(6 * var(--u)) calc(10 * var(--u)) calc(24 * var(--u));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.oc-ivx-seg {
+  position: absolute;
+  left: calc(37.5 * var(--u));
+  width: calc(3 * var(--u));
+  border-radius: calc(2 * var(--u));
+  z-index: 1;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.oc-ivx-seg--upper { top: calc(59 * var(--u));  bottom: calc(125 * var(--u)); }
+.oc-ivx-seg--lower { top: calc(141 * var(--u)); bottom: calc(43 * var(--u)); }
+
+.oc-ivx-phase--before .oc-ivx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--warn-line));
+  animation: oc-ivx-seg-upper-before var(--dur) linear infinite;
+}
+.oc-ivx-phase--before .oc-ivx-seg--lower {
+  background: linear-gradient(to bottom, var(--warn-line), var(--red-line));
+  animation: oc-ivx-seg-lower-before var(--dur) linear infinite;
+}
+.oc-ivx-phase--after .oc-ivx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--blue-line));
+  animation: oc-ivx-seg-upper-after var(--dur) linear infinite;
+}
+.oc-ivx-phase--after .oc-ivx-seg--lower {
+  background: var(--blue-line);
+  animation: oc-ivx-seg-lower-after var(--dur) linear infinite;
+}
+
+.oc-ivx-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+  opacity: 0;
+  z-index: 2;
+}
+.oc-ivx-step--noremind,
+.oc-ivx-step--unpaid,
+.oc-ivx-step--remind,
+.oc-ivx-step--paid { opacity: 1; }
+
+.oc-ivx-icon {
+  position: relative;
+  flex: 0 0 calc(30 * var(--u));
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border-radius: 50%;
+  background: var(--frame-bg);
+  box-shadow: 0 0 0 calc(2 * var(--u)) var(--frame-bg);
+}
+.oc-ivx-icon svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); overflow: visible; }
+.oc-ivx-icon path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.oc-ivx-card {
+  flex: 1;
+  max-width: calc(235 * var(--u));
+  min-height: calc(36 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(6 * var(--u)) calc(11 * var(--u));
+  border-radius: calc(3 * var(--u));
+  border: calc(1.5 * var(--u)) solid;
+  box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  font-size: calc(11 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+}
+.oc-ivx-card--green { border-color: var(--green-border); background: var(--green-bg); color: var(--green-ink); }
+.oc-ivx-card--warn  { border-color: var(--warn-border);  background: var(--warn-bg);  color: var(--warn-ink); }
+.oc-ivx-card--red   { border-color: var(--red-border);   background: var(--red-bg);   color: var(--red-ink); }
+.oc-ivx-card--blue  { border-color: var(--blue-border);  background: var(--blue-bg);  color: var(--blue-ink); }
+
+.oc-ivx-step--sent .oc-ivx-icon     { color: var(--green-line); }
+.oc-ivx-step--noremind .oc-ivx-icon { color: var(--warn-line); }
+.oc-ivx-step--unpaid .oc-ivx-icon   { color: var(--red-line); }
+.oc-ivx-step--remind .oc-ivx-icon   { color: var(--blue-line); }
+.oc-ivx-step--paid .oc-ivx-icon     { color: var(--blue-line); }
+
+/* ============ BALANCE LINE (the payoff) ============ */
+.oc-ivx-balance {
+  position: relative;
+  height: calc(64 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(12 * var(--u));
+}
+.oc-ivx-bal-label {
+  font-size: calc(11 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--oc-text-secondary, #767676);
+}
+.oc-ivx-bal-amount {
+  font-size: calc(28 * var(--u));
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+/* Before: the balance just hardens. Nobody is coming for it. */
+.oc-ivx-phase--before .oc-ivx-bal-label { animation: oc-ivx-bal-label-before var(--dur) linear infinite; }
+.oc-ivx-phase--before .oc-ivx-bal-amount { animation: oc-ivx-bal-amount-before var(--dur) linear infinite; }
+.oc-ivx-phase--after .oc-ivx-bal-label { animation: oc-ivx-bal-fade-after var(--dur) linear infinite; }
+.oc-ivx-phase--after .oc-ivx-bal-amount { animation: oc-ivx-bal-amount-after var(--dur) linear infinite; }
+
+/* After: the stamp thuds down across the balance. */
+/* Sits over the figure rather than the whole line, so "Balance Due" stays
+   readable on the left and PAID lands across the number the way a stamp
+   would on a real invoice. */
+.oc-ivx-stamp {
+  position: absolute;
+  left: 61%;
+  top: 50%;
+  padding: calc(4 * var(--u)) calc(14 * var(--u));
+  border: calc(2.5 * var(--u)) solid var(--cash-green);
+  border-radius: calc(3 * var(--u));
+  font-size: calc(20 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cash-green);
+  background: rgba(234, 246, 238, 0.82);
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-20deg) scale(2.4);
+  animation: oc-ivx-stamp-thud var(--dur) linear infinite;
+}
+
+/* ---- BEFORE step motion ---- */
+.oc-ivx-phase--before .oc-ivx-step--sent { animation: oc-ivx-sent-before var(--dur) ease-out infinite; }
+.oc-ivx-step--noremind .oc-ivx-card { animation: oc-ivx-noremind-card var(--dur) linear infinite; }
+.oc-ivx-step--noremind .oc-ivx-icon { opacity: 0; animation: oc-ivx-noremind-icon var(--dur) linear infinite; }
+.oc-ivx-step--unpaid .oc-ivx-card { animation: oc-ivx-unpaid-card var(--dur) linear infinite; }
+.oc-ivx-step--unpaid .oc-ivx-icon { opacity: 0; animation: oc-ivx-unpaid-icon var(--dur) linear infinite; }
+.oc-ivx-phase--before .oc-ivx-slash { stroke-dasharray: 24; stroke-dashoffset: 24; }
+.oc-ivx-step--noremind .oc-ivx-slash { animation: oc-ivx-slash-noremind var(--dur) linear infinite; }
+.oc-ivx-step--unpaid .oc-ivx-slash { animation: oc-ivx-slash-unpaid var(--dur) linear infinite; }
+
+/* ---- AFTER step motion ---- */
+.oc-ivx-phase--after .oc-ivx-step--sent { animation: oc-ivx-sent-after var(--dur) ease-out infinite; }
+.oc-ivx-step--remind .oc-ivx-card {
+  animation: oc-ivx-remind-card var(--dur) linear infinite,
+             oc-ivx-remind-flash var(--dur) linear infinite;
+}
+.oc-ivx-step--remind .oc-ivx-icon { opacity: 0; animation: oc-ivx-remind-icon var(--dur) linear infinite; }
+.oc-ivx-step--paid .oc-ivx-card {
+  position: relative;
+  overflow: hidden;
+  animation: oc-ivx-paid-card var(--dur) linear infinite;
+}
+.oc-ivx-step--paid .oc-ivx-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(120, 180, 255, 0.30) 45%,
+    rgba(228, 242, 255, 0.98) 50%,
+    rgba(120, 180, 255, 0.30) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 230% 100%;
+  background-position: 135% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-ivx-paid-wipe var(--dur) linear infinite;
+}
+.oc-ivx-step--paid .oc-ivx-icon { opacity: 0; animation: oc-ivx-paid-icon var(--dur) linear infinite; }
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  .oc-ivx-title-text--before { display: none; }
+  .oc-ivx-title-text--after { position: static; opacity: 1; }
+  .oc-ivx-title-wipe { display: none; }
+  .oc-ivx-phase--before { display: none; }
+  .oc-ivx-phase--after { visibility: visible; }
+  .oc-ivx-flash { display: none; }
+  .oc-ivx-stage {
+    animation: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .oc-ivx-step, .oc-ivx-card, .oc-ivx-icon, .oc-ivx-seg,
+  .oc-ivx-bal-label, .oc-ivx-bal-amount {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .oc-ivx-stamp {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) rotate(-12deg) !important;
+  }
+}
+
+/* ============ KEYFRAMES ============ */
+
+@keyframes oc-ivx-title-before {
+  0%, 51.58% { opacity: 1; }
+  51.82%, 100% { opacity: 0; }
+}
+@keyframes oc-ivx-title-after {
+  0%, 51.58% { opacity: 0; }
+  51.82%, 100% { opacity: 1; }
+}
+@keyframes oc-ivx-title-wipe {
+  0%, 50.2% { opacity: 0; background-position: 150% 0; }
+  50.4% { opacity: 1; background-position: 150% 0; }
+  53% { opacity: 1; background-position: -50% 0; }
+  53.3%, 100% { opacity: 0; background-position: -50% 0; }
+}
+@keyframes oc-ivx-phase-before-vis {
+  0% { visibility: visible; }
+  50% { visibility: visible; }
+  50.01% { visibility: hidden; }
+  100% { visibility: hidden; }
+}
+@keyframes oc-ivx-phase-after-vis {
+  0% { visibility: hidden; }
+  53.2% { visibility: hidden; }
+  53.3% { visibility: visible; }
+  100% { visibility: visible; }
+}
+
+/* --- BEFORE --- */
+@keyframes oc-ivx-sent-before {
+  0%, 1.5% { opacity: 0; transform: translateY(calc(-20 * var(--u))); }
+  4% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  5.5%, 46% { opacity: 1; transform: translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-ivx-seg-upper-before {
+  0%, 5.5% { opacity: 1; transform: scaleY(0); }
+  11%, 46% { opacity: 1; transform: scaleY(1); filter: saturate(1); }
+  47.5% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-ivx-noremind-card {
+  0%, 11% { opacity: 0; transform: translateY(calc(-12 * var(--u))); }
+  14.5%, 46% { opacity: 1; transform: translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-ivx-noremind-icon {
+  0%, 12% { opacity: 0; transform: scale(0.7); }
+  14.5% { opacity: 1; transform: scale(1.1); }
+  15.5%, 46% { opacity: 1; transform: scale(1); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-ivx-slash-noremind {
+  0%, 16% { stroke-dashoffset: 24; }
+  19%, 46% { stroke-dashoffset: 0; }
+  49%, 100% { stroke-dashoffset: 0; }
+}
+/* The balance hardens through the dead stretch: amber, then red, and it
+   never moves. */
+@keyframes oc-ivx-bal-label-before {
+  0%, 16% { color: var(--oc-text-secondary, #767676); }
+  25% { color: var(--warn-ink); }
+  34%, 46% { color: var(--red-ink); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-ivx-bal-amount-before {
+  0%, 16% { color: var(--ink); transform: scale(1); }
+  25% { color: var(--warn-ink); transform: scale(1); }
+  33% { color: var(--red-ink); transform: scale(1.06); }
+  36%, 46% { color: var(--red-ink); transform: scale(1); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-ivx-seg-lower-before {
+  0%, 33% { opacity: 1; transform: scaleY(0); }
+  38%, 46% { opacity: 1; transform: scaleY(1); filter: saturate(1); }
+  47.5% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-ivx-unpaid-card {
+  0%, 38% { opacity: 0; transform: scale(1.08) translateY(calc(-5 * var(--u))); }
+  40.5% { opacity: 1; transform: scale(0.95) translateY(calc(2 * var(--u))); }
+  42%, 46% { opacity: 1; transform: scale(1) translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-ivx-unpaid-icon {
+  0%, 38.5% { opacity: 0; transform: scale(0.7); }
+  40.5% { opacity: 1; transform: scale(1.12); }
+  41.5%, 46% { opacity: 1; transform: scale(1); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-ivx-slash-unpaid {
+  0%, 41% { stroke-dashoffset: 24; }
+  43.5%, 46% { stroke-dashoffset: 0; }
+  49%, 100% { stroke-dashoffset: 0; }
+}
+
+/* --- AFTER --- */
+@keyframes oc-ivx-sent-after {
+  0%, 54% { opacity: 0; transform: translateY(calc(-20 * var(--u))); }
+  56.5% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  57.5%, 98% { opacity: 1; transform: translateY(0); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-ivx-seg-upper-after {
+  0%, 57.5% { opacity: 1; transform: scaleY(0); }
+  63%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+@keyframes oc-ivx-remind-card {
+  0%, 63% { opacity: 0; transform: translateX(calc(60 * var(--u))); }
+  65.5% { opacity: 1; transform: translateX(calc(-5 * var(--u))); }
+  66.5% { opacity: 1; transform: translateX(calc(2 * var(--u))); }
+  67%, 98% { opacity: 1; transform: translateX(0); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-ivx-remind-flash {
+  0%, 67% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  67.9% {
+    border-color: var(--blue-line);
+    background: #ffffff;
+    box-shadow: 0 0 0 calc(9 * var(--u)) rgba(43, 105, 190, 0.24),
+                0 0 calc(24 * var(--u)) rgba(43, 105, 190, 0.48),
+                calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  69.2%, 100% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+}
+@keyframes oc-ivx-remind-icon {
+  0%, 64.5% { opacity: 0; transform: translateX(calc(-8 * var(--u))) scale(0.7); }
+  66.5% { opacity: 1; transform: translateX(0) scale(1.14); }
+  67.5%, 98% { opacity: 1; transform: translateX(0) scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-ivx-seg-lower-after {
+  0%, 69.5% { opacity: 1; transform: scaleY(0); }
+  74%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+@keyframes oc-ivx-paid-card {
+  0%, 74% { opacity: 0; transform: translateY(calc(14 * var(--u))) scale(0.9); }
+  76.5% { opacity: 1; transform: translateY(calc(-4 * var(--u))) scale(1.04); }
+  77.5%, 98% { opacity: 1; transform: translateY(0) scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-ivx-paid-icon {
+  0%, 75% { opacity: 0; transform: scale(0.65); }
+  77% { opacity: 1; transform: scale(1.14); }
+  78%, 98% { opacity: 1; transform: scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-ivx-paid-wipe {
+  0%, 78% { opacity: 0; background-position: 135% 0; }
+  78.2% { opacity: 1; background-position: 135% 0; }
+  79.4% { opacity: 1; background-position: -35% 0; }
+  79.6%, 100% { opacity: 0; background-position: -35% 0; }
+}
+@keyframes oc-ivx-bal-fade-after {
+  0%, 98% { opacity: 1; }
+  99.6%, 100% { opacity: 0; }
+}
+/* The amount stays put and dims a touch once the stamp is over it. */
+@keyframes oc-ivx-bal-amount-after {
+  0%, 80% { color: var(--ink); opacity: 1; }
+  82.5%, 98% { color: #5f5b55; opacity: 1; }
+  99.6%, 100% { color: #5f5b55; opacity: 0; }
+}
+/* Drops in from above the frame, overshoots on impact, rocks once, settles
+   slightly askew the way a real stamp lands. */
+@keyframes oc-ivx-stamp-thud {
+  0%, 79.4% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-20deg) scale(2.4);
+  }
+  80.1% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-14deg) scale(0.92);
+  }
+  80.9% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-9deg) scale(1.07);
+  }
+  81.7% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-13.5deg) scale(0.98);
+  }
+  82.5%, 98% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+  }
+  99.6%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+  }
+}
+
+@keyframes oc-ivx-stage-erase {
+  0%, 96.1% {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  99.7%, 100% {
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
+}
+@keyframes oc-ivx-box-wipe {
+  0%, 96.0% { opacity: 0; background-position: 100% 0; }
+  96.2% { opacity: 1; background-position: 98% 0; }
+  99.5% { opacity: 1; background-position: 2% 0; }
+  99.8%, 100% { opacity: 0; background-position: 0% 0; }
+}

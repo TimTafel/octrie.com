@@ -5047,3 +5047,561 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
   99.5% { opacity: 1; background-position: 2% 0; }
   99.8%, 100% { opacity: 0; background-position: 0% 0; }
 }
+
+
+/* ==========================================================================
+   Review Requests demo  (.oc-rvx)
+   Third sibling of .oc-mcx / .oc-lqx: same container-query --u unit, title
+   wipe, spine, status cards, 24s loop and closing box wipe. Its own beat is
+   ACCUMULATION -- five stars sit unearned and grey through Before, then fill
+   gold one at a time in After. Icons mirror across the two phases (same
+   speech bubble, same star), slashed in Before and clean in After, so the
+   contrast reads without needing the words.
+   Design grid is 368 x 364 "units".
+   ========================================================================== */
+.oc-rvx {
+  --u: 1px;
+  --dur: 24s;
+
+  --frame-bg: var(--oc-surface-sunken, #E8E8E8);
+  --ink:      var(--oc-text-primary, #1A1A1A);
+
+  --green-ink: #1f6b45;  --green-line: #3f9c6c;
+  --green-border: rgba(63, 156, 108, 0.4);   --green-bg: #eaf6ee;
+  --warn-ink: #8a4a12;   --warn-line: #d9832f;
+  --warn-border: rgba(196, 118, 30, 0.55);   --warn-bg: #f9d9a8;
+  --red-ink: #7a2626;    --red-line: #b23f3f;
+  --red-border: rgba(178, 63, 63, 0.5);      --red-bg: #eeb3ac;
+  --blue-ink: #163e70;   --blue-line: #2b69be;
+  --blue-border: rgba(43, 105, 190, 0.55);   --blue-bg: #d6e8ff;
+
+  --star-cold: #b0aca4;
+  --star-gold: var(--oc-vertical-accent, #B8922A);
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+  font-family: var(--oc-font-mono, 'DM Mono', 'Courier New', monospace);
+  color: var(--ink);
+}
+.oc-rvx *, .oc-rvx *::before, .oc-rvx *::after { box-sizing: border-box; }
+
+@supports (container-type: size) {
+  .oc-rvx { --u: calc(100cqmin / 380); }
+}
+
+.oc-rvx-stage {
+  position: relative;
+  width: calc(368 * var(--u));
+  flex: 0 0 auto;
+  -webkit-mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+  mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+  -webkit-mask-size: 200% 100%;
+  mask-size: 200% 100%;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: oc-rvx-stage-erase var(--dur) linear infinite;
+}
+
+.oc-rvx-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: linear-gradient(
+    112deg,
+    transparent 0%,
+    transparent 43%,
+    rgba(255, 255, 255, 0.25) 46.5%,
+    rgba(255, 255, 255, 0.9) 49%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.9) 51%,
+    rgba(255, 255, 255, 0.25) 53.5%,
+    transparent 57%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-rvx-box-wipe var(--dur) linear infinite;
+}
+
+/* ============ TITLE BAND ============ */
+.oc-rvx-title {
+  position: relative;
+  height: calc(64 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.oc-rvx-title-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(30 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.oc-rvx-title-text--before { animation: oc-rvx-title-before var(--dur) linear infinite; }
+.oc-rvx-title-text--after  { animation: oc-rvx-title-after var(--dur) linear infinite; }
+
+.oc-rvx-title-wipe {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    128deg,
+    transparent 0%,
+    transparent 46.5%,
+    rgba(255, 255, 255, 0.22) 48.3%,
+    rgba(255, 255, 255, 0.88) 49.4%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.88) 50.6%,
+    rgba(255, 255, 255, 0.22) 51.7%,
+    transparent 53.5%,
+    transparent 100%
+  );
+  background-size: 260% 100%;
+  background-position: 150% 0;
+  opacity: 0;
+  animation: oc-rvx-title-wipe var(--dur) linear infinite;
+}
+
+/* ============ VIEWPORT / PHASES ============ */
+.oc-rvx-viewport {
+  position: relative;
+  height: calc(300 * var(--u));
+  overflow: hidden;
+}
+.oc-rvx-phase {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+.oc-rvx-phase--before { animation: oc-rvx-phase-before-vis var(--dur) step-end infinite; }
+.oc-rvx-phase--after  { animation: oc-rvx-phase-after-vis var(--dur) step-end infinite; }
+
+/* Shorter flow than the siblings: the bottom 64u is reserved for the star
+   band, which is this demo's payoff rather than a cash burst. */
+.oc-rvx-flow {
+  position: relative;
+  height: calc(236 * var(--u));
+  padding: calc(26 * var(--u)) calc(6 * var(--u)) calc(10 * var(--u)) calc(24 * var(--u));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.oc-rvx-seg {
+  position: absolute;
+  left: calc(37.5 * var(--u));
+  width: calc(3 * var(--u));
+  border-radius: calc(2 * var(--u));
+  z-index: 1;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.oc-rvx-seg--upper { top: calc(59 * var(--u));  bottom: calc(125 * var(--u)); }
+.oc-rvx-seg--lower { top: calc(141 * var(--u)); bottom: calc(43 * var(--u)); }
+
+.oc-rvx-phase--before .oc-rvx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--warn-line));
+  animation: oc-rvx-seg-upper-before var(--dur) linear infinite;
+}
+.oc-rvx-phase--before .oc-rvx-seg--lower {
+  background: linear-gradient(to bottom, var(--warn-line), var(--red-line));
+  animation: oc-rvx-seg-lower-before var(--dur) linear infinite;
+}
+.oc-rvx-phase--after .oc-rvx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--blue-line));
+  animation: oc-rvx-seg-upper-after var(--dur) linear infinite;
+}
+.oc-rvx-phase--after .oc-rvx-seg--lower {
+  background: var(--blue-line);
+  animation: oc-rvx-seg-lower-after var(--dur) linear infinite;
+}
+
+.oc-rvx-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+  opacity: 0;
+  z-index: 2;
+}
+.oc-rvx-step--noask,
+.oc-rvx-step--noreview,
+.oc-rvx-step--ask,
+.oc-rvx-step--posted { opacity: 1; }
+
+.oc-rvx-icon {
+  position: relative;
+  flex: 0 0 calc(30 * var(--u));
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border-radius: 50%;
+  background: var(--frame-bg);
+  box-shadow: 0 0 0 calc(2 * var(--u)) var(--frame-bg);
+}
+.oc-rvx-icon svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); overflow: visible; }
+.oc-rvx-icon path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.oc-rvx-card {
+  flex: 1;
+  max-width: calc(235 * var(--u));
+  min-height: calc(36 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(6 * var(--u)) calc(11 * var(--u));
+  border-radius: calc(3 * var(--u));
+  border: calc(1.5 * var(--u)) solid;
+  box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  font-size: calc(11 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+}
+.oc-rvx-card--green { border-color: var(--green-border); background: var(--green-bg); color: var(--green-ink); }
+.oc-rvx-card--warn  { border-color: var(--warn-border);  background: var(--warn-bg);  color: var(--warn-ink); }
+.oc-rvx-card--red   { border-color: var(--red-border);   background: var(--red-bg);   color: var(--red-ink); }
+.oc-rvx-card--blue  { border-color: var(--blue-border);  background: var(--blue-bg);  color: var(--blue-ink); }
+
+.oc-rvx-step--done .oc-rvx-icon     { color: var(--green-line); }
+.oc-rvx-step--noask .oc-rvx-icon    { color: var(--warn-line); }
+.oc-rvx-step--noreview .oc-rvx-icon { color: var(--red-line); }
+.oc-rvx-step--ask .oc-rvx-icon      { color: var(--blue-line); }
+.oc-rvx-step--posted .oc-rvx-icon   { color: var(--blue-line); }
+
+/* ============ STAR BAND (the payoff) ============ */
+.oc-rvx-stars {
+  height: calc(64 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(9 * var(--u));
+}
+.oc-rvx-star {
+  font-style: normal;
+  font-size: calc(31 * var(--u));
+  line-height: 1;
+  color: var(--star-cold);
+  transform-origin: 50% 55%;
+}
+
+/* Before: the stars are never earned. They breathe once, hopefully, while
+   the job sits un-asked-about, then go flat and stay grey. */
+.oc-rvx-phase--before .oc-rvx-star { animation: oc-rvx-star-cold var(--dur) ease-in-out infinite; }
+
+/* After: each one turns gold in turn, left to right. */
+.oc-rvx-star--1 { animation: oc-rvx-star-earn-1 var(--dur) ease-out infinite; }
+.oc-rvx-star--2 { animation: oc-rvx-star-earn-2 var(--dur) ease-out infinite; }
+.oc-rvx-star--3 { animation: oc-rvx-star-earn-3 var(--dur) ease-out infinite; }
+.oc-rvx-star--4 { animation: oc-rvx-star-earn-4 var(--dur) ease-out infinite; }
+.oc-rvx-star--5 { animation: oc-rvx-star-earn-5 var(--dur) ease-out infinite; }
+
+/* ---- BEFORE step motion ---- */
+.oc-rvx-phase--before .oc-rvx-step--done { animation: oc-rvx-done-before var(--dur) ease-out infinite; }
+.oc-rvx-step--noask .oc-rvx-card { animation: oc-rvx-noask-card var(--dur) linear infinite; }
+.oc-rvx-step--noask .oc-rvx-icon { opacity: 0; animation: oc-rvx-noask-icon var(--dur) linear infinite; }
+.oc-rvx-step--noreview .oc-rvx-card { animation: oc-rvx-noreview-card var(--dur) linear infinite; }
+.oc-rvx-step--noreview .oc-rvx-icon { opacity: 0; animation: oc-rvx-noreview-icon var(--dur) linear infinite; }
+.oc-rvx-phase--before .oc-rvx-slash { stroke-dasharray: 24; stroke-dashoffset: 24; }
+.oc-rvx-step--noask .oc-rvx-slash { animation: oc-rvx-slash-noask var(--dur) linear infinite; }
+.oc-rvx-step--noreview .oc-rvx-slash { animation: oc-rvx-slash-noreview var(--dur) linear infinite; }
+
+/* ---- AFTER step motion ---- */
+.oc-rvx-phase--after .oc-rvx-step--done { animation: oc-rvx-done-after var(--dur) ease-out infinite; }
+.oc-rvx-step--ask .oc-rvx-card {
+  animation: oc-rvx-ask-card var(--dur) linear infinite,
+             oc-rvx-ask-flash var(--dur) linear infinite;
+}
+.oc-rvx-step--ask .oc-rvx-icon { opacity: 0; animation: oc-rvx-ask-icon var(--dur) linear infinite; }
+.oc-rvx-step--posted .oc-rvx-card {
+  position: relative;
+  overflow: hidden;
+  animation: oc-rvx-posted-card var(--dur) linear infinite;
+}
+.oc-rvx-step--posted .oc-rvx-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(120, 180, 255, 0.30) 45%,
+    rgba(228, 242, 255, 0.98) 50%,
+    rgba(120, 180, 255, 0.30) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 230% 100%;
+  background-position: 135% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-rvx-posted-wipe var(--dur) linear infinite;
+}
+.oc-rvx-step--posted .oc-rvx-icon { opacity: 0; animation: oc-rvx-posted-icon var(--dur) linear infinite; }
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  .oc-rvx-title-text--before { display: none; }
+  .oc-rvx-title-text--after { position: static; opacity: 1; }
+  .oc-rvx-title-wipe { display: none; }
+  .oc-rvx-phase--before { display: none; }
+  .oc-rvx-phase--after { visibility: visible; }
+  .oc-rvx-flash { display: none; }
+  .oc-rvx-stage {
+    animation: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .oc-rvx-step, .oc-rvx-card, .oc-rvx-icon, .oc-rvx-seg {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .oc-rvx-star {
+    animation: none !important;
+    transform: none !important;
+    color: var(--star-gold);
+  }
+}
+
+/* ============ KEYFRAMES ============ */
+
+@keyframes oc-rvx-title-before {
+  0%, 51.58% { opacity: 1; }
+  51.82%, 100% { opacity: 0; }
+}
+@keyframes oc-rvx-title-after {
+  0%, 51.58% { opacity: 0; }
+  51.82%, 100% { opacity: 1; }
+}
+@keyframes oc-rvx-title-wipe {
+  0%, 50.2% { opacity: 0; background-position: 150% 0; }
+  50.4% { opacity: 1; background-position: 150% 0; }
+  53% { opacity: 1; background-position: -50% 0; }
+  53.3%, 100% { opacity: 0; background-position: -50% 0; }
+}
+@keyframes oc-rvx-phase-before-vis {
+  0% { visibility: visible; }
+  50% { visibility: visible; }
+  50.01% { visibility: hidden; }
+  100% { visibility: hidden; }
+}
+@keyframes oc-rvx-phase-after-vis {
+  0% { visibility: hidden; }
+  53.2% { visibility: hidden; }
+  53.3% { visibility: visible; }
+  100% { visibility: visible; }
+}
+
+/* --- BEFORE --- */
+@keyframes oc-rvx-done-before {
+  0%, 1.5% { opacity: 0; transform: translateY(calc(-20 * var(--u))); }
+  4% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  5.5%, 46% { opacity: 1; transform: translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-rvx-seg-upper-before {
+  0%, 5.5% { opacity: 1; transform: scaleY(0); }
+  11%, 46% { opacity: 1; transform: scaleY(1); filter: saturate(1); }
+  47.5% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-rvx-noask-card {
+  0%, 11% { opacity: 0; transform: translateY(calc(-12 * var(--u))); }
+  14.5%, 46% { opacity: 1; transform: translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-rvx-noask-icon {
+  0%, 12% { opacity: 0; transform: scale(0.7); }
+  14.5% { opacity: 1; transform: scale(1.1); }
+  15.5%, 46% { opacity: 1; transform: scale(1); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-rvx-slash-noask {
+  0%, 16% { stroke-dashoffset: 24; }
+  19%, 46% { stroke-dashoffset: 0; }
+  49%, 100% { stroke-dashoffset: 0; }
+}
+@keyframes oc-rvx-seg-lower-before {
+  0%, 33% { opacity: 1; transform: scaleY(0); }
+  38%, 46% { opacity: 1; transform: scaleY(1); filter: saturate(1); }
+  47.5% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-rvx-noreview-card {
+  0%, 38% { opacity: 0; transform: scale(1.08) translateY(calc(-5 * var(--u))); }
+  40.5% { opacity: 1; transform: scale(0.95) translateY(calc(2 * var(--u))); }
+  42%, 46% { opacity: 1; transform: scale(1) translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-rvx-noreview-icon {
+  0%, 38.5% { opacity: 0; transform: scale(0.7); }
+  40.5% { opacity: 1; transform: scale(1.12); }
+  41.5%, 46% { opacity: 1; transform: scale(1); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-rvx-slash-noreview {
+  0%, 41% { stroke-dashoffset: 24; }
+  43.5%, 46% { stroke-dashoffset: 0; }
+  49%, 100% { stroke-dashoffset: 0; }
+}
+/* One hopeful breath while the job sits un-asked-about, then flat grey. */
+@keyframes oc-rvx-star-cold {
+  0%, 15% { opacity: 0.5; transform: scale(1); color: var(--star-cold); }
+  22% { opacity: 0.78; transform: scale(1.04); color: #c2b391; }
+  30%, 46% { opacity: 0.42; transform: scale(1); color: var(--star-cold); }
+  49%, 100% { opacity: 0; transform: scale(1); color: var(--star-cold); }
+}
+
+/* --- AFTER --- */
+@keyframes oc-rvx-done-after {
+  0%, 54% { opacity: 0; transform: translateY(calc(-20 * var(--u))); }
+  56.5% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  57.5%, 98% { opacity: 1; transform: translateY(0); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-rvx-seg-upper-after {
+  0%, 57.5% { opacity: 1; transform: scaleY(0); }
+  63%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+@keyframes oc-rvx-ask-card {
+  0%, 63% { opacity: 0; transform: translateX(calc(60 * var(--u))); }
+  65.5% { opacity: 1; transform: translateX(calc(-5 * var(--u))); }
+  66.5% { opacity: 1; transform: translateX(calc(2 * var(--u))); }
+  67%, 98% { opacity: 1; transform: translateX(0); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-rvx-ask-flash {
+  0%, 67% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  67.9% {
+    border-color: var(--blue-line);
+    background: #ffffff;
+    box-shadow: 0 0 0 calc(9 * var(--u)) rgba(43, 105, 190, 0.24),
+                0 0 calc(24 * var(--u)) rgba(43, 105, 190, 0.48),
+                calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  69.2%, 100% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+}
+@keyframes oc-rvx-ask-icon {
+  0%, 64.5% { opacity: 0; transform: translateX(calc(-8 * var(--u))) scale(0.7); }
+  66.5% { opacity: 1; transform: translateX(0) scale(1.14); }
+  67.5%, 98% { opacity: 1; transform: translateX(0) scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-rvx-seg-lower-after {
+  0%, 69.5% { opacity: 1; transform: scaleY(0); }
+  74%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+@keyframes oc-rvx-posted-card {
+  0%, 74% { opacity: 0; transform: translateY(calc(14 * var(--u))) scale(0.9); }
+  76.5% { opacity: 1; transform: translateY(calc(-4 * var(--u))) scale(1.04); }
+  77.5%, 98% { opacity: 1; transform: translateY(0) scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-rvx-posted-icon {
+  0%, 75% { opacity: 0; transform: scale(0.65); }
+  77% { opacity: 1; transform: scale(1.14); }
+  78%, 98% { opacity: 1; transform: scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-rvx-posted-wipe {
+  0%, 78% { opacity: 0; background-position: 135% 0; }
+  78.2% { opacity: 1; background-position: 135% 0; }
+  79.4% { opacity: 1; background-position: -35% 0; }
+  79.6%, 100% { opacity: 0; background-position: -35% 0; }
+}
+
+/* Each star lands with a small overshoot, ~1.6% apart, finishing well
+   before the closing wipe. */
+@keyframes oc-rvx-star-earn-1 {
+  0%, 79.4% { color: var(--star-cold); opacity: 0.42; transform: scale(1); }
+  80.3% { color: var(--star-gold); opacity: 1; transform: scale(1.4); }
+  81%, 98% { color: var(--star-gold); opacity: 1; transform: scale(1); }
+  99.6%, 100% { color: var(--star-gold); opacity: 0; transform: scale(1); }
+}
+@keyframes oc-rvx-star-earn-2 {
+  0%, 81% { color: var(--star-cold); opacity: 0.42; transform: scale(1); }
+  81.9% { color: var(--star-gold); opacity: 1; transform: scale(1.4); }
+  82.6%, 98% { color: var(--star-gold); opacity: 1; transform: scale(1); }
+  99.6%, 100% { color: var(--star-gold); opacity: 0; transform: scale(1); }
+}
+@keyframes oc-rvx-star-earn-3 {
+  0%, 82.6% { color: var(--star-cold); opacity: 0.42; transform: scale(1); }
+  83.5% { color: var(--star-gold); opacity: 1; transform: scale(1.4); }
+  84.2%, 98% { color: var(--star-gold); opacity: 1; transform: scale(1); }
+  99.6%, 100% { color: var(--star-gold); opacity: 0; transform: scale(1); }
+}
+@keyframes oc-rvx-star-earn-4 {
+  0%, 84.2% { color: var(--star-cold); opacity: 0.42; transform: scale(1); }
+  85.1% { color: var(--star-gold); opacity: 1; transform: scale(1.4); }
+  85.8%, 98% { color: var(--star-gold); opacity: 1; transform: scale(1); }
+  99.6%, 100% { color: var(--star-gold); opacity: 0; transform: scale(1); }
+}
+@keyframes oc-rvx-star-earn-5 {
+  0%, 85.8% { color: var(--star-cold); opacity: 0.42; transform: scale(1); }
+  86.7% { color: var(--star-gold); opacity: 1; transform: scale(1.45); }
+  87.4%, 98% { color: var(--star-gold); opacity: 1; transform: scale(1); }
+  99.6%, 100% { color: var(--star-gold); opacity: 0; transform: scale(1); }
+}
+
+@keyframes oc-rvx-stage-erase {
+  0%, 96.1% {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  99.7%, 100% {
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
+}
+@keyframes oc-rvx-box-wipe {
+  0%, 96.0% { opacity: 0; background-position: 100% 0; }
+  96.2% { opacity: 1; background-position: 98% 0; }
+  99.5% { opacity: 1; background-position: 2% 0; }
+  99.8%, 100% { opacity: 0; background-position: 0% 0; }
+}

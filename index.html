@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@800&amp;family=DM+Sans:wght@400;700&amp;family=DM+Mono:wght@400;500&amp;display=swap" />
-  <link rel="stylesheet" href="./styles.css?v=20260729-lead-quote-demo" />
+  <link rel="stylesheet" href="./styles.css?v=20260729-review-requests-demo" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -354,20 +354,93 @@
               </div>
             </div>
             <div class="oc-tool-listing-box">
-              <div class="oc-demo oc-demo--review" aria-hidden="true">
-                <div class="oc-demo-phase oc-demo-phase--chat">
-                  <div class="oc-demo-line">Job complete · 4:12 PM</div>
-                  <div class="oc-demo-bubble">Thanks for choosing us! Mind leaving a quick review?</div>
-                  <div class="oc-demo-bubble oc-demo-bubble--reply">Happy to — you guys were great. Posting one now.</div>
-                </div>
-                <div class="oc-demo-phase oc-demo-phase--review">
-                  <div class="oc-demo-line">Posted · Google review</div>
-                  <div class="oc-review-card">
-                    <div class="oc-review-stars">★★★★★</div>
-                    <p class="oc-review-text">Showed up when they said they would, fixed it right the first time, and the price was exactly what they quoted.</p>
+              <div class="oc-rvx" aria-hidden="true">
+                <div class="oc-rvx-stage">
+                  <div class="oc-rvx-title">
+                    <span class="oc-rvx-title-text oc-rvx-title-text--before">Before</span>
+                    <span class="oc-rvx-title-text oc-rvx-title-text--after">After</span>
+                    <span class="oc-rvx-title-wipe"></span>
                   </div>
-                  <div class="oc-demo-line oc-demo-line--result">New 5-star review · live</div>
+
+                  <div class="oc-rvx-viewport">
+
+                    <!-- ============ BEFORE ============ -->
+                    <div class="oc-rvx-phase oc-rvx-phase--before">
+                      <div class="oc-rvx-flow">
+                        <div class="oc-rvx-seg oc-rvx-seg--upper"></div>
+                        <div class="oc-rvx-seg oc-rvx-seg--lower"></div>
+
+                        <div class="oc-rvx-step oc-rvx-step--done">
+                          <span class="oc-rvx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9.5 3.5h5v2.5h-5z"/><path d="M14.5 4.8h2c1 0 1.5.6 1.5 1.5v12.7c0 1-.6 1.5-1.5 1.5H7.5c-1 0-1.5-.6-1.5-1.5V6.3c0-1 .6-1.5 1.5-1.5h2"/><path d="M9.3 13.4l2.2 2.1 3.9-4.4"/></svg>
+                          </span>
+                          <span class="oc-rvx-card oc-rvx-card--green">Job Complete &middot; 4:12 PM</span>
+                        </div>
+
+                        <div class="oc-rvx-step oc-rvx-step--noask">
+                          <span class="oc-rvx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M4.5 6.5h15v9.5h-8.5L7 19.5V16H4.5z"/><path class="oc-rvx-slash" d="M4 20 20 4"/></svg>
+                          </span>
+                          <span class="oc-rvx-card oc-rvx-card--warn">Nobody Asks</span>
+                        </div>
+
+                        <div class="oc-rvx-step oc-rvx-step--noreview">
+                          <span class="oc-rvx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 3.8l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.2-4.1 5.8-.8z"/><path class="oc-rvx-slash" d="M4 20 20 4"/></svg>
+                          </span>
+                          <span class="oc-rvx-card oc-rvx-card--red">No Review</span>
+                        </div>
+                      </div>
+
+                      <div class="oc-rvx-stars">
+                        <i class="oc-rvx-star">&#9733;</i>
+                        <i class="oc-rvx-star">&#9733;</i>
+                        <i class="oc-rvx-star">&#9733;</i>
+                        <i class="oc-rvx-star">&#9733;</i>
+                        <i class="oc-rvx-star">&#9733;</i>
+                      </div>
+                    </div>
+
+                    <!-- ============ AFTER ============ -->
+                    <div class="oc-rvx-phase oc-rvx-phase--after">
+                      <div class="oc-rvx-flow">
+                        <div class="oc-rvx-seg oc-rvx-seg--upper"></div>
+                        <div class="oc-rvx-seg oc-rvx-seg--lower"></div>
+
+                        <div class="oc-rvx-step oc-rvx-step--done">
+                          <span class="oc-rvx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9.5 3.5h5v2.5h-5z"/><path d="M14.5 4.8h2c1 0 1.5.6 1.5 1.5v12.7c0 1-.6 1.5-1.5 1.5H7.5c-1 0-1.5-.6-1.5-1.5V6.3c0-1 .6-1.5 1.5-1.5h2"/><path d="M9.3 13.4l2.2 2.1 3.9-4.4"/></svg>
+                          </span>
+                          <span class="oc-rvx-card oc-rvx-card--green">Job Complete &middot; 4:12 PM</span>
+                        </div>
+
+                        <div class="oc-rvx-step oc-rvx-step--ask">
+                          <span class="oc-rvx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M4.5 6.5h15v9.5h-8.5L7 19.5V16H4.5z"/></svg>
+                          </span>
+                          <span class="oc-rvx-card oc-rvx-card--blue">Review Request Sent</span>
+                        </div>
+
+                        <div class="oc-rvx-step oc-rvx-step--posted">
+                          <span class="oc-rvx-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 3.8l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.2-4.1 5.8-.8z"/></svg>
+                          </span>
+                          <span class="oc-rvx-card oc-rvx-card--blue">New 5-Star Review</span>
+                        </div>
+                      </div>
+
+                      <div class="oc-rvx-stars oc-rvx-stars--earn">
+                        <i class="oc-rvx-star oc-rvx-star--1">&#9733;</i>
+                        <i class="oc-rvx-star oc-rvx-star--2">&#9733;</i>
+                        <i class="oc-rvx-star oc-rvx-star--3">&#9733;</i>
+                        <i class="oc-rvx-star oc-rvx-star--4">&#9733;</i>
+                        <i class="oc-rvx-star oc-rvx-star--5">&#9733;</i>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
+                <span class="oc-rvx-flash" aria-hidden="true"></span>
               </div>
             </div>
           </div>
@@ -827,41 +900,6 @@
       }
 
       requestAnimationFrame(tick);
-    })();
-
-    /* Review demo: the request-and-reply chat plays, then wipes sideways
-       to reveal the review that got posted, then loops back. */
-    (function () {
-      var demo = document.querySelector('.oc-demo--review');
-      if (!demo) return;
-      var chat = demo.querySelector('.oc-demo-phase--chat');
-      if (!chat) return;
-      var kids = Array.prototype.slice.call(chat.children);
-
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        demo.classList.add('is-review');
-        return;
-      }
-
-      function cycle() {
-        if (document.hidden) { setTimeout(cycle, 1200); return; }
-        demo.classList.remove('is-review');
-        kids.forEach(function (k) { k.classList.remove('oc-demo-show'); });
-        kids.forEach(function (k, i) {
-          setTimeout(function () { k.classList.add('oc-demo-show'); }, 350 + i * 620);
-        });
-        var chatSpan = 350 + kids.length * 620 + 1100;
-        setTimeout(function () { demo.classList.add('is-review'); }, chatSpan);
-        setTimeout(cycle, chatSpan + 4200);
-      }
-
-      if (!('IntersectionObserver' in window)) { cycle(); return; }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { cycle(); io.unobserve(entry.target); }
-        });
-      }, { threshold: 0.2 });
-      io.observe(demo);
     })();
 
     /* Process pipeline: a gold spine fills as you scroll and each stage

@@ -4083,15 +4083,15 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 @keyframes oc-mcx-seg-upper-before {
   0%, 6% { opacity: 1; transform: scaleY(0); filter: blur(0); }
   13%, 45% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
-  45.8% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6) blur(calc(1.5 * var(--u))); }
-  46.5%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+  45.8% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  46.5%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
 }
 /* Lower segment leaves the X and reaches the missed-call icon before it pops (19%). */
 @keyframes oc-mcx-seg-lower-before {
   0%, 15% { opacity: 1; transform: scaleY(0); filter: blur(0); }
   18.5%, 45% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
-  45.8% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6) blur(calc(1.5 * var(--u))); }
-  46.5%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+  45.8% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  46.5%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
 }
 @keyframes oc-mcx-seg-upper-after {
   0%, 58% { opacity: 1; transform: scaleY(0); }
@@ -4108,8 +4108,8 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 @keyframes oc-mcx-seg-tail-before {
   0%, 33% { opacity: 1; transform: scaleY(0); filter: blur(0); }
   38%, 45% { opacity: 1; transform: scaleY(1); filter: saturate(1) grayscale(0) blur(0); }
-  45.8% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6) blur(calc(1.5 * var(--u))); }
-  46.5%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+  45.8% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  46.5%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
 }
 @keyframes oc-mcx-seg-tail-after {
   0%, 81.2% { opacity: 1; transform: scaleY(0); }
@@ -4299,18 +4299,18 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
 
 /* board reveal + soft-fog disappearance, staggered: bar -> icon -> board */
 @keyframes oc-mcx-board-before {
-  0%, 36% { opacity: 0; transform: translateY(calc(14 * var(--u))); filter: saturate(1) blur(0); }
+  0%, 36% { opacity: 0; transform: translateY(calc(14 * var(--u))); filter: saturate(1); }
   39%, 48% { opacity: 1; transform: translateY(0); filter: saturate(1) grayscale(0) blur(0); }
   48.8% { opacity: 1; filter: saturate(0.35) grayscale(0.6) blur(calc(1.5 * var(--u))); }
-  49.4% { opacity: 0.2; filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+  49.4% { opacity: 0.2; filter: saturate(0.1) grayscale(0.9); }
   50%, 100% { opacity: 0; transform: translateY(0); filter: saturate(0.05) grayscale(0.95) blur(calc(4 * var(--u))); }
 }
 @keyframes oc-mcx-board-icon-before {
   0%, 37% { opacity: 0; transform: scale(0.7); filter: blur(0); }
   40% { opacity: 1; transform: scale(1.12); filter: blur(0); }
   41%, 46.5% { opacity: 1; transform: scale(1); filter: saturate(1) grayscale(0) blur(0); }
-  47.3% { opacity: 1; filter: saturate(0.3) grayscale(0.6) blur(calc(1.5 * var(--u))); }
-  48% { opacity: 0; filter: saturate(0.1) grayscale(0.9) blur(calc(3 * var(--u))); }
+  47.3% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  48% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
   100% { opacity: 0; }
 }
 
@@ -4447,4 +4447,603 @@ html.oc-js .oc-reveal.is-visible .oc-demo--loop > *:nth-child(4) {
   75.9% { opacity: 1; background-position: 135% 0; }
   77.1% { opacity: 1; background-position: -35% 0; }
   77.3%, 100% { opacity: 0; background-position: -35% 0; }
+}
+
+
+/* ==========================================================================
+   Lead & Quote Follow-Up demo  (.oc-lqx)
+   Sibling of .oc-mcx: same container-query --u unit, same title-wipe /
+   spine / status-card grammar, same 24s loop and closing box wipe.
+   Its own beat is TIME -- in Before the day counter runs away on its own
+   while nothing happens; in After the follow-up lands on day 3 and the
+   clock never gets going. Design grid is 368 x 364 "units".
+   ========================================================================== */
+.oc-lqx {
+  --u: 1px;
+  --dur: 24s;
+
+  --frame-bg:     var(--oc-surface-sunken, #E8E8E8);
+  --ink:          var(--oc-text-primary, #1A1A1A);
+
+  --green-ink: #1f6b45;  --green-line: #3f9c6c;
+  --green-border: rgba(63, 156, 108, 0.4);   --green-bg: #eaf6ee;
+  --warn-ink: #8a4a12;   --warn-line: #d9832f;
+  --warn-border: rgba(196, 118, 30, 0.55);   --warn-bg: #f9d9a8;
+  --red-ink: #7a2626;    --red-line: #b23f3f;
+  --red-border: rgba(178, 63, 63, 0.5);      --red-bg: #eeb3ac;
+  --blue-ink: #163e70;   --blue-line: #2b69be;
+  --blue-border: rgba(43, 105, 190, 0.55);   --blue-bg: #d6e8ff;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+  font-family: var(--oc-font-mono, 'DM Mono', 'Courier New', monospace);
+  color: var(--ink);
+}
+.oc-lqx *, .oc-lqx *::before, .oc-lqx *::after { box-sizing: border-box; }
+
+@supports (container-type: size) {
+  .oc-lqx { --u: calc(100cqmin / 380); }
+}
+
+/* Title + viewport share one wrapper so the closing wipe erases both as a
+   single continuous edge. */
+.oc-lqx-stage {
+  position: relative;
+  width: calc(368 * var(--u));
+  flex: 0 0 auto;
+  -webkit-mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+  mask-image: linear-gradient(112deg, transparent 0%, transparent 44%, #000 56%, #000 100%);
+  -webkit-mask-size: 200% 100%;
+  mask-size: 200% 100%;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: oc-lqx-stage-erase var(--dur) linear infinite;
+}
+
+/* The bright core that rides the erase edge across the whole box. */
+.oc-lqx-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: linear-gradient(
+    112deg,
+    transparent 0%,
+    transparent 43%,
+    rgba(255, 255, 255, 0.25) 46.5%,
+    rgba(255, 255, 255, 0.9) 49%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.9) 51%,
+    rgba(255, 255, 255, 0.25) 53.5%,
+    transparent 57%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-lqx-box-wipe var(--dur) linear infinite;
+}
+
+/* ============ TITLE BAND ============ */
+.oc-lqx-title {
+  position: relative;
+  height: calc(64 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.oc-lqx-title-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(30 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.oc-lqx-title-text--before { animation: oc-lqx-title-before var(--dur) linear infinite; }
+.oc-lqx-title-text--after  { animation: oc-lqx-title-after var(--dur) linear infinite; }
+
+.oc-lqx-title-wipe {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    128deg,
+    transparent 0%,
+    transparent 46.5%,
+    rgba(255, 255, 255, 0.22) 48.3%,
+    rgba(255, 255, 255, 0.88) 49.4%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.88) 50.6%,
+    rgba(255, 255, 255, 0.22) 51.7%,
+    transparent 53.5%,
+    transparent 100%
+  );
+  background-size: 260% 100%;
+  background-position: 150% 0;
+  opacity: 0;
+  animation: oc-lqx-title-wipe var(--dur) linear infinite;
+}
+
+/* ============ VIEWPORT / PHASES ============ */
+.oc-lqx-viewport {
+  position: relative;
+  height: calc(300 * var(--u));
+  overflow: hidden;
+}
+
+.oc-lqx-phase {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+.oc-lqx-phase--before { animation: oc-lqx-phase-before-vis var(--dur) step-end infinite; }
+.oc-lqx-phase--after  { animation: oc-lqx-phase-after-vis var(--dur) step-end infinite; }
+
+/* ---- flow (cards + spine) ---- */
+.oc-lqx-flow {
+  position: relative;
+  height: calc(300 * var(--u));
+  padding: calc(26 * var(--u)) calc(6 * var(--u)) calc(22 * var(--u)) calc(24 * var(--u));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Two segments, each terminating at an icon edge so the line visibly
+   arrives at the next step rather than running behind it. */
+.oc-lqx-seg {
+  position: absolute;
+  left: calc(37.5 * var(--u));
+  width: calc(3 * var(--u));
+  border-radius: calc(2 * var(--u));
+  z-index: 1;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.oc-lqx-seg--upper { top: calc(59 * var(--u));  bottom: calc(163 * var(--u)); }
+.oc-lqx-seg--lower { top: calc(167 * var(--u)); bottom: calc(55 * var(--u)); }
+
+.oc-lqx-phase--before .oc-lqx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--warn-line));
+  animation: oc-lqx-seg-upper-before var(--dur) linear infinite;
+}
+.oc-lqx-phase--before .oc-lqx-seg--lower {
+  background: linear-gradient(to bottom, var(--warn-line), var(--red-line));
+  animation: oc-lqx-seg-lower-before var(--dur) linear infinite;
+}
+.oc-lqx-phase--after .oc-lqx-seg--upper {
+  background: linear-gradient(to bottom, var(--green-line), var(--blue-line));
+  animation: oc-lqx-seg-upper-after var(--dur) linear infinite;
+}
+.oc-lqx-phase--after .oc-lqx-seg--lower {
+  background: var(--blue-line);
+  animation: oc-lqx-seg-lower-after var(--dur) linear infinite;
+}
+
+.oc-lqx-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+  opacity: 0;
+  z-index: 2;
+}
+/* Steps whose card and icon animate independently keep a visible parent. */
+.oc-lqx-step--silence,
+.oc-lqx-step--lost,
+.oc-lqx-step--nudge,
+.oc-lqx-step--booked { opacity: 1; }
+
+.oc-lqx-icon {
+  position: relative;
+  flex: 0 0 calc(30 * var(--u));
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border-radius: 50%;
+  background: var(--frame-bg);
+  box-shadow: 0 0 0 calc(2 * var(--u)) var(--frame-bg);
+}
+.oc-lqx-icon svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); overflow: visible; }
+.oc-lqx-icon path, .oc-lqx-icon circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.oc-lqx-card {
+  flex: 1;
+  max-width: calc(235 * var(--u));
+  min-height: calc(36 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(6 * var(--u)) calc(11 * var(--u));
+  border-radius: calc(3 * var(--u));
+  border: calc(1.5 * var(--u)) solid;
+  box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  font-size: calc(11 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+}
+.oc-lqx-card--green { border-color: var(--green-border); background: var(--green-bg); color: var(--green-ink); }
+.oc-lqx-card--warn  { border-color: var(--warn-border);  background: var(--warn-bg);  color: var(--warn-ink); }
+.oc-lqx-card--red   { border-color: var(--red-border);   background: var(--red-bg);   color: var(--red-ink); }
+.oc-lqx-card--blue  { border-color: var(--blue-border);  background: var(--blue-bg);  color: var(--blue-ink); }
+
+.oc-lqx-step--sent .oc-lqx-icon    { color: var(--green-line); }
+.oc-lqx-step--silence .oc-lqx-icon { color: var(--warn-line); }
+.oc-lqx-step--lost .oc-lqx-icon    { color: var(--red-line); }
+.oc-lqx-step--nudge .oc-lqx-icon   { color: var(--blue-line); }
+.oc-lqx-step--booked .oc-lqx-icon  { color: var(--blue-line); }
+
+/* Fixed width so 3 -> 17 does not shove the surrounding words sideways.
+   Margin (not the surrounding text's whitespace) holds the gap: being a
+   direct child of the flex-display .oc-lqx-card blockifies this element
+   per spec, which collapses ordinary inline whitespace at its edges. */
+.oc-lqx-day {
+  display: inline-block;
+  min-width: 2ch;
+  margin: 0 0.3ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+/* ---- BEFORE: quote sent, then silence, then dead ---- */
+.oc-lqx-phase--before .oc-lqx-step--sent { animation: oc-lqx-sent-before var(--dur) ease-out infinite; }
+
+/* The waiting card cools from amber toward red as the days pile up. */
+.oc-lqx-step--silence .oc-lqx-card { animation: oc-lqx-silence-card var(--dur) linear infinite; }
+.oc-lqx-step--silence .oc-lqx-icon {
+  opacity: 0;
+  animation: oc-lqx-silence-icon var(--dur) linear infinite,
+             oc-lqx-clock-tick var(--dur) linear infinite;
+}
+
+.oc-lqx-step--lost .oc-lqx-card { animation: oc-lqx-lost-card var(--dur) linear infinite; }
+.oc-lqx-step--lost .oc-lqx-icon { opacity: 0; animation: oc-lqx-lost-icon var(--dur) linear infinite; }
+.oc-lqx-void { stroke-dasharray: 24; stroke-dashoffset: 24; animation: oc-lqx-void-draw var(--dur) linear infinite; }
+
+/* ---- AFTER: quote sent, follow-up lands on day 3, job books ---- */
+.oc-lqx-phase--after .oc-lqx-step--sent { animation: oc-lqx-sent-after var(--dur) ease-out infinite; }
+
+.oc-lqx-step--nudge .oc-lqx-card {
+  animation: oc-lqx-nudge-card var(--dur) linear infinite,
+             oc-lqx-nudge-flash var(--dur) linear infinite;
+}
+.oc-lqx-step--nudge .oc-lqx-icon { opacity: 0; animation: oc-lqx-nudge-icon var(--dur) linear infinite; }
+
+.oc-lqx-step--booked .oc-lqx-card {
+  position: relative;
+  overflow: hidden;
+  animation: oc-lqx-booked-card var(--dur) linear infinite;
+}
+.oc-lqx-step--booked .oc-lqx-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(120, 180, 255, 0.30) 45%,
+    rgba(228, 242, 255, 0.98) 50%,
+    rgba(120, 180, 255, 0.30) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 230% 100%;
+  background-position: 135% 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: oc-lqx-booked-wipe var(--dur) linear infinite;
+}
+.oc-lqx-step--booked .oc-lqx-icon { opacity: 0; animation: oc-lqx-booked-icon var(--dur) linear infinite; }
+
+/* Recovered money lifting out from under the booked card. */
+.oc-lqx-cash {
+  position: absolute;
+  left: calc(42 * var(--u));
+  width: calc(235 * var(--u));
+  bottom: calc(2 * var(--u));
+  height: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.oc-lqx-bill {
+  position: absolute;
+  bottom: 0;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+  color: #1f8a55;
+  text-shadow: 0 0 calc(3 * var(--u)) rgba(255, 255, 255, 0.95),
+               0 0 calc(16 * var(--u)) rgba(63, 156, 108, 0.55);
+  opacity: 0;
+}
+.oc-lqx-bill--1 { left: 16%; font-size: calc(23 * var(--u)); animation: oc-lqx-cash-1 var(--dur) ease-out infinite; }
+.oc-lqx-bill--2 { left: 38%; font-size: calc(30 * var(--u)); animation: oc-lqx-cash-2 var(--dur) ease-out infinite; }
+.oc-lqx-bill--3 { left: 60%; font-size: calc(21 * var(--u)); animation: oc-lqx-cash-3 var(--dur) ease-out infinite; }
+.oc-lqx-bill--4 { left: 79%; font-size: calc(27 * var(--u)); animation: oc-lqx-cash-4 var(--dur) ease-out infinite; }
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  .oc-lqx-title-text--before { display: none; }
+  .oc-lqx-title-text--after { position: static; opacity: 1; }
+  .oc-lqx-title-wipe { display: none; }
+  .oc-lqx-phase--before { display: none; }
+  .oc-lqx-phase--after { visibility: visible; }
+  .oc-lqx-cash { display: none; }
+  .oc-lqx-flash { display: none; }
+  .oc-lqx-stage {
+    animation: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .oc-lqx-step, .oc-lqx-card, .oc-lqx-icon, .oc-lqx-seg {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .oc-lqx-void { stroke-dashoffset: 0; }
+}
+
+/* ============ KEYFRAMES ============ */
+
+/* Title + phase handoff at the midpoint, matching the sibling demo. */
+@keyframes oc-lqx-title-before {
+  0%, 51.58% { opacity: 1; }
+  51.82%, 100% { opacity: 0; }
+}
+@keyframes oc-lqx-title-after {
+  0%, 51.58% { opacity: 0; }
+  51.82%, 100% { opacity: 1; }
+}
+@keyframes oc-lqx-title-wipe {
+  0%, 50.2% { opacity: 0; background-position: 150% 0; }
+  50.4% { opacity: 1; background-position: 150% 0; }
+  53% { opacity: 1; background-position: -50% 0; }
+  53.3%, 100% { opacity: 0; background-position: -50% 0; }
+}
+@keyframes oc-lqx-phase-before-vis {
+  0% { visibility: visible; }
+  50% { visibility: visible; }
+  50.01% { visibility: hidden; }
+  100% { visibility: hidden; }
+}
+@keyframes oc-lqx-phase-after-vis {
+  0% { visibility: hidden; }
+  53.2% { visibility: hidden; }
+  53.3% { visibility: visible; }
+  100% { visibility: visible; }
+}
+
+/* --- BEFORE --- */
+@keyframes oc-lqx-sent-before {
+  0%, 1.5% { opacity: 0; transform: translateY(calc(-20 * var(--u))); }
+  4% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  5.5%, 46% { opacity: 1; transform: translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-lqx-seg-upper-before {
+  0%, 5.5% { opacity: 1; transform: scaleY(0); }
+  11%, 46% { opacity: 1; transform: scaleY(1); filter: saturate(1); }
+  47.5% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
+}
+
+/* Amber on arrival, deepening toward red across the silent stretch. */
+@keyframes oc-lqx-silence-card {
+  0%, 11% {
+    opacity: 0;
+    transform: translateY(calc(-12 * var(--u)));
+    border-color: var(--warn-border);
+    background: var(--warn-bg);
+    color: var(--warn-ink);
+  }
+  14.5% {
+    opacity: 1;
+    transform: translateY(0);
+    border-color: var(--warn-border);
+    background: var(--warn-bg);
+    color: var(--warn-ink);
+  }
+  15%, 22% {
+    opacity: 1;
+    border-color: var(--warn-border);
+    background: var(--warn-bg);
+    color: var(--warn-ink);
+  }
+  30% {
+    opacity: 1;
+    border-color: rgba(190, 90, 50, 0.55);
+    background: #f4c69c;
+    color: #83381a;
+  }
+  37%, 46% {
+    opacity: 1;
+    border-color: var(--red-border);
+    background: var(--red-bg);
+    color: var(--red-ink);
+  }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-lqx-silence-icon {
+  0%, 12% { opacity: 0; }
+  14.5%, 46% { opacity: 1; }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+/* The clock leans a little further each beat while the days run. */
+@keyframes oc-lqx-clock-tick {
+  0%, 15% { transform: rotate(0deg) scale(1); }
+  19% { transform: rotate(-7deg) scale(1.04); }
+  23% { transform: rotate(6deg) scale(1.04); }
+  27% { transform: rotate(-9deg) scale(1.06); }
+  31% { transform: rotate(8deg) scale(1.06); }
+  35% { transform: rotate(-10deg) scale(1.08); }
+  37%, 100% { transform: rotate(0deg) scale(1); }
+}
+@keyframes oc-lqx-seg-lower-before {
+  0%, 33% { opacity: 1; transform: scaleY(0); }
+  38%, 46% { opacity: 1; transform: scaleY(1); filter: saturate(1); }
+  47.5% { opacity: 1; transform: scaleY(1); filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; transform: scaleY(1); filter: saturate(0.1) grayscale(0.9); }
+}
+/* Deflates in rather than slamming: the quote gave up, nobody killed it. */
+@keyframes oc-lqx-lost-card {
+  0%, 38% { opacity: 0; transform: scale(1.1) translateY(calc(-6 * var(--u))); }
+  40.5% { opacity: 1; transform: scale(0.94) translateY(calc(3 * var(--u))); }
+  42% { opacity: 1; transform: scale(1.02) translateY(0); }
+  43.5%, 46% { opacity: 1; transform: scale(1) translateY(0); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-lqx-lost-icon {
+  0%, 38.5% { opacity: 0; transform: scale(0.7); }
+  40.5% { opacity: 1; transform: scale(1.12); }
+  41.5%, 46% { opacity: 1; transform: scale(1); }
+  47.5% { opacity: 1; filter: saturate(0.3) grayscale(0.6); }
+  49%, 100% { opacity: 0; filter: saturate(0.1) grayscale(0.9); }
+}
+@keyframes oc-lqx-void-draw {
+  0%, 40.5% { stroke-dashoffset: 24; }
+  43%, 46% { stroke-dashoffset: 0; }
+  49%, 100% { stroke-dashoffset: 0; }
+}
+
+/* --- AFTER --- */
+@keyframes oc-lqx-sent-after {
+  0%, 54% { opacity: 0; transform: translateY(calc(-20 * var(--u))); }
+  56.5% { opacity: 1; transform: translateY(calc(3 * var(--u))); }
+  57.5%, 98% { opacity: 1; transform: translateY(0); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-lqx-seg-upper-after {
+  0%, 57.5% { opacity: 1; transform: scaleY(0); }
+  63%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+/* Arrives on its own from the right: the system acting, not the owner. */
+@keyframes oc-lqx-nudge-card {
+  0%, 63% { opacity: 0; transform: translateX(calc(60 * var(--u))); }
+  65.5% { opacity: 1; transform: translateX(calc(-5 * var(--u))); }
+  66.5% { opacity: 1; transform: translateX(calc(2 * var(--u))); }
+  67%, 98% { opacity: 1; transform: translateX(0); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-lqx-nudge-flash {
+  0%, 67% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  67.9% {
+    border-color: var(--blue-line);
+    background: #ffffff;
+    box-shadow: 0 0 0 calc(9 * var(--u)) rgba(43, 105, 190, 0.24),
+                0 0 calc(24 * var(--u)) rgba(43, 105, 190, 0.48),
+                calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+  69.2%, 100% {
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
+    box-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 rgba(28, 26, 22, 0.12);
+  }
+}
+@keyframes oc-lqx-nudge-icon {
+  0%, 64.5% { opacity: 0; transform: translateX(calc(-8 * var(--u))) scale(0.7); }
+  66.5% { opacity: 1; transform: translateX(0) scale(1.14); }
+  67.5%, 98% { opacity: 1; transform: translateX(0) scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-lqx-seg-lower-after {
+  0%, 69.5% { opacity: 1; transform: scaleY(0); }
+  74%, 99.6% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+@keyframes oc-lqx-booked-card {
+  0%, 74% { opacity: 0; transform: translateY(calc(14 * var(--u))) scale(0.9); }
+  76.5% { opacity: 1; transform: translateY(calc(-4 * var(--u))) scale(1.04); }
+  77.5%, 98% { opacity: 1; transform: translateY(0) scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-lqx-booked-icon {
+  0%, 75% { opacity: 0; transform: scale(0.65); }
+  77% { opacity: 1; transform: scale(1.14); }
+  78%, 98% { opacity: 1; transform: scale(1); }
+  99.6%, 100% { opacity: 0; }
+}
+@keyframes oc-lqx-booked-wipe {
+  0%, 78% { opacity: 0; background-position: 135% 0; }
+  78.2% { opacity: 1; background-position: 135% 0; }
+  79.4% { opacity: 1; background-position: -35% 0; }
+  79.6%, 100% { opacity: 0; background-position: -35% 0; }
+}
+/* Staggered so the money trickles out and clears before the closing wipe. */
+@keyframes oc-lqx-cash-1 {
+  0%, 79.6% { opacity: 0; transform: translate(0, calc(-4 * var(--u))) scale(0.55) rotate(0deg); }
+  80.4% { opacity: 1; transform: translate(calc(-20 * var(--u)), calc(4 * var(--u))) scale(1.18) rotate(-14deg); }
+  86%, 100% { opacity: 0; transform: translate(calc(-58 * var(--u)), calc(15 * var(--u))) scale(1.06) rotate(-34deg); }
+}
+@keyframes oc-lqx-cash-2 {
+  0%, 79.9% { opacity: 0; transform: translate(0, calc(-4 * var(--u))) scale(0.55) rotate(0deg); }
+  80.8% { opacity: 1; transform: translate(calc(-9 * var(--u)), calc(6 * var(--u))) scale(1.2) rotate(-7deg); }
+  86.4%, 100% { opacity: 0; transform: translate(calc(-27 * var(--u)), calc(16 * var(--u))) scale(1.08) rotate(-18deg); }
+}
+@keyframes oc-lqx-cash-3 {
+  0%, 80.3% { opacity: 0; transform: translate(0, calc(-4 * var(--u))) scale(0.55) rotate(0deg); }
+  81.2% { opacity: 1; transform: translate(calc(10 * var(--u)), calc(6 * var(--u))) scale(1.18) rotate(8deg); }
+  86.8%, 100% { opacity: 0; transform: translate(calc(30 * var(--u)), calc(15 * var(--u))) scale(1.06) rotate(20deg); }
+}
+@keyframes oc-lqx-cash-4 {
+  0%, 80.7% { opacity: 0; transform: translate(0, calc(-4 * var(--u))) scale(0.55) rotate(0deg); }
+  81.6% { opacity: 1; transform: translate(calc(21 * var(--u)), calc(4 * var(--u))) scale(1.2) rotate(15deg); }
+  87.2%, 100% { opacity: 0; transform: translate(calc(60 * var(--u)), calc(14 * var(--u))) scale(1.08) rotate(36deg); }
+}
+
+/* Closing sweep: erases the After flow and the title in one pass, holds
+   blank for a beat, then the loop restarts on Before. */
+@keyframes oc-lqx-stage-erase {
+  0%, 96.1% {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  99.7%, 100% {
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
+}
+@keyframes oc-lqx-box-wipe {
+  0%, 96.0% { opacity: 0; background-position: 100% 0; }
+  96.2% { opacity: 1; background-position: 98% 0; }
+  99.5% { opacity: 1; background-position: 2% 0; }
+  99.8%, 100% { opacity: 0; background-position: 0% 0; }
 }
